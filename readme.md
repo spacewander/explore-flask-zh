@@ -11,4 +11,6 @@
 中文译本的协议同英文原本，使用[Create Commons Attribution-NonCommercial 3.0 Unported license](http://creativecommons.org/licenses/by-nc/3.0/)。
 你可以自由地分发并修改本书，前提是保证不把它重新销售并保留原作者(我指的是英文原本作者)的作品归属权。
 
+# 注意: 现在该书的英文原本尚未完成，所以这个中文译本也只是alpha版本。我会保留英文原文，因为英文的内容会根据原本的变化而跟着修改。中文的对应部分也会对着修改。
+
 
