@@ -59,7 +59,7 @@ Only an authenticated user will be able to access the _/dashboard_ route. You ca
 ### 缓存
 
 Imagine that an article mentioning your application just appeared on CNN and several other news sites. You’re getting thousands of requests per second. Your homepage makes several trips to the database for each request, so all of this attention is slowing things down to a crawl. How can you speed things up quickly, so all of these visitors don’t miss out on our site?
-意淫一下，假如你的应用突然有一天在微博/朋友圈或别的地方火了。
+意淫一下，假如你的应用突然有一天在微博/朋友圈或网上别的地方火了。
 于是秒秒钟会有成千上万的请求涌向你的应用。你的主页在每个请求中都要从数据库跑上一大趟，结果海量的请求导致网站慢得像教务系统一样。
 你能做什么来加速这一过程，以免用户以为你的应用挂掉了？
 
@@ -86,7 +86,7 @@ def index():
     [...] # Make a few database calls to get the information you need
     return render_template(
         'index.html',
-        latest_posts=latest_posts, 
+        latest_posts=latest_posts,
         recent_users=recent_users,
         recent_photos=recent_photos
     )
@@ -152,10 +152,12 @@ def check_expired(func):
 4: 既然已经处理好自己的事情，我们把原来的参数交由视图函数func()去继续执行。
 
 Here’s an example using our custom decorator and the `@login_required` decorator from the Flask-Login extension. We can use multiple decorators by stacking them.
-下面这个例子用到了我们自定义的装饰器和来自Flask-Cache拓展的`@login_required`装饰器。我们可以通过类似栈的方式使用多个装饰器。
+下面这个例子用到了我们自定义的装饰器和来自Flask-Cache拓展的`@login_required`装饰器。我们可以将多个装饰器堆成栈来一起使用。
 
 { NOTE: The topmost decorator will run first, then call the next function in line: either the view function or the next decorator. The decorator syntax is just a little syntactic sugar.
+{ NOTE: 位于最顶部的装饰器将最先运行，然后调用下一个函数:一个视图函数或下一个装饰器。装饰器语法只是一个语法糖而已。
 This...
+这样……
 ```
 @foo
 @bar
@@ -164,6 +166,7 @@ def bat():
 ```
 
 ...is the same is this:
+……等同于这样:
 
 ```
 def bat():
@@ -198,12 +201,17 @@ def account_billing():
 ```
 
 Now when a user tries to access /use_app, check_expired() will make sure that there account hasn't expired before running the view function.
+当一个用户试图访问/use\_app时，check_expired()将在执行视图函数之前确保相关的账户资料不会泄漏。
 
 ## URL Converters
+## URL转换器
 
 ### Built-in converters
+### 内建转换器
 
 When you define a route in Flask, you can specify parts of it that will be converted into Python variables and passed to the view function. For example, you can specify that you are expecting a portion we’ll call “username” in the URL like so:
+当你在Flask中定义一个路由时，你可以将指定的一部分转换成Python变量并传递给视图函数。
+比如，你可以像这样在URL中指定一部分为"username":
 
 ```
 @app.route('/user/<username>')
@@ -212,6 +220,7 @@ def profile(username):
 ```
 
 Whatever is in the part of the URL labeled <username> will get passed to the view as the username parameter. You can also specify a converter to filter out what gets passed:
+在URL中作为<username>的那一部分内容将作为username参数传递给视图函数。你也可以指定一个转换器过滤出特定的类型。
 
 ```
 @app.route('/user/id/<int:user_id>')
@@ -222,20 +231,28 @@ def profile(user_id):
 { CHANCE TO ENCODE BACKER NAME }
 
 With this example, the URL, http://myapp.com/user/id/tomato will return a 404 status code -- not found. This is because the part of the URL that is supposed to be an integer is actually a string.
+在这个例子中，http://myapp.com/user/id/tomato 这个URL会返回一个404状态码 -- 此物无处觅。
+这是因为URL中本应该是整数的部分实际上是一串字符串。
 
 We could have a second view that looks for a string as well. That would be called for _/user/id/tomato/_ while the first would be called for _/user/id/124_.
+我们可以有另外一个接受一个字符串的视图函数。*/usr/id/tomato/*将调用它，而前一个函数只会被*/user/id/124*所调用。
 
 Here's a table from the Flask documentation showing the default converters:
+下面是来自Flask文档的关于默认转换器的表格:
 
 { MAKE IT A TABLE }
 
 string: accepts any text without a slash (the default)
+string: 接受任何没有斜杠`/`的文本（默认）
 
 int: accepts integers
+int: 接受整数
 
 float: like int but for floating point values
+float: 类似于`int`，但是接受的是浮点数
 
 path: like string but accepts slashes
+path: 类似于`string`，但是接受斜杠`/`
 
 ### Customer converters
 
