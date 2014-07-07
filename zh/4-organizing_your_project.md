@@ -9,8 +9,6 @@ Flask不会要求你的项目文件夹有一个固定的结构。不像Django，
 你可以把这个应用放到一个文件中，或者把它分割多个包。然而这两种结构并不适合大多数项目。
 这里有一些固定的组织模式，你可以遵循它们以便于开发和部署。
 
-## Definitions
-
 ## 约定
 
 There are a few terms that I want to define for this section.
