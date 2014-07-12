@@ -24,7 +24,7 @@ The killer use-case of blueprints is to organize your application into distinct 
 
 Like everything with Flask, there are many ways that you can organize your app using blueprints. With blueprints, I like to think of the choice as functional versus divisional (terms I'm borrowing from the business world).
 
-就像Flask里的每一件事情一样，你可以使用多种方式组织用了蓝图的应用。对我而言，我喜欢按照功能(functional)而非部门(divisional)来组织。(这些术语是我从商业世界借来的)
+就像Flask里的每一件事情一样，你可以使用多种方式组织用了蓝图的应用。对我而言，我喜欢按照功能(functional)而非分区(divisional)来组织。(这些术语是我从商业世界借来的)
 
 ### Functional structure
 ### 功能式架构
@@ -56,11 +56,11 @@ With the exception of yourapp/views/__init__.py, each of the _.py_ files in the 
 { Note: 当我下笔之时， flask.pocoo.org上的Flask官网就是使用这样的结构的。 https://github.com/mitsuhiko/flask/tree/website/flask_website }
 
 ### Divisional
-### 部门式架构
+### 分区式架构
 
 With the divisional structure, you organize the pieces of the application based on which part of the app they contribute to. All of the templates, views and static files for the admin panel go in one directory, and those for the user control panel go in another.
 
-在部门式架构中，按照每一部分所属的蓝图来组织你的应用。管理面板的所有的模板，视图和静态文件放在一个文件夹中，用户控制面板的则放在另一个文件夹中。
+在分区式架构中，按照每一部分所属的蓝图来组织你的应用。管理面板的所有的模板，视图和静态文件放在一个文件夹中，用户控制面板的则放在另一个文件夹中。
 
 ```
 yourapp/
@@ -96,7 +96,7 @@ The organizational structure you choose is largely a personal decision. The only
 
 If your app has largely independent pieces that only share things like models and configuration, divisional might be the way to go. An example might be a SaaS app that lets user's build websites. You could have blueprints in "divisions" for the home page, the control panel, the user's website, and the admin panel. These components may very well have completely different static files and layouts. If you’re considering spinning off your blueprints as extensions or using them for other projects, a divisional structure will be easier to work with.
 
-如果你的应用是由独立的，仅仅共享模型和配置的各组件组成，部门式将是个好选择。一个例子是允许用户建立网站的SaaS应用。你将会有独立的蓝图用于主页，控制面板，用户网站，和高亮面板。这些组件有着完全不同的静态文件和布局。如果你想要将你的蓝图提取成插件，或用之于别的项目，一个部门式架构将是正确的选择。
+如果你的应用是由独立的，仅仅共享模型和配置的各组件组成，分区式将是个好选择。一个例子是允许用户建立网站的SaaS应用。你将会有独立的蓝图用于主页，控制面板，用户网站，和高亮面板。这些组件有着完全不同的静态文件和布局。如果你想要将你的蓝图提取成插件，或用之于别的项目，一个分区式架构将是正确的选择。
 
 On the other hand, if the components of your app flow together a little more, it might be better represented with a functional structure. An example of this would be Facebook. If it were to use Flask, it might have blueprints for the home pages (i.e. signed-out home, register, about, etc.), the dashboard (i.e. the news feed), profiles (/robert/about and /robert/photos), even settings (/settings/security and /settings/privacy) and many more. These components all share a general layout and styles, but each has its own layout as well. Here's a heavily abridged version of what Facebook might look like it if were built with Flask:
 
@@ -184,7 +184,7 @@ To create a blueprint object, you import the `Blueprint()` class and initialize 
 
 { NOTE: When using a divisional structure, you’d want to tell Flask that the blueprint has its own template and static directories. Here’s what our definition would look like in that case:
 
-{ NOTE: 假如使用部门式架构，你得告诉Flask某个蓝图是有着自己的模板和静态文件夹的。下面是这种情况下我们的定义大概的样子：
+{ NOTE: 假如使用分区式架构，你得告诉Flask某个蓝图是有着自己的模板和静态文件夹的。下面是这种情况下我们的定义大概的样子：
 
 ```
 profile = Blueprint('profile', __name__,
@@ -308,11 +308,11 @@ facebook/templates/profile/photos.html
 
 Many SaaS (Software as a Service) applications these days provide users with a subdomain from which to access their software. Harvest, for example, is a time tracking application for consultants that gives you access to your dashboard from yourname.harvestapp.com. Here I'll show you how to get Flask to work with automatically generated subdomains like this.
 
-今天，许多SaaS应用提供用户一个子域名来访问他们的软件。举个例子，Harvest，是一个针对顾问的时间追溯软件，它在yourname.harvestapp.com给你提供了一个控制面板。下面我将展示在Flask中如何像这样自动生成一个子域名。
+今天，许多SaaS应用提供用户一个子域名来访问他们的软件。举个例子，Harvest，是一个针对顾问的日程管理软件，它在yourname.harvestapp.com给你提供了一个控制面板。下面我将展示在Flask中如何像这样自动生成一个子域名。
 
 For this section I'm going to use the example of an application that lets users create their own websites. Imagine that our app has three blueprints for distinct sections: the home page where users sign-up, the user administration panel where the user builds their website and the user's website. Since these three parts are relatively unconnected, we'll organize them in a divisional structure.
 
-在这一节，我将使用一个允许用户创建自己的网站的应用作为例子。假设我们的应用有三个蓝图分别针对以下的部分：用户注册的主页面，可用于建立自己的网站的用户管理面板，用户的网站。考虑到这三个部分相对独立，我们将用部门式结构组织起来。
+在这一节，我将使用一个允许用户创建自己的网站的应用作为例子。假设我们的应用有三个蓝图分别针对以下的部分：用户注册的主页面，可用于建立自己的网站的用户管理面板，用户的网站。考虑到这三个部分相对独立，我们将用分区式结构组织起来。
 
 ```
 sitemaker/
@@ -346,10 +346,15 @@ sitemaker/
 { ENCODE BACKER NAME IN SUBDOMAIN }
 
 * sitemaker.com/ : _sitemaker/home_ - Just a vanilla blueprint. Views, templates and static files for _index.html_, _about.html_ and _pricing.html_.
+* sitemaker.com/ : *sitemaker/home* - 一个普通的蓝图。包括用于*index.html*，*about.html*和*pricing.html*的视图，模板和静态文件。
 * bigdaddy.sitemaker.com : _sitemaker/site_ - This blueprint uses a dynamic subdomain and includes the elements of the user’s website. We’ll go over some of the code used to implement this blueprint below.
+* bigdaddy.sitemaker.com : *sitemaker/site* - 这个蓝图使用了动态子域名，并包括了用户网站的一些元素。等下我们来看看用于实现这个蓝图的一些代码。
 * bigdaddy.sitemaker.com/admin : _sitemaker/dash_ - This blueprint could use both a dynamic subdomain and a URL prefix by combining the techniques in this section with those from the previous section.
+* bigdaddy.sitemaker.com/admin : *sitemaker/dash* - 这个蓝图将使用一个动态子域名和一个URL前缀，把这一节的技术和上一节的结合起来。
 
-We can define our dynamic subdomain the same way we defined our URL prefix. Both options (in the blueprint directory or in the top-level ___init__.py_) are available, but once again we’ll keep the definitions in _sitemaker/__init.py___.
+We can define our dynamic subdomain the same way we defined our URL prefix. Both options (in the blueprint directory or in the top-level ___init__.py_) are available, but once again we’ll keep the definitions in _sitemaker/__init.py___. FIXME
+
+定义动态子域名的方式和定义URL前缀一样。同样的，我们可以选择在蓝图文件夹中，或在顶级目录的__init__.py中定义它。这一次，我们还是在*sitemaker/__init__.py*中放置所有的定义。
 
 sitemaker/__init__.py
 ```
@@ -361,6 +366,7 @@ app.register_blueprint(site, subdomain='<site_subdomain>')
 ```
 
 In a divisional structure, the blueprint will be defined in _sitemaker/site/__init__.py_.
+如果是分区式架构，蓝图将在*sitemaker/site/__init__.py*定义。
 
 sitemaker/site/__init__py
 ```
@@ -369,7 +375,9 @@ from flask import Blueprint
 from ..models import Site
 
 # Note that the capitalized Site and the lowercase site
+# 注意首字母大写的Site和全小写的site是两个完全不同的变量。
 # are two completely separate variables. Site is a model
+# Site是一个模块，而site是一个蓝图。
 # and site is a blueprint.
 
 site = Blueprint('site', __name__)
@@ -380,12 +388,17 @@ def get_site(endpoint, values):
     g.site = query.first_or_404()
 
 # Import the views after site has been defined. The views module will need to import 'site' so we need to make sure that we import views after site has been defined.
+# 在定义site后才import views。视图模块需要import 'site'，所以我们需要确保在import views之前定义site。
 import .views
 ```
 
 Now we have the site information from the database that we’ll use to display the user’s site to the visitor who requests their subdomain.
 
+现在我们已经从数据库中获取可以向请求子域名的用户展示的站点信息了。
+
 To get Flask to work with subdomains, you’ll need to specify the `SERVER_NAME` configuration variable.
+
+为了使Flask能够支持子域名，你需要修改配置变量`SERVER_NAME`。
 
 config.py
 ```
@@ -394,13 +407,23 @@ SERVER_NAME = 'sitemaker.com'
 
 { NOTE: A few minutes ago, as I was drafting this section, somebody in IRC said that their subdomains were working fine in development, but not in production. I asked if they had the SERVER_NAME configured, and it turned out that they had it in development but not production. Setting it in production solved their problem. See the conversation between myself (imrobert) and aplavin: http://dev.pocoo.org/irclogs/%23pocoo.2013-07-30.log }
 
+{ NOTE: 几分钟之前，当我正在打这一章的草稿时，聊天室中某人求助称他们的子域名能够在开发环境下正常工作，但在生产环境下就会失败。我问他们是否配置了`SERVER_NAME`，结果发现他们只在开发环境中配置了这个变量。在生产环境中设置这个变量解决了他们的问题。从这里可以看到我(imrobert)和aplavin之间的对话: http://dev.pocoo.org/irclogs/%23pocoo.2013-07-30.log }
+
 { NOTE: You can set both a subdomain and url_prefix. Think about how we would configure the blueprint in _sitemaker/dash_with the URL structure from the table above. }
 
+{ NOTE: 你可以同时设置一个子域名和URL前缀。想一下使用上面的表格的URL结构，我们要怎样来配置*sitemaker/dash*。 }
+
 ## Refactoring small apps to use blueprints
+## 使用蓝图重构小型应用
 
 I’d like to go over a brief example of the steps we can take to convert an app to use blueprints. We’ll start off with a typical Flask app and restructure it.
+
+我打算通过一个简单的例子来展示用蓝图重写一个应用的几个步骤。我们将从一个典型的Flask应用起步，然后重构它。
+
 { ENCODE BACKER NAME? }
 Here’s our growing app — called gnizama — that’s in need of some reorganization:
+
+下面是我们正在开发的应用 —— 名为gnizama —— 亟需一些重构：
 
 ```
 config.txt
@@ -417,15 +440,25 @@ tests/
 
 The _views.py_ file has grown to 10,000 lines of code. We’ve been putting off refactoring it, but it’s finally time. The file contains views for all of the sections of our site. These sections are the home page, the user dashboard, the admin dashboard, the API and the company blog.
 
+*views.py*文件已经膨胀到10,000行代码了。重构的工作被一推再推，到现在已经无路可退。这个文件包括了我们的网站的所有的视图，比如主页，用户面板，管理员面板，API和公司博客。
+
 ### Step 1: Divisional or functional?
+### Step 1：分区式还是功能式？
 
 This application is made up of very distinct sections. Templates and static files probably aren’t going to be shared between blueprints, so we’ll go with a divisional structure.
 
+这个应用由关联较小的各部分构成。模板和静态文件不太可能在蓝图间共享，所以我们将使用分区式结构。
+
 ### Step 2: Move some files around
+### Step 2：推箱子
 
 { WARNING: Before you make any changes to your app, commit everything to version control. You don’t want to accidentally delete something for good. }
 
+{ WARNING: 在你对你的应用大刀阔斧之前，把一切提交到版本控制。你不会接受对任何有用的东西的意外删除。 }
+
 Next we’ll go ahead and create the directory tree for our new app. Start off by creating a folder for each blueprint within the package directory. Then copy _views.py_, _static/_ and _templates_ in their entirety to each blueprint directory. You can then remove them from the top-level package directory.
+
+接下来我们将继续前进，为我们的新应用创建目录树。从为每一个蓝图创建一个目录开始吧。然后整体复制*views.py*，*static/*和*templates/*到每一个蓝图文件夹。接着你可以从顶级目录删除掉它们了。
 
 ```
 config.txt
