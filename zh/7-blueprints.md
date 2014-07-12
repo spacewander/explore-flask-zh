@@ -154,6 +154,8 @@ The blueprints in _facebook/views/_ are little more than collections of views ra
 
 Let's take a look at the code for one of the Blueprints from that Facebook example:
 
+让我们看看来自Facebook例子的一个蓝图的代码：
+
 facebook/views/profile.py
 ```
 from flask import Blueprint, render_template
@@ -178,7 +180,11 @@ def about(user_url_slug):
 
 To create a blueprint object, you import the `Blueprint()` class and initialize it with the parameters `name` and `import_name`. Usually `import_name` will just be `__name__`, which is a special Python variable containing the name of the current module.
 
+要想创建一个蓝图对象，你需要import`Blueprint()`类并用参数`name`和`import_name`初始化。通常用`__name__`，一个表示当前模块的特殊的Python变量，作为`import_name`的取值。
+
 { NOTE: When using a divisional structure, you’d want to tell Flask that the blueprint has its own template and static directories. Here’s what our definition would look like in that case:
+
+{ NOTE: 假如使用部门式架构，你得告诉Flask某个蓝图是有着自己的模板和静态文件夹的。下面是这种情况下我们的定义大概的样子：
 
 ```
 profile = Blueprint('profile', __name__,
@@ -188,6 +194,8 @@ profile = Blueprint('profile', __name__,
 }
 
 We have now defined our blueprint. It's time to extend our Flask app with it by registering it.
+
+现在我们已经定义好了蓝图。是时候向Flask app登记它了。
 
 facebook/__init__.py
 ```
@@ -200,15 +208,26 @@ app.register_blueprint(profile)
 
 Now the routes defined in _facebook/views/profile.py_ (e.g. `/<user_url_slug>`) are registered on the application, and act just as if you'd defined them with `@app.route()`.
 
+现在在*fackbook/views/profile.py*中定义的路径(比如`/<user_url_slug>`)会被注册到应用中，就像是被通过`@app.route()`定义的。
+
 ### Using a dynamic URL prefix
+### 使用一个动态的URL前缀
 
 Continuing with the Facebook example, notice how all of the profile routes start with the `<user_url_slug>` portion and pass that value to the view. We want users to be able to access a profile by going to a URL like _http://facebook.com/john.doe_. We can stop repeating ourselves by defining a dynamic prefix for all of the blueprint's routes.
 
+继续看看Facebook的例子，注意到所有的个人信息路由都以`<user_url_slug>`开头并把它传递给视图函数。我们想要用户通过类似*http://facebook.com/john.doe*的URL访问个人信息。通过给所有的蓝图的路由定义一个动态前缀，我们可以结束这种单调的重复。
+
 Blueprints let us define both static and dynamic prefixes. We can tell Flask that all of the routes in a blueprint should be prefixed with _/profile_ for example; that would be a static prefix. In the case of the Facebook example, the prefix is going to change based on which profile the user is viewing. Whatever text they choose is the URL slug of the profile which we should display; this is a dynamic prefix.
+
+蓝图允许我们定义静态的或动态的前缀。举个例子，我们可以告诉Flask蓝图中所有的路由应该以*/profile*作为前缀；这样是一个静态前缀。在Fackbook这个例子中，前缀取决于用户浏览的是谁的个人信息。他们在URL对应片段中输入的文本将决定我们输出的视图；这样是一个动态前缀。
 
 We have a choice to make when defining our prefix. We can define the prefix in one of two places: when we instantiate the `Blueprint()` class or when we register it with `app.register_blueprint()`.
 
+我们可以选择何时定义我们的前缀。我们可以在下列两个时机中选择一个定义前缀：当我们实例化`Blueprint()`类的时候，或当我们在`app.register_blueprint()`中登记的时候。
+
 Here we are setting the url_prefix on instantiation:
+
+下面我们在实例化的时候设置URL前缀：
 
 facebook/views/profile.py
 ```
@@ -221,6 +240,8 @@ profile = Blueprint('profile', __name__, url_prefix='/<user_url_slug>')
 
 Here we are setting the url_prefix on registration:
 
+下面我们在登记的时候设置URL前缀：
+
 facebook/__init__.py
 ```
 from flask import Flask
@@ -232,7 +253,11 @@ app.register_blueprint(profile, url_prefix='/<user_url_slug>')
 
 While there aren’t any technical limitations to either method, it’s nice to have the prefixes available in the same file as the registrations. This makes it easier to move things around from the top-level. For this reason, I recommend the latter method.
 
+尽管这两种方式在技术上没有区别，最好还是在登记的同时定义前缀。这使得前缀的定义可以集中到顶级目录中。因此，我推荐第二种方法。
+
 We can use converters in the prefix, just like in route() calls. This includes any custom converters that we've defined. When doing this, we can automatically process the value passed in the blueprint-wide prefix. In this case we’ll want to grab the user object based on the URL slug passed into a view in our profile blueprint. We'll do that by decorating a function with `url_value_preprocessor()`.
+
+我们可以在前缀中使用转换器(converters)，就像调用route()一样。同样也可以使用我们定义过的任意自定义转换器。通过这样做，我们可以自动处理在蓝图前缀中传递过来的值。在这个例子中，我们将根据URL片段获取用户类并传递到我们的profile蓝图中。我们将通过一个名为`url_value_preprocessor()`装饰器来做到这一点。
 
 facebook/views/profile.py
 ```
@@ -263,6 +288,8 @@ def about():
 
 We're using the `g` object to store the profile owner and g is available in the Jinja2 template context. This means that for a barebones case all we have to do in the view is render the template. The information we need will be available in the template.
 
+我们使用`g`对象来储存个人信息的拥有者，而g可以用于Jinja2模板上下文。这意味着在这个简单的例子中，我们仅仅需要渲染模板，需要的信息就能在模板中获取。
+
 facebook/templates/profile/photos.html
 ```
 {% extends "profile/layout.html" %}
@@ -274,11 +301,18 @@ facebook/templates/profile/photos.html
 
 { SEE ALSO: The Flask documentation has a great tutorial on using this technique for internationalizing your URLs. http://flask.pocoo.org/docs/patterns/urlprocessors/#internationalized-blueprint-urls }
 
+{ SEE ALSO: Flask文档中有一个关于怎么国际化你的URL的好教程： http://flask.pocoo.org/docs/patterns/urlprocessors/#internationalized-blueprint-urls }
+
 ### Using a dynamic subdomain
+### 使用一个动态子域名
 
 Many SaaS (Software as a Service) applications these days provide users with a subdomain from which to access their software. Harvest, for example, is a time tracking application for consultants that gives you access to your dashboard from yourname.harvestapp.com. Here I'll show you how to get Flask to work with automatically generated subdomains like this.
 
+今天，许多SaaS应用提供用户一个子域名来访问他们的软件。举个例子，Harvest，是一个针对顾问的时间追溯软件，它在yourname.harvestapp.com给你提供了一个控制面板。下面我将展示在Flask中如何像这样自动生成一个子域名。
+
 For this section I'm going to use the example of an application that lets users create their own websites. Imagine that our app has three blueprints for distinct sections: the home page where users sign-up, the user administration panel where the user builds their website and the user's website. Since these three parts are relatively unconnected, we'll organize them in a divisional structure.
+
+在这一节，我将使用一个允许用户创建自己的网站的应用作为例子。假设我们的应用有三个蓝图分别针对以下的部分：用户注册的主页面，可用于建立自己的网站的用户管理面板，用户的网站。考虑到这三个部分相对独立，我们将用部门式结构组织起来。
 
 ```
 sitemaker/
