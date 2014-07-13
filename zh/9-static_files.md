@@ -1,11 +1,9 @@
-# Static files
 # 静态文件
 
 As their name suggests, static files are the files that don't change. In your average app, this includes CSS files, JavaScript files and images. They can also include audio files and other things of that nature.
 
 一如其名，静态文件是那些不会改变的文件。一般情况下，在你的应用中，这包括CSS文件，Javascript文件和图片。它也可以包括视频文件和其他可能的东西。
 
-## Organizing your static files
 ## 组织你的静态文件
 
 We'll create a directory for our static files called "static" inside our application package.
@@ -44,18 +42,16 @@ static/
         favicon.ico
 ```
 
-### Serving a favicon
 ### 提供一个favicon
 
 The files in your static directory will be served from yourapp.com/static/. By default web browsers and other software expects your favicon to be at yourapp.com/favicon.ico. To fix this discrepency, you can add the following in the `<head>` section of your site template.
 
-用户将通过yourapp.com/static/访问你的静态文件夹中的文件。默认下浏览器和其他软件认为你的favicon是位于yourapp.com/favicon.ico。要想解决这种不一致。你可以在站点模板的`<head>`部分添加下面内容。
+用户将通过yourapp.com/static/访问你的静态文件夹中的文件。默认下浏览器和其他软件认为你的favicon位于yourapp.com/favicon.ico。要想解决这种不一致。你可以在站点模板的`<head>`部分添加下面内容。
 
 ```
 <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 ```
 
-## Manage static assets with Flask-Assets
 ## 用Flask-Assets管理静态文件
 
 Flask-Assets is an extension for managing your static files. There are two really useful tools that Flask-Assets provides. First, it lets you define **bundles** of assets in your Python code that can be inserted together in your template. Second, it lets you pre-process those files. This means that you can combine and minify your CSS and JavaScript files so that the user only has to load two minified files (CSS and JavaScript) without forcing you to develop a complex asset pipeline. You can even compile your files from Sass, LESS, CoffeeScript and many other sources.
@@ -86,7 +82,6 @@ static/
         favicon.ico
 ```
 
-### Defining bundles
 ### 定义分组
 
 Our app has two sections: the public site and the admin panel (referred to as "home" and "admin" respectively). We'll define four bundles to cover this: a JavaScript and CSS bundle for each section. We'll put these in an assets module inside our util package.
@@ -135,7 +130,7 @@ assets.register(bundles)
 
 We're defining the bundles in a dictionary to make it easy to register them. webassets, the package behind Flask-Assets lets us register bundles in a number of ways, including passing a dictionary like the one we made in this snippet.
 
-我们通过字典来定义分组，这样方便注册它们。webassets，在Flask-Assets背后支撑这一切的包提供了一系列方式来注册分组，包括上面我们演示的以字典作参数的方法。
+我们通过字典来定义分组，这样方便注册它们。webassets，实际上是Flask-Assets的核心，提供了一系列方式来注册分组，包括上面我们演示的以字典作参数的方法。（译注：webassets之于Flask-Assets，正如SQLAlchemy之于Flask-SQLAlchemy。）
 
 { SOURCE: https://github.com/miracle2k/webassets/blob/0.8/src/webassets/env.py#L380 }
 
@@ -150,7 +145,6 @@ myapp/__init__.py
 from .util import assets
 ```
 
-### Using your bundles
 ### 使用你的分组
 
 Here's the templates folder of our hypothetical application:
@@ -197,9 +191,11 @@ We can do the same thing for the home bundles in _templates/home/layout.html_.
 
 对于home分组，我们也同样在*templates/home/layout.html*做一样的处理。
 
-### Using filters
+### 使用过滤器
 
 We can use webassets filters to pre-process our static files. This is especially handy for minifying our JavaScript and CSS bundles. We will now modify our code to do just that.
+
+我们可以使用webassets过滤器来预处理我们的静态文件。这将方便我们压缩Javascript和CSS文件。现在修改下我们的代码来实现这一点。
 
 myapp/util/assets.py
 ```
@@ -240,16 +236,30 @@ bundles = {
 
 { NOTE: To use the `jsmin` and `cssmin` filters, you'll need to install the jsmin and cssmin packages (e.g. with `pip install jsmin cssmin`). Make sure to add them to _requirements.txt_ too. }
 
+{ NOTE: 要想使用`jsmin`和`cssmin`过滤器，你需要安装jsmin和cssmin包（使用`pip install jsmin cssmin`）。确保把它们也加入到*requirements.txt*。}
+
 Flask-Assets will merge and compress our files the first time the template is rendered, and it'll automatically update the compressed file when one of the source files changes.
+
+一旦模板已经渲染好，Flask-Assets将合并同时压缩我们的文件，而且当其中一个源文件改变时，它会自动更新压缩文件。
 
 { NOTE: If you set `ASSETS_DEBUG = True` in your config, Flask-Assets will output each source file individually instead of merging them. }
 
+{ NOTE: 如果你在配置中设置`ASSETS_DEBUG = True`， Flask-Assets将独立输出每一个源文件而不会合并它们。}
+
 { SEE ALSO: You can use Flask-Assets filters to automatically compile Sass, Less, CoffeeScript, and other pre-processors. Take a look at some of these other filters that you can use: http://elsdoerfer.name/docs/webassets/builtin_filters.html#js-css-compilers }
 
-## Summary
+{ SEE ALSO: 你可以使用Flask-Assets过滤器来自动编译Sass，Less，CoffeeScript，和其他预处理器。来看下你还可以使用哪些过滤器： http://elsdoerfer.name/docs/webassets/builtin_filters.html#js-css-compilers }
+
+## 总结
 
 * Static files go in the _static/_ directory.
 * Separate third-party libraries from your own static files.
 * Specify the location of your favicon in your templates.
 * Use Flask-Assets to insert your static files in your templates.
 * Flask-Assets can compile, combine and compress your static files.
+
+* 静态文件归于*static/*文件夹。
+* 将第三方库跟你自己的静态文件隔离开来。
+* 在你的模板里指定你的favicon的路径。
+* 使用Flask-Assets来在模板插入你的静态文件。
+* Flask-Assets可以编译，合并以及压缩你的静态文件。
