@@ -1,4 +1,3 @@
-# Handling forms
 # 处理表单
 
 The form is the basic element that lets users interact with your web application. Flask alone doesn't do anything to help you handle forms, but the Flask-WTF extension lets us use the popular WTForms package in our Flask applications. This package makes defining forms and handling submissions easy.
@@ -27,13 +26,12 @@ class EmailPasswordForm(Form):
 
 This form is going to be a user sign-in form. We could have called it `SignInForm()`, but by keeping things a little more abstract, we can re-use this same form class for other things, like a sign-up form. If we were to define purpose-specific form classes we'd end up with a lot of identical forms for no good reason. It's much cleaner to name forms based on the fields they contain, as that is what makes them unique. Of course, sometimes you'll have long, one-off forms that you might want to give a more context-specific name.
 
-这个表单将用于用户注册表单。我们可以称之为`SignInForm()`，但是通过保持抽象，我们可以在别的地方重用它，比如作为登录表单。如果我们针对特定功能定义表单，最终就会得到许多相似却无法重用的表单。基于表单中包含的域 - 那些使得表单与众不同的元素 -进行命名，显然会清晰很多。当然，有时候你会有复杂的，只在一个地方用到的表单，你再给它起个独一无二的名字也不迟。
+这个表单将用于用户注册表单。我们可以称之为`SignInForm()`，但是通过保持抽象，我们可以在别的地方重用它，比如作为登录表单。如果我们针对特定功能定义表单，最终就会得到许多相似却无法重用的表单。基于表单中包含的域 - 那些使得表单与众不同的元素 - 进行命名，显然会清晰很多。当然，有时候你会有复杂的，只在一个地方用到的表单，你再给它起个独一无二的名字也不迟。
 
 This form can do a few of things for us. It can secure our app against CSRF vulnerabilites, validate user input and render the appropriate markup for whatever fields we define here.
 
 这个表单可以帮我们做一些事情。它可以保护我们的应用免遭CSRF伤害，验证用户输入，为我们定义的域渲染适当的标记。
 
-### CSRF Protection and validation
 ### CSRF保护和验证
 
 CSRF stands for cross site request forgery. CSRF attacks involve a third party forging a form submission by posting data to an app's server. A vulnerable server assumes that the data is coming from a form on its own site and takes action accordingly.
@@ -46,7 +44,7 @@ As an example, let's say that your email provider lets you delete your account b
 
 So how do we stop assuming that POST requests come from our own forms? WTForms makes it possible by generating a unique token when rendering each form. That token is then passed along with the form data in the POST request and must be validated before the form is accepted. The key is that the token is tied to a value stored in the user's session (cookies) and expires after a certain amount of time (30 minutes by default). This way the only person who can submit a valid form is the person who loaded the page (or at least someone at the same computer), and they can only do it for 30 minutes after loading the page.
 
-所以我们怎样判断一个POST请求是否来自我们自己的表单呢？WTForms在渲染每个表单时生成一个独一无二飞token，使得这一切变得可能。那个token将在POST请求中随表单数据一起传递，并且会在表单被接受之前进行验证。关键在于token的值取决于储存在用户的会话（cookies）中的一个值，而且会在一定时间之后过时（默认30分钟）。这样只有登录了页面的人（或至少是在那个设备之后的人）才能提交一个有效的表单，而且仅仅是在登录页面30分钟之内才能这么做。
+所以我们怎样判断一个POST请求是否来自我们自己的表单呢？WTForms在渲染每个表单时生成一个独一无二的token，使得这一切变得可能。那个token将在POST请求中随表单数据一起传递，并且会在表单被接受之前进行验证。关键在于token的值取决于储存在用户的会话（cookies）中的一个值，而且会在一定时间之后过时（默认30分钟）。这样只有登录了页面的人（或至少是在那个设备之后的人）才能提交一个有效的表单，而且仅仅是在登录页面30分钟之内才能这么做。
 
 { SEE ALSO:
 
@@ -87,11 +85,11 @@ We import our form from our `forms` package and instantiate it in the view. Then
 
 我们从`forms`包中导入form对象，并于视图内实例化。然后运行`form.validate_on_submit()`。如果表单已经submit了（比如通过HTTP方法PUT或POST），这个函数返回`True`并且用定义在*forms.py*中的验证函数来验证表单。
 
-{ SEE ALSO: The documentation and source for validate_on_submit():
+{ SEE ALSO: The documentation and source for `validate_on_submit()`:
 * http://pythonhosted.org/Flask-WTF/#flask.ext.wtf.Form.validate_on_submit
 * https://github.com/ajford/flask-wtf/blob/v0.8.4/flask_wtf/form.py#L120 }
 
-{ SEE ALSO: validate_on_submit()的文档和源码在此：
+{ SEE ALSO: `validate_on_submit()`的文档和源码在此：
 * http://pythonhosted.org/Flask-WTF/#flask.ext.wtf.Form.validate_on_submit
 * https://github.com/ajford/flask-wtf/blob/v0.8.4/flask_wtf/form.py#L120 }
 
@@ -118,21 +116,23 @@ myapp/templates/login.html
 
 `{{ form.csrf_token }}` renders a hidden field containing one of those fancy CSRF tokens and WTForms looks for that field when it validates the form. We don't have to worry about including any special "is the token valid" logic. Hooray!
 
-`{{ form.csrf_token }}`将渲染一个隐藏的包括防范CSRF的特殊token的域，而WTForms会在验证表单时查找这个与。我们不用操心添加任何特殊的验证token正确性的逻辑。万岁！
+`{{ form.csrf_token }}`将渲染一个隐藏的包括防范CSRF的特殊token的域，而WTForms会在验证表单时查找这个域。我们不用操心添加的任何特殊的验证token正确性的逻辑。万岁！
 
-#### Protecting AJAX calls with CSRF tokens
 #### 使用CSRFtoken来保护AJAX调用
 
 Flask-WTF CSRF tokens aren't limited to protecting form submissions. If your app makes other requests that might be forged (especially AJAX calls) you can add CSRF protection there too! Check out the Flask-WTF documentation for the details: https://flask-wtf.readthedocs.org/en/latest/csrf.html#ajax
 
 Flask-WTF的CSRF token不仅限于保护表单提交。如果你的应用需要接受其他可能被伪造的请求（特别是AJAX调用），你也可以给它们添加CSRF保护！想了解更多信息，请查看Flask-WTF的文档：https://flask-wtf.readthedocs.org/en/latest/csrf.html#ajax
 
-### Custom validators
 ### 自定义验证函数
 
 In addition to the built-in form validators provided by WTForms (e.g. `Required()`, `Email()`, etc.), you can create your own validators. I'll demonstrate this by making a `Unique()` validator that will check the database and make sure that the value provided by the user doesn't already exist. This could be used to make sure that a username or email address isn't already in use. Without WTForms, we'd probably be doing these checks in the view, but now we can abstract that away to the form itself.
 
+除了WTForms提供的内置表单验证函数（比如`Required()`，`Email()`等等），你可以创建自己的验证函数。通过创建一个可用于检查数据库并确保用户提供的值未曾存在的`Unique()`验证函数，我将展示这一点。这个函数可以确保一个用户名或邮件地址未被使用。如果没有WTForms，我们不得不在视图中完成这些检查，但现在我们可以抽象出来作为form类的一部分。
+
 Lets start by defining a simple sign-up form.
+
+先从定义一个简单的注册表单开始吧。
 
 _myapp/forms.py_
 ```
@@ -144,7 +144,9 @@ class EmailPasswordForm(Form):
     password = PasswordField('Password', validators=[Required()])
 ```
 
-Now we want to add a validator to make sure that email they provide isn't already in the database. We'll put the validator in a new `util` module, `util.validators`.
+Now we want to add a validator to make sure that email they provided isn't already in the database. We'll put the validator in a new `util` module, `util.validators`.
+
+现在我们想要添加一个验证函数来确认提供的邮件地址未曾出现在数据库中。我们将把验证函数放在一个新的`util`模块里，即`util.validators`。
 
 _myapp/util/validators.py_
 ```
@@ -163,8 +165,11 @@ class Unique(object):
 
 This validator assumes that you're using SQLAlchemy to define your models. WTForms expects validators to return some sort of callable (e.g. a callable class).
 
+这个验证函数假定你是用SQLAlchemy来定义你的模型。WTForms要求验证函数返回可调用的(callable)类型（比如一个可调用的类）。
+
 In *__init__.py* we can specify which arguments should be passed to the validator. In this case we want the relevant model (e.g. the `User` model in our case) and the field to check. When the validator is called, it will raise a `ValidationError` if any instance of the defined model matches the value submitted in the form. We've also made it possible to add a message with a generic default that will be included in the `ValidationError`.
 
+在*__init__.py*中，我们可以指定哪些参数应该传递给验证函数。在这个例子中我们需要检查相关的模型（比如`User`模型）和域。当验证函数被调用时，如果表单提交的值跟定义的模型的某个实例重复了，它会抛出一个`ValidationError`。我们也提供一个带默认值的信息参数，作为`ValidationError`的一部分。
 Now we can modify `EmailPasswordForm` to use the `Unique` validator.
 
 _myapp/forms.py_
@@ -182,9 +187,13 @@ class EmailPasswordForm(Form):
 
 { NOTE: Your validator doesn't have to be a callable class. It could also be a factory that returns a callable or just a callable directly. See some examples here: http://wtforms.simplecodes.com/docs/0.6.2/validators.html#custom-validators }
 
-### Rendering forms
+{ NOTE: 你的验证函数不一定需要是可调用的类。它也可以是一个返回可调用对象的工厂类或者可调用对象。看这里的一些例子： http://wtforms.simplecodes.com/docs/0.6.2/validators.html#custom-validators }
+
+### 渲染表单
 
 WTForms can also help us render the HTML for the forms. The `Field` class implemented by WTForms renders an HTML representation of that field, so we just have to call the form fields to render them in our template. It's just like render the `csrf_token` field. Here's how the login template looks when we use WTForms to render our other fields too.
+
+WTForms也可以帮助我们给我们只需要表单渲染HTML。WTForms实现的`Field`类能根据域的形式渲染对应的HTML，所以我们只需要在模板中调用它们。就像是渲染`csrf_token`域一样。下面是当我们使用WTForms来渲染我们的其他域时，login模板大概的样子。
 
 myapp/templates/login.html
 ```
@@ -205,6 +214,8 @@ myapp/templates/login.html
 
 We can customize how the fields are rendered by passing field properties as arguments to the field call. Here we add a `placeholder=` property to the email field:
 
+通过传递域的性质(properties)作为调用域的参数，我们可以自定义域的渲染形式。下面我们添加一个`placeholder=`性质给email域：
+
 ```
 <form action="" method="POST">
     {{ form.email.label }}: {{ form.email(placeholder='yourname@email.com') }}<br>
@@ -215,11 +226,17 @@ We can customize how the fields are rendered by passing field properties as argu
 
 { NOTE: If we want to pass the "class" HTML attribute, we have to use `class_=''` since "class" is a reserved keyword in Python. }
 
+{ NOTE: 如果我们想要传递HTML属性“class”， 我们得使用`class_=''`，因为“class”是Python的保留关键字。}
+
 { SEE ALSO: The documented list of available field properties: http://wtforms.simplecodes.com/docs/1.0.4/fields.html#wtforms.fields.Field.name}
+
+{ SEE ALSO: 这个文档列出了所有可用的域性质： http://wtforms.simplecodes.com/docs/1.0.4/fields.html#wtforms.fields.Field.name }
 
 { NOTE: You may notice that we don't need to use Jinja's |safe filter. This is because WTForms renders HTML safe strings. See more here: http://pythonhosted.org/Flask-WTF/#using-the-safe-filter }
 
-## Summary
+{ NOTE: 你大概注意到了我们不需要使用Jinja的`|safe`过滤器。这是因为WTForms自己会处理掉HTML转义的问题。在这里了解更多信息： http://pythonhosted.org/Flask-WTF/#using-the-safe-filter }
+
+## 总结
 
 * Forms can be scary from a security perspective.
 * WTForms (and Flask-WTF) make it easy to define, secure and render your forms.
@@ -227,3 +244,10 @@ We can customize how the fields are rendered by passing field properties as argu
 * You can use these Flask-WTF to protect AJAX calls against CSRF attacks too.
 * Define custom form validators to keep validation logic out of your views.
 * Use the WTForms field rendering to render your form's HTML so you don't have to update it every time you make some changes to the form definition.
+
+* 表单可能存在安全上的潜在隐患。
+* WTForms（以及Flask-WTF）使得定义，保护和渲染你的表单更加轻松。
+* 使用Flask-WTF提供的CSRF防范来保护你的表单。
+* 你也可以使用Flask-WTF来防止AJAX调用遭到CSRF攻击。
+* 定义自定义的表单验证函数，避免在视图函数中写入验证逻辑。
+* 使用WTForms的域渲染功能来渲染你的表单的HTML，这样每次修改表单的定义时，你不需要更新模板。
