@@ -285,15 +285,21 @@ class User(db.Model):
 
 Our next goal is to define a sign-in view that serves and accepts our form. If the user enters the correct credentials, we will authenticate them using the Flask-Login extension. This extension simplifies the process of handling user sessions and authentication.
 
+我们下一个目标是定义一个使用我们的表单类的登录视图。如果用户输入正确的账号，我们将使用Flask-Login插件来验证它们。这个插件简化了处理用户会话和验证的操作。
+
 We need to do a little bit of configuration to get Flask-Login ready to roll.
 
+我们只需做少量的配置就能让Flask-Login用起来了。
+
 In *__init__.py* we will define the Flask-Login `login_manager`.
+
+我们先在*__init__.py*定义Flask-Login的`login_manager`。
 
 *myapp/__init__.py*
 ```
 from flask.ext.login import LoginManager
 
-# Create and configure app
+# 创建并配置应用
 # [...]
 
 from .models import User
@@ -309,9 +315,15 @@ def load_user(userid):
 
 Here we created an instance of the `LoginManager`, initialized it with our `app` object, defined the login view and told it how to get a user object with a user's `id`. This is the baseline configuration you should have for Flask-Login.
 
+我们在这里创建一个叫`LoginManager`的实例，用我们的`app`对象初始化它，定义登录视图并告诉它如何通过`id`获取用户类。这是使用Flask-Login的基本配置。
+
 { SEE MORE: You can see more ways to customize Flask-Login here: https://flask-login.readthedocs.org/en/latest/#customizing-the-login-process } 
 
+{ SEE MORE: 你可以在这里找到自定义Flask-Login的更多信息： https://flask-login.readthedocs.org/en/latest/#customizing-the-login-process } 
+
 Now we can define the `signin` view that will handle authentication.
+
+现在我们来定义处理验证的`signin`视图。
 
 _myapp/views.py_
 ```
@@ -339,6 +351,8 @@ def signin():
 
 We simply import the `login_user` function from Flask-Login, check a user's login credentials and call `login_user(user)`. You can log the current user out with `logout_user()`.
 
+我们仅需要从Flask-Login import `login_user`函数，检查用户的验证信息，并调用`login_user(user)`。你使用`logout_user()`登出当前用户。
+
 _myapp/views.py_
 ```
 from flask import redirect, url_for
@@ -353,13 +367,19 @@ def signout():
     return redirect(url_for('index'))
 ```
 
-## Forgot your password
+## 忘了密码？
 
 You'll generally want to implement a "Forgot your password" feature that lets a user who recover their account by email. This area has a plethora of potential vulnerabilities because the whole point is to let an unauthenticated user take over an account. We'll implement our password reset using some of the same techniques as our email confirmation. We'll need a form to request a reset for a given account based on that account's email and a form to choose a new password once we've confirmed that the unauthenticated user has access to the account email address. This assumes that our user model has an email and a password, where the password is a hybrid property as we previously created.
 
+你总会需要实现一个“忘记密码？”功能来允许用户通过邮件重置自己的账号密码。这个地方可能会有潜在安全隐患，因为你不得不让一个未验证的用户接管一个账户。我们将会使用类似于邮件验证的方式来实现密码重置的功能。我们将需要一个表单类来请求对给定账户的重置，还有一个表单来选择一个新的密码（前提是未验证用户访问了账户邮箱）。这里假设我们的用户模型有一个email和一个password，而password是我们之前设置过的混合属性。
+
 { WARNING: Don't send password reset links to an unconfirmed email address! You want to be sure that you are sending this link to the right person. }
 
+{ WARNING: 不要发送密码重置链接给未确认的邮箱！你要确保发送链接给正确的人。 }
+
 We're going to need two forms. One is to request a reset link be sent to a certain email and the other is to change the password.
+
+我们将需要两个表单。一个用于请求一个重置链接，另一个用于修改密码。
 
 myapp/forms.py
 ```
@@ -376,13 +396,23 @@ class PasswordForm(Form):
 
 I'm assuming that our password reset form just needs one field for the password. Many apps require the user to enter their new password twice to confirm that they haven't made a typo. To do this, we'd simply add another `PasswordField` and add the `EqualTo` WTForms validator to the main password field.
 
+我将假设我们的密码重置表单只需要密码这一栏。许多应用需要用户两次输入他们的新密码，确保没有打错。为了实现这个，我们仅需添加另一个`PasswordField`，并加一个WTForms验证函数`EqualTo`到主密码域。
+
 { SEE ALSO: There a lot of interesting discussions in the User Experience (UX) community about the best way to handle this in sign-up forms. I personally like the thoughts of one Stack Exchange user (Roger Attrill) who said, "We should not ask for password twice - we should ask for it once and make sure that the 'forgot password' system works seamlessly and flawlessly."
 
 * You can read more about this topic in this thread on the User Experience Stack Exchange: http://ux.stackexchange.com/questions/20953/why-should-we-ask-the-password-twice-during-registration/21141
 
 * There are also some cool ideas for simplifying the sign-up and sign-in forms in this Smashing Magazine article: http://uxdesign.smashingmagazine.com/2011/05/05/innovative-techniques-to-simplify-signups-and-logins/ }
 
+{ SEE ALSO: 很多人站在用户体验的角度，对什么是设计注册表单的最佳方式有过许多有趣的讨论。我个人喜欢Stack Exchange用户 Roger Attrill说的一番话：“我们不应该一再要求用户输入密码 - 我们应该要求输入一次，然后确保‘忘记密码’能无缝且正确地运行。”
+
+* 你可以在User Experience Stack Exchange读到更多关于这个话题的内容:<http://ux.stackexchange.com/questions/20953/why-should-we-ask-the-password-twice-during-registration/21141>
+
+* 在Smashing Magazine的文章中，你可以读到一些简化注册和登录表单的酷想法：<http://uxdesign.smashingmagazine.com/2011/05/05/innovative-techniques-to-simplify-signups-and-logins/> }
+
 Now we'll implement the first view of our process, where a user can request that a password reset link be sent for a given email address.
+
+现在我们将开始迈出第一步，让用户可以请求
 
 myapp/views.py
 ```
@@ -421,6 +451,8 @@ def reset():
 
 When the form receives an email address, we grab the user with that email address, generate a reset token and send them a password reset URL. That URL routes them to a view that will validate the token and let them reset the password.
 
+当表单接受到一个邮件地址时，我们取出对应的用户，生成一个重置token，再发送一个重置密码URL给用户。这个URL将引导用户前往验证token的视图，并让用户重置密码。
+
 myapp/views.py
 ```
 from flask import redirect, url_for, render_template
@@ -454,6 +486,8 @@ def reset_with_token(token):
 
 We are using the same token validation method as we did to confirm the user's email address. The view passes the token to the template so tha the form submits to the correct URL. Let's have a look at what that template might look like.
 
+我们将使用验证用户邮箱时用的那个token验证方式。这个视图传递token给模板，所以表单会提交到正确的URL。让我们看看这个模板到底长啥样。
+
 _myapp/templates/reset_with_token.html_
 ```
 {% extends "layout.html" %}
@@ -467,9 +501,14 @@ _myapp/templates/reset_with_token.html_
 {% endblock %}
 ```
 
-## Summary
+## 总结
 
 - Use the itsdangerous package to create and validate tokens sent to an email address.
 - You can use these tokens to validate emails when a user creates an account, changes their email or forgets their password.
 - Authenticate users using the Flask-Login extension to avoid dealing with a bunch of session management stuff yourself.
 - Always think about how a malicious user could abuse your app to do things that you didn't intend.
+
+- 使用itsdangerous包来创建和验证送往邮箱的token。
+- 你可以使用token来验证邮箱，无论是在用户注册账户，还是修改邮箱，或者忘记密码的时候。
+- 使用Flask-Login插件来验证用户，这样能避免处理一堆会话管理的麻烦事。
+- 总是设想会有恶意的用户试图从应用中挖掘漏洞。
