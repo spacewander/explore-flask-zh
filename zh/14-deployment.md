@@ -129,11 +129,15 @@ By default Gunicorn runs on port 8000. If that's taken by another application yo
 (myapp)$ gunicorn rocket:app -p rocket.pid -b 127.0.0.1:7999 -D
 ```
 
-#### Making Gunicorn public
+#### 将Gunicorn摆上前台
 
 { WARNING: Gunicorn is meant to sit behind a reverse proxy. If you tell it to listen to requests coming in from the public, it makes an easy target for denial of service attacks. It is just not meant to handle those kinds of requests. Only allow outside connections for debugging purposes and make sure to switch it back to only allowing internal connections when you're done. }
 
+{ WARNING: Gunicorn应该隐藏于反向代理之后。如果你直接让它监听来自外网的请求，它很容易成为拒绝服务攻击的目标。它不应该接受这样的考验。只有在debug的情况下你才能把Gunicorn摆上前台，而且完工之后，切记把它重新隐藏到幕后。 }
+
 If you run Gunicorn like we have been on a server, you won't be able to access it from your local system. That's because by default Gunicorn binds to 127.0.0.1. This means that it will only listen to connections coming from the server itself. This is the behavior that you want when you have a reverse proxy server that is sitting between the public and your Gunicorn server. If, however, you need to make requests from outside of the server for debugging purposes, you can tell Gunicorn to bind to 0.0.0.0. This tells it to listen for all requests.
+
+如果你像前面说的那样在服务器上运行Gunicorn，将不能从本地系统中访问到它。这是因为默认情况下Gunicorn绑定在127.0.0.1。这意味着它仅仅监听来自服务器自身的连接。所以通常使用一个反向代理来作为外网和Gunicorn服务器的中介。不过，假如为了debug，你需要直接从外网发送请求给Gunicorn，可以告诉Gunicorn绑定0.0.0.0。这样它就会监听所有请求。
 
 ```
 (myapp)$ gunicorn rocket:app -p rocket.pid -b 0.0.0.0:8000 -D
@@ -143,11 +147,20 @@ If you run Gunicorn like we have been on a server, you won't be able to access i
 - Read more about running and deploying Gunicorn from the docs: http://docs.gunicorn.org/en/latest/ 
 - Fabric is a tool that lets you run all of these deployment and management commands from the comfort of your local machine without SSHing into every server: http://docs.fabfile.org/en/latest }
 
+{ SEE MORE:
+- 从文档中可以读到更多关于运行和部署Gunicorn的信息 : http://docs.gunicorn.org/en/latest/ 
+- Fabric是一个可以允许你不通过SSH连接到每个服务器上就可以执行部署和管理命令的工具 : http://docs.fabfile.org/en/latest }
+
 ### Nginx Reverse Proxy
+### Nginx反向代理
 
 A reverse proxy handles public HTTP requests, sends them back to Gunicorn and gives the response back to the requesting client. Nginx can be used very effectively as a reverse proxy and Gunicorn "strongly advises" that we use it. To configure Nginx as a reverse proxy to Gunicorn running on 127.0.0.1:8000, we can create a file for our app in _/etc/nginx/sites-available_. We'll call it _exploreflask.com_.
 
+反向代理处理公共的HTTP请求，发送给Gunicorn并将响应带回给发送请求的客户端。Nginx是一个优秀的客户端，何况Gunicorn强烈建议我们使用它。要想配置Nginx作为运行在127.0.0.1:8000的Gunicorn的反向代理，我们可以在*/etc/nginx/sites-available*下给应用创建一个文件。不如称之为*exploreflask.com*吧。
+
 Here's a simple example configuration.
+
+下面是一个关于配置的简单例子。
 
 _/etc/nginx/sites-available/exploreflask.com_
 ```
@@ -177,18 +190,26 @@ server {
 
 Now create a symlink to this file in _/etc/nginx/sites-enabled_ and restart Nginx.
 
+现在在*/etc/nginx/sites-enabled*下创建该文件的符号链接，接着重启Nginx。
+
 ```
 $ sudo ln -s /etc/nginx/sites-available/exploreflask.com /etc/nginx/sites-enabled/exploreflask.com
 ```
 
 You should now be able to make your requests to Nginx and receive the response from your app.
 
+你现在应该可以发送请求给Nginx然后收到来自你的应用的响应。
+
 { SEE MORE:
 - Nginx configuration section in the Gunicorn docs will give you more information about setting Nginx up for this purpose: http://docs.gunicorn.org/en/latest/deploy.html#nginx-configuration }
+{ SEE MORE:
+- Gunicorn文档中关于配置Nginx的部分会给你更多启动Nginx的信息: http://docs.gunicorn.org/en/latest/deploy.html#nginx-configuration }
 
 #### ProxyFix
 
 You main run into some issues with Flask not properly handling the proxied requests. It has to do with those headers we set in the Nginx configuration. We can use the Werkzeug ProxyFix to, ugh, fix the proxy.
+
+有时，你会遇到Flask不能恰当处理转发的请求的情况。这也许是因为在Nginx中设置的某些HTTP报文头部造成的。我们可以使用Werkzeug的ProxyFix来fix转发请求。
 
 _rocket.py_
 ```
@@ -208,12 +229,18 @@ def index():
 ```
 
 { SEE MORE:
-
 - Read more about ProxyFix in the Werkzeug docs: http://werkzeug.pocoo.org/docs/contrib/fixers/#werkzeug.contrib.fixers.ProxyFix }
+{ SEE MORE:
+- 在Werkzeug文档中可以读到更多关于ProxyFix的信息: http://werkzeug.pocoo.org/docs/contrib/fixers/#werkzeug.contrib.fixers.ProxyFix }
 
-## Summary
+## 总结
 
 * Three good choices for Flask application hosting are AWS EC2, Heroku and Digital Ocean.
 * The basic deployment stack for a Flask application consists of the app, an application runner like Gunicorn and a reverse proxy like Nginx.
 * Gunicorn should sit behind Nginx and listen in 127.0.0.1 (internal requests) not 0.0.0.0 (external requests).
 * Use Werkzeug's ProxyFix to handle the appropriate proxy headers in your Flask application.
+
+* 你可以把Flask应用托管到AWS EC2， Heroku和Digital Ocean。（译者注：建议托管到国内的云平台上）
+* Flask应用的基本部署依赖包括一个应用容器（比如Gunicorn）和一个反向代理（比如Nginx）。
+* Gunicorn应该退居Nginx幕后并监听127.0.0.1（内部请求）而非0.0.0.0（外部请求）
+* 使用Werkzeug的ProxyFix来处理Flask应用遇到的特定的转发报文头部。
