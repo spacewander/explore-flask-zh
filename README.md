@@ -4,7 +4,11 @@
 
 如果你想购买PDF格式的英文原本，前往<http://exploreflask.com>。
 
-本中文译本将只会公开到网络上，不提供另外的分发版本。如果你需要PDF版本，可以使用pandoc，LaTex，sphinx等工具从原材料生产出来。
+## 想参与？
+
+如果你对本书有些建议，你可以在issue面板新开一个issue或提交一个pull request。如果你准备进行较大的改动，最好先在issue中提及，这样我们好能事先讨论这么做有没有必要。
+
+译者：如果是关于翻译方面的问题，欢迎提issue或pull request。如果是关乎内容的问题，请移步<https://github.com/rpicard/explore-flask>
 
 ## 协议
 

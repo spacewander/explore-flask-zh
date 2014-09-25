@@ -81,24 +81,14 @@ static/
 
 **粗体**将用来表示新的或重要的内容。
 
-**注意**
+> **注意**
+> 这里会有容易掉进去（而且会造成大问题）的坑。
 
-这里会有容易掉进去（而且会造成大问题）的坑。
 
-**另注**
-
-这里会有一些补充信息。
+> 参见
+> 这里会有一些补充信息。
 
 ## 总结
-
-* This book contains recommendations for using Flask.
-* I’m assuming that you’ve gone through the Flask tutorial.
-* I’m using Python 2.7.
-* I’m using Flask 0.10.
-* I’ll do my best to keep the content of the book up-to-date with annual reviews.
-* Each chapter in this book stands on its own.
-* There are a few ways that I’ll use formatting to convey additional information about the content.
-* Summaries will appear as concise lists of takeaways from the chapters.
 
 * 本书包含了使用Flask的最佳实践。
 * 我假定你通读了Flask教程
