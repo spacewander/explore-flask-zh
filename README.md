@@ -1,4 +1,6 @@
-# 探索Flask (《Explore Flask》的中文译本)
+# Flask之旅
+
+《explore flask》中文翻译
 
 欢迎来到本译本的生产地点！任何bug report和别的pull request都会受到热烈欢迎！不要犹豫！
 
