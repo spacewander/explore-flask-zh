@@ -22,12 +22,12 @@
 
 当我写下此文， Python社区正处于从Python 2迁移到Python 3的动荡之中。Python Software Foundation的官方态度如下：
 
-> Python 2.x is the status quo, Python 3.x is the present and future of the language.[\[1\]][1]
+> Python 2.x is the status quo, Python 3.x is the present and future of the language.[Python wiki: python2还是python3](http://wiki.python.org/moin/Python2orPython3)
 
 到了版本0.10，Flask现在可以在Python 3.3上运行。就新的Flask应用是否需要使用Python 3的问题，我问过Armin Ronacher，他回答说，这不是必须的：
 
 > 我自己现在并不用它，我也不会向别人推荐自己都不相信的东西，所以我不会推荐Python 3.
-> -- Armin Ronacher, Flask作者[\[2\]][2]
+> -- Armin Ronacher, Flask作者[我和Armin Ronacher的对话](https://www.youtube.com/watch?feature=player_detailpage&v=fs20qdvm0K4#t=190)
 
 主要的理由在于许多常用的包没有Python 3的版本。
 你总不会愿意接受用python 3开发了几个月后发现自己不能使用包X,Y,Z……
@@ -61,7 +61,7 @@
 
 示例代码将以代码块形式来呈现。
 
-```
+```python
 print “Hello world!”
 ```
 
@@ -75,7 +75,7 @@ static/
     jquery.min.js
 ```
 
-脚注会用于引用中，这样就不会跟正文混乱起来了。[\[3\]][3]
+脚注会用于引用中，这样就不会跟正文混乱起来了。
 
 *斜体*将用来表示文件名。
 
@@ -84,8 +84,9 @@ static/
 > **注意**
 > 这里会有容易掉进去（而且会造成大问题）的坑。
 
+---
 
-> 参见
+> **参见**
 > 这里会有一些补充信息。
 
 ## 总结
@@ -98,7 +99,3 @@ static/
 * 本书中每一章独立成文。
 * 我通过一些约定来表达跟内容相关的附加信息。
 * 每章的结尾都会出现对本章内容的总结。
-
-[1]: http://wiki.python.org/moin/Python2orPython3 "Python wiki: python2还是python3"
-[2]: https://www.youtube.com/watch?feature=player_detailpage&v=fs20qdvm0K4#t=190 "我和Armin Ronacher的对话"
-[3]: # "如你所见"

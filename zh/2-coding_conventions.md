@@ -31,7 +31,7 @@ PEP 8是对Python代码风格的官方规约。
 PEP 257 [LINK TO PEP] 覆盖了Python的另一项标准:**docstrings**。
 你可以阅读PEP中的定义和相关建议，不过这里会给一个例子来展示一个文档字符串应该是怎样的：
 
-```
+```python
 def launch_rocket():
     """主要的火箭发射调度器
 
@@ -55,14 +55,14 @@ Relative imports make life a little easier when developing Flask apps. The premi
 开发Flask应用时，使用相对形式的import会让你的生活更加轻松。
 原因很简单。之前，当需要import一个内部模块时，你也许要显式指明应用的包名（the app's package name）。假设你想要从*myapp/models.py*中导入`User`模型：
 
-```
+```python
 # 使用绝对路径来导入User
 from myapp.models import User
 ```
 
 用了相对形式的import后，你可以使用点标记法：第一个`.`来表示当前目录，之后的每一个`.`表示下一个父目录。
 
-```
+```python
 # 使用相对路径来导入User
 from .models import User
 ```
