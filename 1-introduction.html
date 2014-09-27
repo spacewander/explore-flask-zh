@@ -3,12 +3,12 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>前言 | 探索Flask (《Explore Flask》的中文译本)</title>
+        <title>前言 | Flask之旅</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
         <meta name="author" content="spacewander">
-        <meta name="description" content="欢迎来到本译本的生产地点！任何bug report和别的pull request都会受到热烈欢迎！不要犹豫！">
+        <meta name="description" content="《explore flask》中文翻译">
         <meta name="keywords" content="gitbook,github" >
         <meta name="generator" content="www.gitbook.io">
 
@@ -19,8 +19,8 @@
         <link rel="prev" href="./index.html" />
         
 
-        <meta property="og:title" content="前言 | 探索Flask (《Explore Flask》的中文译本)">
-        <meta property="og:site_name" content="探索Flask (《Explore Flask》的中文译本)">
+        <meta property="og:title" content="前言 | Flask之旅">
+        <meta property="og:site_name" content="Flask之旅">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
 
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="spacewander/explore-flask-zh" data-level="1" data-basepath="." data-revision="1411659878752">
+    <div class="book" data-github="spacewander/explore-flask-zh" data-level="1" data-basepath="." data-revision="1411813714489">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -97,7 +97,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="./" >探索Flask (《Explore Flask》的中文译本)</a>
+        <a href="./" >Flask之旅</a>
     </h1>
 </div>
 
@@ -168,6 +168,15 @@
                 
             </li>
         
+            <li  data-level="5" data-path="5-configuration.html">
+                
+                <a href="./5-configuration.html">
+                    <i class="fa fa-check"></i> <b>5.</b> 配置
+                </a>
+                
+                
+            </li>
+        
 
         
         <li class="divider"></li>
@@ -183,26 +192,28 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 25%;min-width: 0%;"></div>
+        <div class="inner" style="width: 20%;min-width: 0%;"></div>
     </div>
     <div class="chapters">
     
         <a href="./index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
     
-        <a href="./1-introduction.html" title="前言" class="chapter done new-chapter" data-progress="1" style="left: 25%;"></a>
+        <a href="./1-introduction.html" title="前言" class="chapter done new-chapter" data-progress="1" style="left: 20%;"></a>
     
-        <a href="./2-coding_conventions.html" title="代码约定" class="chapter  new-chapter" data-progress="2" style="left: 50%;"></a>
+        <a href="./2-coding_conventions.html" title="代码约定" class="chapter  new-chapter" data-progress="2" style="left: 40%;"></a>
     
-        <a href="./3-environment.html" title="环境" class="chapter  new-chapter" data-progress="3" style="left: 75%;"></a>
+        <a href="./3-environment.html" title="环境" class="chapter  new-chapter" data-progress="3" style="left: 60%;"></a>
     
-        <a href="./4-organizing_your_project.html" title="组织你的项目" class="chapter  new-chapter" data-progress="4" style="left: 100%;"></a>
+        <a href="./4-organizing_your_project.html" title="组织你的项目" class="chapter  new-chapter" data-progress="4" style="left: 80%;"></a>
+    
+        <a href="./5-configuration.html" title="配置" class="chapter  new-chapter" data-progress="5" style="left: 100%;"></a>
     
     </div>
 </div>
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1">
+                    <section class="normal" id="section-gitbook_2">
                     
                         <h1 id="-">前言</h1>
 <p>本书旨在展示使用Flask的最佳实践。
@@ -219,12 +230,12 @@
 <h4 id="python-2-python-3">Python 2 还是 Python 3</h4>
 <p>当我写下此文， Python社区正处于从Python 2迁移到Python 3的动荡之中。Python Software Foundation的官方态度如下：</p>
 <blockquote>
-<p>Python 2.x is the status quo, Python 3.x is the present and future of the language.[[1]][1]</p>
+<p>Python 2.x is the status quo, Python 3.x is the present and future of the language.<a href="http://wiki.python.org/moin/Python2orPython3" target="_blank">Python wiki: python2还是python3</a></p>
 </blockquote>
 <p>到了版本0.10，Flask现在可以在Python 3.3上运行。就新的Flask应用是否需要使用Python 3的问题，我问过Armin Ronacher，他回答说，这不是必须的：</p>
 <blockquote>
 <p>我自己现在并不用它，我也不会向别人推荐自己都不相信的东西，所以我不会推荐Python 3.
--- Armin Ronacher, Flask作者[[2]][2]</p>
+-- Armin Ronacher, Flask作者<a href="https://www.youtube.com/watch?feature=player_detailpage&amp;v=fs20qdvm0K4#t=190" target="_blank">我和Armin Ronacher的对话</a></p>
 </blockquote>
 <p>主要的理由在于许多常用的包没有Python 3的版本。
 你总不会愿意接受用python 3开发了几个月后发现自己不能使用包X,Y,Z……
@@ -245,20 +256,24 @@
 本书的范例将散布于每一章节来展示概念，但不意味着这些范例可以组合成一个大的项目。</p>
 <h3 id="-">格式</h3>
 <p>示例代码将以代码块形式来呈现。</p>
-<pre><code>print “Hello world!”
-</code></pre><p>目录列表有时会被用来展示一个应用或目录的大致结构。</p>
+<pre><code class="lang-python"><span class="hljs-keyword">print</span> “Hello world!”
+</code></pre>
+<p>目录列表有时会被用来展示一个应用或目录的大致结构。</p>
 <pre><code>static/
   style.css
   logo.png
   vendor/
     jquery.min.js
-</code></pre><p>脚注会用于引用中，这样就不会跟正文混乱起来了。[[3]][3]</p>
+</code></pre><p>脚注会用于引用中，这样就不会跟正文混乱起来了。</p>
 <p><em>斜体</em>将用来表示文件名。</p>
 <p><strong>粗体</strong>将用来表示新的或重要的内容。</p>
 <blockquote>
 <p><strong>注意</strong>
 这里会有容易掉进去（而且会造成大问题）的坑。</p>
-<p>参见
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>参见</strong>
 这里会有一些补充信息。</p>
 </blockquote>
 <h2 id="-">总结</h2>
