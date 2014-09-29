@@ -7,4 +7,6 @@ This is the contents of the book.
 * [环境](3-environment.md)
 * [组织你的项目](4-organizing_your_project.md)
 * [配置](5-configuration.md)
+* [关于视图和路由的进阶技巧](6-advanced_patterns_for_views_and_routing.md)
+* [蓝图](7-blueprints.md)
 
