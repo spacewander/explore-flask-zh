@@ -11,15 +11,13 @@
 
 **Jinja**文档在解释这门语言的语法和特性这方面做得很棒。在这里我不会啰嗦一遍，但还是会再一次向你强调下面一点：
 
-> There are two kinds of delimiters. `{% ... %}` and `{{ ... }}`. The first one is used to execute statements such as for-loops or assign values, the latter prints the result of the expression to the template.
-
 > Jinja有两种定界符。`{% ... %}`和`{{ ... }}`。前者用于执行像for循环或赋值等语句，后者向模板输出一个表达式的结果。
 
-> 参见： http://jinja.pocoo.org/docs/templates/#synopsis
+> **参见**： http://jinja.pocoo.org/docs/templates/#synopsis
 
 ## 怎样组织模板
 
-所以要将模板放进我们的应用的哪里呢？如果你是从头开始阅读的本文，你可能注意到了Flask在对待你如何组织项目结构的事情上十分随意。模板也不例外。你大概已经注意到，总会有一个放置文件的推荐位置。记住两点。对于模板，这个最佳位置是放在包文件夹下。
+所以要将模板放进我们的应用的哪里呢？如果你是从头开始阅读的本文，你可能注意到了Flask在对待你如何组织项目结构的事情上十分随意。模板也不例外。你大概也已经注意到，总会有一个放置文件的推荐位置。记住两点。对于模板，这个最佳位置是放在包文件夹下。
 
 ```
 myapp/

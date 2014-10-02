@@ -115,7 +115,8 @@ Flask-Assets按照被列出来的顺序合并你的文件。如果*admin.js*依�
 我们通过字典来定义分组，这样方便注册它们。[webassets](https://github.com/miracle2k/webassets/blob)，实际上是Flask-Assets的核心，提供了一系列方式来注册分组，包括上面我们演示的以字典作参数的方法。（译注：webassets之于Flask-Assets，正如SQLAlchemy之于Flask-SQLAlchemy。）
 
 > **参见**
-> webassets在这里注册了分组：<https://github.com/miracle2k/webassets/blob/0.8/src/webassets/env.py#L380>
+> webassets在这里注册了分组：
+> <https://github.com/miracle2k/webassets/blob/0.8/src/webassets/env.py#L380>
 
 既然我们已经在`util.assets`中注册了我们的分组，剩下的就是在__init__.py中，在app对象初始化之后，来导入这个模块。
 
