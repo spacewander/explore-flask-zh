@@ -1,4 +1,4 @@
-![Configuration](images/5.png)
+![配置](images/configuration.png)
 
 # 配置
 

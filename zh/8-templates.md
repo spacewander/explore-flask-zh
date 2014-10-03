@@ -1,4 +1,4 @@
-![Templates](images/8.png)
+![模板](images/templates.png)
 
 # 模板
 

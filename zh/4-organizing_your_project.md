@@ -1,4 +1,4 @@
-![Organizing your project](images/4.png)
+![组织你的项目](images/organizing.png)
 
 # 组织你的项目
 

@@ -1,3 +1,5 @@
+![用户管理的规范](images/users.png)
+
 # 用户管理的规范
 
 One of the most common things that modern web applications need to do is handle users. An application with basic account features needs to handle a lot of things like registration, email confirmation, securely storing passwords, secure password reset, authentication and more. Since a lot of security issues present themselves when it comes to handling users, it's generally best to stick to standard patterns in this area.

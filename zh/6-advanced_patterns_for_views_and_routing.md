@@ -1,4 +1,4 @@
-![Advanced patterns for views and routing](images/6.png)
+![关于视图和路由的进阶技巧](images/views.png)
 
 # 关于视图和路由的进阶技巧
 

@@ -1,4 +1,4 @@
-![Environment](images/3.png)
+![环境](images/environment.png)
 
 # 环境
 

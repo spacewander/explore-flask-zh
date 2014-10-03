@@ -1,4 +1,4 @@
-![Coding conventions](images/2.png)
+![代码约定](images/conventions.png)
 
 # 代码约定
 
