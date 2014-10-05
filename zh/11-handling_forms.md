@@ -38,7 +38,7 @@ CSRF全称是cross site request forgery，跨站请求伪造。CSRF通过第三�
 > **参见**
 > * 这里是关于WTForms是怎么生成token的文档: http://wtforms.simplecodes.com/docs/1.0.1/ext.html#module-wtforms.ext.csrf.session 
 
-> * 这里有关于CSRF更多的信息: https://www.owasp.org/index.php/CSRF }
+> * 这里有关于CSRF更多的信息: https://www.owasp.org/index.php/CSRF
 
 为了开始使用Flask-WTF做CSRF防护，我们得先给我们的登录页定义一个视图。
 
