@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Introduction | Flask之旅</title>
+        <title>代码约定 | Flask之旅</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,11 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="./1-introduction.html" />
+        <link rel="next" href="./3-environment.html" />
         
+        
+        <link rel="prev" href="./1-introduction.html" />
         
 
-        <meta property="og:title" content="Introduction | Flask之旅">
+        <meta property="og:title" content="代码约定 | Flask之旅">
         <meta property="og:site_name" content="Flask之旅">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -40,7 +42,7 @@
 
 
         
-    <div class="book" data-github="spacewander/explore-flask-zh" data-level="0" data-basepath="." data-revision="1412666276503">
+    <div class="book" data-github="spacewander/explore-flask-zh" data-level="2" data-basepath="." data-revision="1412666276503">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -118,7 +120,7 @@
 
         
         <li>
-            <a href="https://github.com/spacewander/explore-flask-zh/edit/master/README.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/spacewander/explore-flask-zh/edit/master/2-coding_conventions.md" target="blank">Edit and Contribute</a>
         </li>
         
 
@@ -262,23 +264,23 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 0%;min-width: 0%;"></div>
+        <div class="inner" style="width: 46.15384615384615%;min-width: 38.46153846153846%;"></div>
     </div>
     <div class="chapters">
     
         <a href="./index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
     
-        <a href="./1-introduction.html" title="前言" class="chapter  new-chapter" data-progress="1" style="left: 7.6923076923076925%;"></a>
+        <a href="./1-introduction.html" title="前言" class="chapter done new-chapter" data-progress="1" style="left: 7.6923076923076925%;"></a>
     
-        <a href="./10-storing-data.html" title="存储" class="chapter  " data-progress="10" style="left: 15.384615384615385%;"></a>
+        <a href="./10-storing-data.html" title="存储" class="chapter done " data-progress="10" style="left: 15.384615384615385%;"></a>
     
-        <a href="./11-handling_forms.html" title="处理表单" class="chapter  " data-progress="11" style="left: 23.076923076923077%;"></a>
+        <a href="./11-handling_forms.html" title="处理表单" class="chapter done " data-progress="11" style="left: 23.076923076923077%;"></a>
     
-        <a href="./12-handling_users.html" title="用户管理的规范" class="chapter  " data-progress="12" style="left: 30.76923076923077%;"></a>
+        <a href="./12-handling_users.html" title="用户管理的规范" class="chapter done " data-progress="12" style="left: 30.76923076923077%;"></a>
     
-        <a href="./14-deployment.html" title="部署" class="chapter  " data-progress="13" style="left: 38.46153846153846%;"></a>
+        <a href="./14-deployment.html" title="部署" class="chapter done " data-progress="13" style="left: 38.46153846153846%;"></a>
     
-        <a href="./2-coding_conventions.html" title="代码约定" class="chapter  new-chapter" data-progress="2" style="left: 46.15384615384615%;"></a>
+        <a href="./2-coding_conventions.html" title="代码约定" class="chapter done new-chapter" data-progress="2" style="left: 46.15384615384615%;"></a>
     
         <a href="./3-environment.html" title="环境" class="chapter  new-chapter" data-progress="3" style="left: 53.84615384615385%;"></a>
     
@@ -299,18 +301,75 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_15">
+                    <section class="normal" id="section-gitbook_7">
                     
-                        <h1 id="flask-">Flask之旅</h1>
-<p>《explore flask》中文翻译</p>
-<p>欢迎来到本译本的生产地点！任何bug report和别的pull request都会受到热烈欢迎！不要犹豫！</p>
-<p>如果你想购买PDF格式的英文原本，前往<a href="http://exploreflask.com" target="_blank">http://exploreflask.com</a>。</p>
-<h2 id="-">想参与？</h2>
-<p>如果你对本书有些建议，你可以在issue面板新开一个issue或提交一个pull request。如果你准备进行较大的改动，最好先在issue中提及，这样我们好能事先讨论这么做有没有必要。</p>
-<p>译者：如果是关于翻译方面的问题，欢迎提issue或pull request。如果是关乎内容的问题，请移步<a href="https://github.com/rpicard/explore-flask" target="_blank">https://github.com/rpicard/explore-flask</a></p>
-<h2 id="-">协议</h2>
-<p>中文译本的协议同英文原本，使用<a href="http://creativecommons.org/licenses/by-nc/3.0/" target="_blank">Create Commons Attribution-NonCommercial 3.0 Unported license</a>。
-你可以自由地分发并修改本书，前提是保证不把它重新销售并保留原作者(我指的是英文原本作者)的作品归属权。</p>
+                        <p><img src="images/conventions.png" alt="代码约定"></p>
+<h1 id="-">代码约定</h1>
+<p>在Python社区中有许多关于代码风格的约定。如果你写过一段时间Python了，那么也许对此已经有些了解。
+我会简单介绍一下，同时给你一些URL链接，从中你可以找到关于这个话题的详细信息。</p>
+<h2 id="-pep-">让我们提出一个PEP！</h2>
+<p><strong>PEP</strong>全称是“Python Enhancement Proposal”（Python增强提案）。你可以在<a href="http://www.python.org/dev/peps/" target="_blank">python.org</a>上找到它们以及对应的索引目录。
+PEP在索引目录中按照数字编号排列，包括了元PEP（meta-PEP，讨论关于PEP的细节）。与之对应的是技术PEP（technical PEP），思考的是诸如Python内部实现的改良这样的话题。</p>
+<p>有一些PEP，比如PEP 8和PEP 257，影响了Python代码风格的标准。
+PEP 8包括了Python代码风格的规约。
+而PEP 257包括了文档字符串（docstrings， 在Python中给代码加文档的标准方式）的规约。</p>
+<h3 id="pep-8-python-">PEP 8: Python代码风格规约</h3>
+<p>PEP 8是对Python代码风格的官方规约。
+我建议你阅读它并将之付诸在Flask项目（以及其他Python项目）的开发实践中。
+当项目规模膨胀到多个包含成百上千行代码的文件时，这样做会使你的代码更加工整、了然。毕竟PEP 8的建议都是围绕着实现更加可读的代码这个目标。
+另外，如果你的项目准备开源，潜在的奉献者（contributors）会很高兴看到你的代码是遵循PEP 8的。</p>
+<p>一个至关重要的建议是每级缩进使用4个空格。不要使用tab。
+如果你打破了这个规约，它将会成为你（以及你的队友）在项目间切换的一个负担。
+这种不一致一向是任意语言心中的痛，但是对于Python，一门着重留白的语言，这是一个不可承受之重。
+因为tab与space之间的混搭会导致不可预期且难以排查的错误。</p>
+<h3 id="pep-257-">PEP 257: 文档字符串规约</h3>
+<p>PEP 257 [LINK TO PEP] 覆盖了Python的另一项标准:<strong>docstrings</strong>。
+你可以阅读PEP中的定义和相关建议，不过这里会给一个例子来展示一个文档字符串应该是怎样的：</p>
+<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">launch_rocket</span><span class="hljs-params">()</span>:</span>
+    <span class="hljs-string">"""主要的火箭发射调度器
+
+    启动发射火箭所需的每一个步骤。
+    """</span>
+    <span class="hljs-comment"># [...]</span>
+</code></pre>
+<p>这种风格的文档字符串可以通过一些诸如<a href="http://sphinx-doc.org/" target="_blank">Sphinx</a>的软件来生成不同格式的文档。
+同时它们也有助于让你的代码更加工整。</p>
+<blockquote>
+<p>参见</p>
+<ul>
+<li>PEP 8 <a href="http://legacy.python.org/dev/peps/pep-0008/" target="_blank">http://legacy.python.org/dev/peps/pep-0008/</a></li>
+<li>PEP 257 <a href="http://legacy.python.org/dev/peps/pep-0257/" target="_blank">http://legacy.python.org/dev/peps/pep-0257/</a></li>
+<li>Sphinx <a href="http://sphinx-doc.org/" target="_blank">http://sphinx-doc.org/</a>，一个文档生成器，同出于Flask作者之手</li>
+</ul>
+</blockquote>
+<h2 id="-import">相对形式的import</h2>
+<p>Relative imports make life a little easier when developing Flask apps. The premise is simple. Previously, you might have specified the app&#39;s package name when importing internal modules:</p>
+<p>开发Flask应用时，使用相对形式的import会让你的生活更加轻松。
+原因很简单。之前，当需要import一个内部模块时，你也许要显式指明应用的包名（the app&#39;s package name）。假设你想要从<em>myapp/models.py</em>中导入<code>User</code>模型：</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 使用绝对路径来导入User</span>
+<span class="hljs-keyword">from</span> myapp.models <span class="hljs-keyword">import</span> User
+</code></pre>
+<p>用了相对形式的import后，你可以使用点标记法：第一个<code>.</code>来表示当前目录，之后的每一个<code>.</code>表示下一个父目录。</p>
+<pre><code class="lang-python"><span class="hljs-comment"># 使用相对路径来导入User</span>
+<span class="hljs-keyword">from</span> .models <span class="hljs-keyword">import</span> User
+</code></pre>
+<p>这种做法的好处在于使得package变得更加模块化了。
+现在你可以重命名你的package并在别的项目中重用模块，而无需忍受更新被硬编码的包名之苦。</p>
+<blockquote>
+<p>参见</p>
+<ul>
+<li>你可以在PEP 328的这一节里读到更多关于相对形式的import的语法： <a href="http://www.python.org/dev/peps/pep-0328/#guido-s-decision" target="_blank">http://www.python.org/dev/peps/pep-0328/#guido-s-decision</a></li>
+<li>在写作本书的过程中，我碰巧在这个Tweet上面看到了一个使用相对形式的import的好处： 
+<a href="https://twitter.com/dabeaz/status/372059407711887360" target="_blank">https://twitter.com/dabeaz/status/372059407711887360</a>
+Just had to rename our whole package. Took 1 second. Package relative imports FTW!  </li>
+</ul>
+</blockquote>
+<h2 id="-">总结</h2>
+<ul>
+<li>尽量遵循PEP 8中的代码风格规约。</li>
+<li>尽量遵循PEP 257中的文档字符串规约。</li>
+<li>使用相对形式的import来import你的应用中的内部模块。</li>
+</ul>
 
                     
                     </section>
@@ -320,8 +379,10 @@
         </div>
 
         
+        <a href="./1-introduction.html" class="navigation navigation-prev "><i class="fa fa-angle-left"></i></a>
         
-        <a href="./1-introduction.html" class="navigation navigation-next navigation-unique"><i class="fa fa-angle-right"></i></a>
+        
+        <a href="./3-environment.html" class="navigation navigation-next "><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
