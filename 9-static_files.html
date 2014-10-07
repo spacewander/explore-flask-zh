@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>代码约定 | Flask之旅</title>
+        <title>静态文件 | Flask之旅</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="./3-environment.html" />
+        <link rel="next" href="./10-storing-data.html" />
         
         
-        <link rel="prev" href="./1-introduction.html" />
+        <link rel="prev" href="./8-templates.html" />
         
 
-        <meta property="og:title" content="代码约定 | Flask之旅">
+        <meta property="og:title" content="静态文件 | Flask之旅">
         <meta property="og:site_name" content="Flask之旅">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="spacewander/explore-flask-zh" data-level="2" data-basepath="." data-revision="1412666276503">
+    <div class="book" data-github="spacewander/explore-flask-zh" data-level="9" data-basepath="." data-revision="1412666276503">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -120,7 +120,7 @@
 
         
         <li>
-            <a href="https://github.com/spacewander/explore-flask-zh/edit/master/2-coding_conventions.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/spacewander/explore-flask-zh/edit/master/9-static_files.md" target="blank">Edit and Contribute</a>
         </li>
         
 
@@ -264,7 +264,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 46.15384615384615%;min-width: 38.46153846153846%;"></div>
+        <div class="inner" style="width: 100%;min-width: 92.3076923076923%;"></div>
     </div>
     <div class="chapters">
     
@@ -282,93 +282,209 @@
     
         <a href="./2-coding_conventions.html" title="代码约定" class="chapter done new-chapter" data-progress="2" style="left: 46.15384615384615%;"></a>
     
-        <a href="./3-environment.html" title="环境" class="chapter  new-chapter" data-progress="3" style="left: 53.84615384615385%;"></a>
+        <a href="./3-environment.html" title="环境" class="chapter done new-chapter" data-progress="3" style="left: 53.84615384615385%;"></a>
     
-        <a href="./4-organizing_your_project.html" title="组织你的项目" class="chapter  new-chapter" data-progress="4" style="left: 61.53846153846154%;"></a>
+        <a href="./4-organizing_your_project.html" title="组织你的项目" class="chapter done new-chapter" data-progress="4" style="left: 61.53846153846154%;"></a>
     
-        <a href="./5-configuration.html" title="配置" class="chapter  new-chapter" data-progress="5" style="left: 69.23076923076923%;"></a>
+        <a href="./5-configuration.html" title="配置" class="chapter done new-chapter" data-progress="5" style="left: 69.23076923076923%;"></a>
     
-        <a href="./6-advanced_patterns_for_views_and_routing.html" title="关于视图和路由的进阶技巧" class="chapter  new-chapter" data-progress="6" style="left: 76.92307692307692%;"></a>
+        <a href="./6-advanced_patterns_for_views_and_routing.html" title="关于视图和路由的进阶技巧" class="chapter done new-chapter" data-progress="6" style="left: 76.92307692307692%;"></a>
     
-        <a href="./7-blueprints.html" title="蓝图" class="chapter  new-chapter" data-progress="7" style="left: 84.61538461538461%;"></a>
+        <a href="./7-blueprints.html" title="蓝图" class="chapter done new-chapter" data-progress="7" style="left: 84.61538461538461%;"></a>
     
-        <a href="./8-templates.html" title="模板" class="chapter  new-chapter" data-progress="8" style="left: 92.3076923076923%;"></a>
+        <a href="./8-templates.html" title="模板" class="chapter done new-chapter" data-progress="8" style="left: 92.3076923076923%;"></a>
     
-        <a href="./9-static_files.html" title="静态文件" class="chapter  new-chapter" data-progress="9" style="left: 100%;"></a>
+        <a href="./9-static_files.html" title="静态文件" class="chapter done new-chapter" data-progress="9" style="left: 100%;"></a>
     
     </div>
 </div>
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_7">
+                    <section class="normal" id="section-gitbook_14">
                     
-                        <p><img src="images/conventions.png" alt="代码约定"></p>
-<h1 id="-">代码约定</h1>
-<p>在Python社区中有许多关于代码风格的约定。如果你写过一段时间Python了，那么也许对此已经有些了解。
-我会简单介绍一下，同时给你一些URL链接，从中你可以找到关于这个话题的详细信息。</p>
-<h2 id="-pep-">让我们提出一个PEP！</h2>
-<p><strong>PEP</strong>全称是“Python Enhancement Proposal”（Python增强提案）。你可以在<a href="http://www.python.org/dev/peps/" target="_blank">python.org</a>上找到它们以及对应的索引目录。
-PEP在索引目录中按照数字编号排列，包括了元PEP（meta-PEP，讨论关于PEP的细节）。与之对应的是技术PEP（technical PEP），思考的是诸如Python内部实现的改良这样的话题。</p>
-<p>有一些PEP，比如PEP 8和PEP 257，影响了Python代码风格的标准。
-PEP 8包括了Python代码风格的规约。
-而PEP 257包括了文档字符串（docstrings， 在Python中给代码加文档的标准方式）的规约。</p>
-<h3 id="pep-8-python-">PEP 8: Python代码风格规约</h3>
-<p>PEP 8是对Python代码风格的官方规约。
-我建议你阅读它并将之付诸在Flask项目（以及其他Python项目）的开发实践中。
-当项目规模膨胀到多个包含成百上千行代码的文件时，这样做会使你的代码更加工整、了然。毕竟PEP 8的建议都是围绕着实现更加可读的代码这个目标。
-另外，如果你的项目准备开源，潜在的奉献者（contributors）会很高兴看到你的代码是遵循PEP 8的。</p>
-<p>一个至关重要的建议是每级缩进使用4个空格。不要使用tab。
-如果你打破了这个规约，它将会成为你（以及你的队友）在项目间切换的一个负担。
-这种不一致一向是任意语言心中的痛，但是对于Python，一门着重留白的语言，这是一个不可承受之重。
-因为tab与space之间的混搭会导致不可预期且难以排查的错误。</p>
-<h3 id="pep-257-">PEP 257: 文档字符串规约</h3>
-<p>PEP 257 [LINK TO PEP] 覆盖了Python的另一项标准:<strong>docstrings</strong>。
-你可以阅读PEP中的定义和相关建议，不过这里会给一个例子来展示一个文档字符串应该是怎样的：</p>
-<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">launch_rocket</span><span class="hljs-params">()</span>:</span>
-    <span class="hljs-string">"""主要的火箭发射调度器
+                        <p><img src="images/static.png" alt="静态文件"></p>
+<h1 id="-">静态文件</h1>
+<p>一如其名，静态文件是那些不会改变的文件。一般情况下，在你的应用中，这包括CSS文件，Javascript文件和图片。它也可以包括视频文件和其他可能的东西。</p>
+<h2 id="-">组织你的静态文件</h2>
+<p>我们将在应用的包中创建一个叫<em>static</em>的文件夹放置我们的静态文件。</p>
+<pre><code>myapp/
+    __init__.py
+    static/
+    templates/
+    views/
+    models.py
+run.py
+</code></pre><p><em>static/</em>里面的文件组织方式取决于个人的爱好。就我个人来说，如果第三方库（比如jQuery, Bootstrap等等）跟自己的Javascript和CSS文件混起来，我会因此而不爽。所以，我要将第三方库全放到一个<em>lib/</em>文件夹中。有时会用<em>vendor/</em>来代替<em>lib/</em>。</p>
+<pre><code>static/
+    css/
+        lib/
+            bootstrap.css
+        style.css
+        home.css
+        admin.css
+    js/
+        lib/
+            jquery.js
+        home.js
+        admin.js
+    img/
+        logo.svg
+        favicon.ico
+</code></pre><h3 id="-favicon">提供一个favicon</h3>
+<p>用户将通过yourapp.com/static/访问你的静态文件夹中的文件。默认下浏览器和其他软件认为你的favicon位于yourapp.com/favicon.ico。要想解决这种不一致。你可以在站点模板的<code>&lt;head&gt;</code>部分添加下面内容。</p>
+<pre><code>&lt;link rel=&quot;shortcut icon&quot; href=&quot;{{ url_for(&#39;static&#39;, filename=&#39;img/favicon.ico&#39;) }}&quot;&gt;
+</code></pre><h2 id="-flask-assets-">用Flask-Assets管理静态文件</h2>
+<p>Flask-Assets是一个管理静态文件的插件。它提供了两种非常有用的特性。首先，它允许你在Python代码中定义<em>多组</em>（bundles）可以同时插入你的模板的静态文件。其次，它允许你预处理这些文件。这意味着你可以合并并压缩你的CSS和Javascript文件，这样用户就会仅仅得到两个压缩后的文件（CSS和Javascript）而免于花费太多带宽。你甚至可以从Sass，Less，CoffeeScript或别的源码里编译出最终产物。</p>
+<p>下面是这一章中也做例子的静态文件夹的基本结构。</p>
+<p><em>myapp/static/</em></p>
+<pre><code>static/
+    css/
+        lib/
+            reset.css
+        common.css
+        home.css
+        admin.css
+    js/
+        lib/
+            jquery-1.10.2.js
+            Chart.js
+        home.js
+        admin.js
+    img/
+        logo.svg
+        favicon.ico
+</code></pre><h3 id="-">定义分组</h3>
+<p>我们的应用有两部分：公共网站和管理面板（分别称作&quot;home&quot;和&quot;admin&quot;）。我们将定义四个分组来覆盖它：每个部分有一个Javascript和一个CSS分组。我们将它们放入<code>util</code>包里的assets模块。</p>
+<p><em>myapp/util/assets.py</em></p>
+<pre><code>from flask.ext.assets import Bundle, Environment
+from .. import app
 
-    启动发射火箭所需的每一个步骤。
-    """</span>
-    <span class="hljs-comment"># [...]</span>
-</code></pre>
-<p>这种风格的文档字符串可以通过一些诸如<a href="http://sphinx-doc.org/" target="_blank">Sphinx</a>的软件来生成不同格式的文档。
-同时它们也有助于让你的代码更加工整。</p>
+bundles = {
+
+    &#39;home_js&#39;: Bundle(
+        &#39;js/lib/jquery-1.10.2.js&#39;,
+        &#39;js/home.js&#39;,
+        output=&#39;gen/home.js),
+
+    &#39;home_css&#39;: Bundle(
+        &#39;css/lib/reset.css&#39;,
+        &#39;css/common.css&#39;,
+        &#39;css/home.css&#39;,
+        output=&#39;gen/home.css),
+
+    &#39;admin_js&#39;: Bundle(
+        &#39;js/lib/jquery-1.10.2.js&#39;,
+        &#39;js/lib/Chart.js&#39;,
+        &#39;js/admin.js&#39;,
+        output=&#39;gen/admin.js),
+
+    &#39;admin_css&#39;: Bundle(
+        &#39;css/lib/reset.css&#39;,
+        &#39;css/common.css&#39;,
+        &#39;css/admin.css&#39;,
+        output=&#39;gen/admin.css)
+}
+
+assets = Environment(app)
+
+assets.register(bundles)
+</code></pre><p>Flask-Assets按照被列出来的顺序合并你的文件。如果<em>admin.js</em>依赖<em>jquery-1.10.2.js</em>，确保jquery被列在前面。</p>
+<p>我们通过字典来定义分组，这样方便注册它们。<a href="https://github.com/miracle2k/webassets/blob" target="_blank">webassets</a>，实际上是Flask-Assets的核心，提供了一系列方式来注册分组，包括上面我们演示的以字典作参数的方法。（译注：webassets之于Flask-Assets，正如SQLAlchemy之于Flask-SQLAlchemy。）</p>
 <blockquote>
-<p>参见</p>
-<ul>
-<li>PEP 8 <a href="http://legacy.python.org/dev/peps/pep-0008/" target="_blank">http://legacy.python.org/dev/peps/pep-0008/</a></li>
-<li>PEP 257 <a href="http://legacy.python.org/dev/peps/pep-0257/" target="_blank">http://legacy.python.org/dev/peps/pep-0257/</a></li>
-<li>Sphinx <a href="http://sphinx-doc.org/" target="_blank">http://sphinx-doc.org/</a>，一个文档生成器，同出于Flask作者之手</li>
-</ul>
+<p><strong>参见</strong>
+webassets在这里注册了分组：
+<a href="https://github.com/miracle2k/webassets/blob/0.8/src/webassets/env.py#L380" target="_blank">https://github.com/miracle2k/webassets/blob/0.8/src/webassets/env.py#L380</a></p>
 </blockquote>
-<h2 id="-import">相对形式的import</h2>
-<p>Relative imports make life a little easier when developing Flask apps. The premise is simple. Previously, you might have specified the app&#39;s package name when importing internal modules:</p>
-<p>开发Flask应用时，使用相对形式的import会让你的生活更加轻松。
-原因很简单。之前，当需要import一个内部模块时，你也许要显式指明应用的包名（the app&#39;s package name）。假设你想要从<em>myapp/models.py</em>中导入<code>User</code>模型：</p>
-<pre><code class="lang-python"><span class="hljs-comment"># 使用绝对路径来导入User</span>
-<span class="hljs-keyword">from</span> myapp.models <span class="hljs-keyword">import</span> User
-</code></pre>
-<p>用了相对形式的import后，你可以使用点标记法：第一个<code>.</code>来表示当前目录，之后的每一个<code>.</code>表示下一个父目录。</p>
-<pre><code class="lang-python"><span class="hljs-comment"># 使用相对路径来导入User</span>
-<span class="hljs-keyword">from</span> .models <span class="hljs-keyword">import</span> User
-</code></pre>
-<p>这种做法的好处在于使得package变得更加模块化了。
-现在你可以重命名你的package并在别的项目中重用模块，而无需忍受更新被硬编码的包名之苦。</p>
+<p>既然我们已经在<code>util.assets</code>中注册了我们的分组，剩下的就是在<strong>init</strong>.py中，在app对象初始化之后，来导入这个模块。</p>
+<p>myapp/<strong>init</strong>.py</p>
+<pre><code># [...] Initialize the app
+
+from .util import assets
+</code></pre><h3 id="-">使用你的分组</h3>
+<p>下面是我们的例子中的模板文件夹：</p>
+<p><em>myapp/templates/</em></p>
+<pre><code>templates/
+    home/
+        layout.html
+        index.html
+        about.html
+    admin/
+        layout.html
+        dash.html
+        stats.html
+</code></pre><p>要使用我们的admin分组，我们将插入它们到admin部分的基础模板 - <em>admin/layout.html</em> - 中。</p>
+<p>myapp/templates/admin/layout.html</p>
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        {% assets &quot;admin_js&quot; %}
+            &lt;script type=&quot;text/javascript&quot; src=&quot;{{ ASSET_URL }}&quot;&gt;&lt;/script&gt;
+        {% endassets %}
+        {% assets &quot;admin_css&quot; %}
+            &lt;link rel=&quot;stylesheet&quot; href=&quot;{{ ASSET_URL }}&quot; /&gt;
+        {% endassets %}
+    &lt;/head&gt;
+    &lt;body&gt;
+    {% block body %}
+    {% endblock %}
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><p>对于home分组，我们也同样在<em>templates/home/layout.html</em>做一样的处理。</p>
+<h3 id="-">使用过滤器</h3>
+<p>我们可以使用webassets过滤器来预处理我们的静态文件。这将方便我们压缩Javascript和CSS文件。现在修改下我们的代码来实现这一点。</p>
+<p>myapp/util/assets.py</p>
+<pre><code># [...]
+
+bundles = {
+
+    &#39;home_js&#39;: Bundle(
+        &#39;lib/jquery-1.10.2.js&#39;,
+        &#39;js/home.js&#39;,
+        output=&#39;gen/home.js&#39;,
+        filters=&#39;jsmin&#39;),
+
+    &#39;home_css&#39;: Bundle(
+        &#39;lib/reset.css&#39;,
+        &#39;css/common.css&#39;,
+        &#39;css/home.css&#39;,
+        output=&#39;gen/home.css&#39;,
+        filters=&#39;cssmin&#39;),
+
+    &#39;admin_js&#39;: Bundle(
+        &#39;lib/jquery-1.10.2.js&#39;,
+        &#39;lib/Chart.js&#39;,
+        &#39;js/admin.js&#39;,
+        output=&#39;gen/admin.js&#39;,
+        filters=&#39;jsmin&#39;),
+
+    &#39;admin_css&#39;: Bundle(
+        &#39;lib/reset.css&#39;,
+        &#39;css/common.css&#39;,
+        &#39;css/admin.css&#39;,
+        output=&#39;gen/admin.css&#39;,
+        filters=&#39;cssmin&#39;)
+}
+
+# [...]
+</code></pre><blockquote>
+<p><strong>注意</strong>
+要想使用<code>jsmin</code>和<code>cssmin</code>过滤器，你需要安装jsmin和cssmin包（使用<code>pip install jsmin cssmin</code>）。确保把它们也加入到<em>requirements.txt</em>。</p>
+</blockquote>
+<p>一旦模板已经渲染好，Flask-Assets将在合并的同时压缩我们的文件，而且当其中一个源文件改变时，它会自动更新压缩文件。</p>
 <blockquote>
-<p>参见</p>
-<ul>
-<li>你可以在PEP 328的这一节里读到更多关于相对形式的import的语法： <a href="http://www.python.org/dev/peps/pep-0328/#guido-s-decision" target="_blank">http://www.python.org/dev/peps/pep-0328/#guido-s-decision</a></li>
-<li>在写作本书的过程中，我碰巧在这个Tweet上面看到了一个使用相对形式的import的好处： 
-<a href="https://twitter.com/dabeaz/status/372059407711887360" target="_blank">https://twitter.com/dabeaz/status/372059407711887360</a>
-Just had to rename our whole package. Took 1 second. Package relative imports FTW!  </li>
-</ul>
+<p><strong>注意</strong>
+如果你在配置中设置<code>ASSETS_DEBUG = True</code>， Flask-Assets将独立输出每一个源文件而不会合并它们。</p>
+<p><strong>参见</strong>
+你可以使用Flask-Assets过滤器来自动编译Sass，Less，CoffeeScript，和其他预处理器。来看下你还可以使用哪些过滤器： <a href="http://elsdoerfer.name/docs/webassets/builtin_filters.html#js-css-compilers" target="_blank">http://elsdoerfer.name/docs/webassets/builtin_filters.html#js-css-compilers</a></p>
 </blockquote>
 <h2 id="-">总结</h2>
 <ul>
-<li>尽量遵循PEP 8中的代码风格规约。</li>
-<li>尽量遵循PEP 257中的文档字符串规约。</li>
-<li>使用相对形式的import来import你的应用中的内部模块。</li>
+<li>静态文件归于<em>static/</em>文件夹。</li>
+<li>将第三方库跟你自己的静态文件隔离开来。</li>
+<li>在你的模板里指定你的favicon的路径。</li>
+<li>使用Flask-Assets来在模板插入你的静态文件。</li>
+<li>Flask-Assets可以编译，合并以及压缩你的静态文件。</li>
 </ul>
 
                     
@@ -379,10 +495,10 @@ Just had to rename our whole package. Took 1 second. Package relative imports FT
         </div>
 
         
-        <a href="./1-introduction.html" class="navigation navigation-prev "><i class="fa fa-angle-left"></i></a>
+        <a href="./8-templates.html" class="navigation navigation-prev "><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./3-environment.html" class="navigation navigation-next "><i class="fa fa-angle-right"></i></a>
+        <a href="./10-storing-data.html" class="navigation navigation-next "><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

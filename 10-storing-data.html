@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>代码约定 | Flask之旅</title>
+        <title>存储 | Flask之旅</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="./3-environment.html" />
+        <link rel="next" href="./11-handling_forms.html" />
         
         
-        <link rel="prev" href="./1-introduction.html" />
+        <link rel="prev" href="./9-static_files.html" />
         
 
-        <meta property="og:title" content="代码约定 | Flask之旅">
+        <meta property="og:title" content="存储 | Flask之旅">
         <meta property="og:site_name" content="Flask之旅">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="spacewander/explore-flask-zh" data-level="2" data-basepath="." data-revision="1412666276503">
+    <div class="book" data-github="spacewander/explore-flask-zh" data-level="10" data-basepath="." data-revision="1412666276503">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -120,7 +120,7 @@
 
         
         <li>
-            <a href="https://github.com/spacewander/explore-flask-zh/edit/master/2-coding_conventions.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/spacewander/explore-flask-zh/edit/master/10-storing-data.md" target="blank">Edit and Contribute</a>
         </li>
         
 
@@ -264,7 +264,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 46.15384615384615%;min-width: 38.46153846153846%;"></div>
+        <div class="inner" style="width: 15.384615384615385%;min-width: 7.6923076923076925%;"></div>
     </div>
     <div class="chapters">
     
@@ -274,13 +274,13 @@
     
         <a href="./10-storing-data.html" title="存储" class="chapter done " data-progress="10" style="left: 15.384615384615385%;"></a>
     
-        <a href="./11-handling_forms.html" title="处理表单" class="chapter done " data-progress="11" style="left: 23.076923076923077%;"></a>
+        <a href="./11-handling_forms.html" title="处理表单" class="chapter  " data-progress="11" style="left: 23.076923076923077%;"></a>
     
-        <a href="./12-handling_users.html" title="用户管理的规范" class="chapter done " data-progress="12" style="left: 30.76923076923077%;"></a>
+        <a href="./12-handling_users.html" title="用户管理的规范" class="chapter  " data-progress="12" style="left: 30.76923076923077%;"></a>
     
-        <a href="./14-deployment.html" title="部署" class="chapter done " data-progress="13" style="left: 38.46153846153846%;"></a>
+        <a href="./14-deployment.html" title="部署" class="chapter  " data-progress="13" style="left: 38.46153846153846%;"></a>
     
-        <a href="./2-coding_conventions.html" title="代码约定" class="chapter done new-chapter" data-progress="2" style="left: 46.15384615384615%;"></a>
+        <a href="./2-coding_conventions.html" title="代码约定" class="chapter  new-chapter" data-progress="2" style="left: 46.15384615384615%;"></a>
     
         <a href="./3-environment.html" title="环境" class="chapter  new-chapter" data-progress="3" style="left: 53.84615384615385%;"></a>
     
@@ -301,74 +301,112 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_7">
+                    <section class="normal" id="section-gitbook_10">
                     
-                        <p><img src="images/conventions.png" alt="代码约定"></p>
-<h1 id="-">代码约定</h1>
-<p>在Python社区中有许多关于代码风格的约定。如果你写过一段时间Python了，那么也许对此已经有些了解。
-我会简单介绍一下，同时给你一些URL链接，从中你可以找到关于这个话题的详细信息。</p>
-<h2 id="-pep-">让我们提出一个PEP！</h2>
-<p><strong>PEP</strong>全称是“Python Enhancement Proposal”（Python增强提案）。你可以在<a href="http://www.python.org/dev/peps/" target="_blank">python.org</a>上找到它们以及对应的索引目录。
-PEP在索引目录中按照数字编号排列，包括了元PEP（meta-PEP，讨论关于PEP的细节）。与之对应的是技术PEP（technical PEP），思考的是诸如Python内部实现的改良这样的话题。</p>
-<p>有一些PEP，比如PEP 8和PEP 257，影响了Python代码风格的标准。
-PEP 8包括了Python代码风格的规约。
-而PEP 257包括了文档字符串（docstrings， 在Python中给代码加文档的标准方式）的规约。</p>
-<h3 id="pep-8-python-">PEP 8: Python代码风格规约</h3>
-<p>PEP 8是对Python代码风格的官方规约。
-我建议你阅读它并将之付诸在Flask项目（以及其他Python项目）的开发实践中。
-当项目规模膨胀到多个包含成百上千行代码的文件时，这样做会使你的代码更加工整、了然。毕竟PEP 8的建议都是围绕着实现更加可读的代码这个目标。
-另外，如果你的项目准备开源，潜在的奉献者（contributors）会很高兴看到你的代码是遵循PEP 8的。</p>
-<p>一个至关重要的建议是每级缩进使用4个空格。不要使用tab。
-如果你打破了这个规约，它将会成为你（以及你的队友）在项目间切换的一个负担。
-这种不一致一向是任意语言心中的痛，但是对于Python，一门着重留白的语言，这是一个不可承受之重。
-因为tab与space之间的混搭会导致不可预期且难以排查的错误。</p>
-<h3 id="pep-257-">PEP 257: 文档字符串规约</h3>
-<p>PEP 257 [LINK TO PEP] 覆盖了Python的另一项标准:<strong>docstrings</strong>。
-你可以阅读PEP中的定义和相关建议，不过这里会给一个例子来展示一个文档字符串应该是怎样的：</p>
-<pre><code class="lang-python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">launch_rocket</span><span class="hljs-params">()</span>:</span>
-    <span class="hljs-string">"""主要的火箭发射调度器
+                        <p><img src="images/storing.png" alt="存储"></p>
+<h1 id="-">存储</h1>
+<p>大多数Flask应用都将要跟数据打交道。有很多种不同的方法存储数据。至于哪种最优，取决于数据的类型。如果你储存的是关系性数据（比如一个用户有多个邮件，一个邮件对应一个用户），关系型数据库无疑是你的选择。其他类型的数据也许适合储存到NoSQL数据库（比如MongoDB）中。</p>
+<p>我不会告诉你如何为你的应用选择数据库。如果有人告诉你，NoSQL是你的唯一选择；那么必然也会有人建议用关系型数据库处理同样的问题。对此我唯一需要说的是，如果你不清楚，关系型数据库（MySQL, PostgreSQL等等）将满足你绝大部分的需求。</p>
+<p>另外，当你使用关系型数据库，你就能用到SQLAlchemy，而SQLAlchemy用起来真爽。</p>
+<h2 id="sqlalchemy">SQLAlchemy</h2>
+<p>SQLAlchemy是一个ORM（<a href="http://zh.wikipedia.org/wiki/%E5%AF%B9%E8%B1%A1%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84" target="_blank">对象关系映射</a>）。基于对目标数据库的原生SQL的抽象，它提供了与一长串数据库引擎的一致的API。这一列表中包括MySQL，PostgreSQL，和SQLite。这使得在你的模型和数据库间交换数据变得轻松愉快，同时也使得诸如换掉数据库引擎和迁移数据库模式等其他事情变得没那么繁琐。</p>
+<p>存在一个很棒的Flask插件使得在Flask中使用SQLAlchemy更为轻松。它就是Flask-SQLAlchemy。Flask-SQLAlchemy为SQLAlchemy设置了许多合理的配置。它也内置了一些session管理，这样你就不用在应用代码里处理这种基础事务了。</p>
+<p>让我们深入看看一些代码。我们将先定义一些模型，接着配置下SQLAchemy。这些模型将位于<em>myapp/models.py</em>，不过首先我们要在<em>myapp/<strong>init</strong>.py</em>定义我们的数据库。</p>
+<p><em>myapp/<strong>init</strong>.py</em></p>
+<pre><code>from flask import Flask
+from flask.ext.sqlalchemy import SQLAlchemy
 
-    启动发射火箭所需的每一个步骤。
-    """</span>
-    <span class="hljs-comment"># [...]</span>
-</code></pre>
-<p>这种风格的文档字符串可以通过一些诸如<a href="http://sphinx-doc.org/" target="_blank">Sphinx</a>的软件来生成不同格式的文档。
-同时它们也有助于让你的代码更加工整。</p>
-<blockquote>
-<p>参见</p>
-<ul>
-<li>PEP 8 <a href="http://legacy.python.org/dev/peps/pep-0008/" target="_blank">http://legacy.python.org/dev/peps/pep-0008/</a></li>
-<li>PEP 257 <a href="http://legacy.python.org/dev/peps/pep-0257/" target="_blank">http://legacy.python.org/dev/peps/pep-0257/</a></li>
-<li>Sphinx <a href="http://sphinx-doc.org/" target="_blank">http://sphinx-doc.org/</a>，一个文档生成器，同出于Flask作者之手</li>
-</ul>
+app = Flask(__name__, instance_relative_config=True)
+
+app.config.from_object(&#39;config&#39;)
+app.config.from_pyfile(&#39;config.py&#39;)
+
+db = SQLAlchemy(app)
+</code></pre><p>我们首先初始化并配置你的Flask应用，然后用它来初始化你的SQLAlchemy数据库处理程序。我们将为数据库配置使用一个instance文件夹，所以我们应该在初始化应用时加上<code>instance_relative_config</code>选项，然后调用<code>app.config.from_pyfile</code>。现在我们可以定义模型了。</p>
+<p><em>myapp/models.py</em></p>
+<pre><code>from . import db
+
+class Engine(db.Model):
+
+    # Columns
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+
+    title = db.Column(db.String(128))
+
+    thrust = db.Column(db.Integer, default=0)
+</code></pre><p><code>Column</code>，<code>Integer</code>，<code>String</code>，<code>Model</code>和其他的SQLAlchemy类都可以通过由Flask-SQLAlchemy构造的<code>db</code>对象访问。我们会定义一个储存我们的太空飞船引擎的当前状态的模型。每个引擎有一个ID，一个标题和一个推力等级。</p>
+<p>我们需要往我们的配置添加一些数据库信息。我们打算使用一个instance文件夹来避免配置变量被记录进版本控制系统，所以我们要把它们放入<em>instance/config.py</em>。</p>
+<p><em>instance/config.py</em></p>
+<pre><code>SQLALCHEMY_DATABASE_URI = &quot;postgresql://user:password@localhost/spaceshipDB&quot;
+</code></pre><blockquote>
+<p><strong>注意</strong>
+你的数据库URI将取决于你选择的数据库和它部署的位置。看一下这个相关的SQLAlchemy文档： 
+<a href="http://docs.sqlalchemy.org/en/latest/core/engines.html?highlight=database#database-urls" target="_blank">http://docs.sqlalchemy.org/en/latest/core/engines.html?highlight=database#database-urls</a></p>
 </blockquote>
-<h2 id="-import">相对形式的import</h2>
-<p>Relative imports make life a little easier when developing Flask apps. The premise is simple. Previously, you might have specified the app&#39;s package name when importing internal modules:</p>
-<p>开发Flask应用时，使用相对形式的import会让你的生活更加轻松。
-原因很简单。之前，当需要import一个内部模块时，你也许要显式指明应用的包名（the app&#39;s package name）。假设你想要从<em>myapp/models.py</em>中导入<code>User</code>模型：</p>
-<pre><code class="lang-python"><span class="hljs-comment"># 使用绝对路径来导入User</span>
-<span class="hljs-keyword">from</span> myapp.models <span class="hljs-keyword">import</span> User
-</code></pre>
-<p>用了相对形式的import后，你可以使用点标记法：第一个<code>.</code>来表示当前目录，之后的每一个<code>.</code>表示下一个父目录。</p>
-<pre><code class="lang-python"><span class="hljs-comment"># 使用相对路径来导入User</span>
-<span class="hljs-keyword">from</span> .models <span class="hljs-keyword">import</span> User
-</code></pre>
-<p>这种做法的好处在于使得package变得更加模块化了。
-现在你可以重命名你的package并在别的项目中重用模块，而无需忍受更新被硬编码的包名之苦。</p>
+<h2 id="-">初始化数据库</h2>
+<p>既然数据库已经配置好了，而模型也定义了，是时候初始化数据库了。这个步骤从由模型定义中创建数据库模式开始。</p>
+<p>通常这会是非常痛苦的过程。不过幸运的是，SQLAlchemy提供了一个十分酷的工具帮我们完成了所有的琐事。</p>
+<p>让我们在版本库的根目录下打开一个Python终端。</p>
+<pre><code>$ pwd
+/Users/me/Code/myapp
+$ workon myapp
+(myapp)$ python
+Python 2.7.5 (default, Aug 25 2013, 00:04:04)
+[GCC 4.2.1 Compatible Apple LLVM 5.0 (clang-500.0.68)] on darwin
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt; from myapp import db
+&gt;&gt;&gt; db.create_all()
+&gt;&gt;&gt;
+</code></pre><p>现在，感谢SQLAlchemy，你会发现在你配置的数据库中，所需的表格已经被创建出来了。</p>
+<h2 id="alembic-">Alembic迁移工具</h2>
+<p>数据库的模式并非亘古不变的。举个例子，你可能需要在引擎的表里添加一个<code>last_fired</code>的项。如果这个表是一张白纸，你只需要更新模型并重新运行<code>db.create_all()</code>。然而，如果你在引擎表里记录了六个月的数据，你肯定不会想要从头开始。这时候就需要数据库迁移工具了。</p>
+<p>Alembic是专用于SQLAlchemy的数据库迁移工具。它允许你保持你的数据库模式的版本历史，这样你就可以升级到一个新的模式，或者降级到旧的模式。</p>
+<p>Alembic有一个可拓展的新手教程，所以我只会大概地说一下并指出一些需要注意的事项。</p>
+<p>通过一个初始化的<code>alembic init</code>命令，你将创建一个alembic&quot;迁移环境&quot;。在你的版本库的根目录下执行这个命令，你将得到一个叫<code>alembic</code>的新文件夹。你的版本库将看上去就像Alembic教程中的这个例子一样：</p>
+<pre><code>myapp/
+    alembic.ini
+    alembic/
+        env.py
+        README
+        script.py.mako
+        versions/
+            3512b954651e_add_account.py
+            2b1ae634e5cd_add_order_id.py
+            3adcc9a56557_rename_username_field.py
+    myapp/
+        __init__.py
+        views.py
+        models.py
+          templates/
+    run.py
+    config.py
+    requirements.txt
+</code></pre><p><em>alembic/</em>文件夹中包括了在版本间迁移数据的脚本。同时会有一个包括配置信息的<em>alembic.ini</em>文件。</p>
 <blockquote>
-<p>参见</p>
-<ul>
-<li>你可以在PEP 328的这一节里读到更多关于相对形式的import的语法： <a href="http://www.python.org/dev/peps/pep-0328/#guido-s-decision" target="_blank">http://www.python.org/dev/peps/pep-0328/#guido-s-decision</a></li>
-<li>在写作本书的过程中，我碰巧在这个Tweet上面看到了一个使用相对形式的import的好处： 
-<a href="https://twitter.com/dabeaz/status/372059407711887360" target="_blank">https://twitter.com/dabeaz/status/372059407711887360</a>
-Just had to rename our whole package. Took 1 second. Package relative imports FTW!  </li>
-</ul>
+<p><strong>注意</strong>
+把<em>alembic.ini</em>添加到<em>.gitignore</em>中！在那里会有你的数据库凭证，所以你<em>不应该</em>把它留在版本控制中。</p>
+<p>不过你可以把<em>alembic/</em>放进版本控制。它不会包含敏感信息（而且不能从你的源代码中重新生成），并且在版本控制中保存多个副本可以避免你的电脑发生不测。</p>
+</blockquote>
+<p>当数据库模式需要发生变化时，我们需要做一系列事情。首先，运行<code>alembic revision</code>来生成迁移脚本。在<em>myapp/alembic/versions/</em>打开新生成的Python文件并使用Alembic的<code>op</code>对象完成<code>upgrade</code>和<code>downgrade</code>函数。</p>
+<p>一旦我们的迁移脚本已经准备就绪，我们只需运行<code>alembic upgrade head</code>来迁移我们的数据到最新版本。</p>
+<blockquote>
+<p><strong>参见</strong>
+想知道更多关于配置Alembic，创建你的迁移脚本和运行你的迁移，请看Alembic教程：
+<a href="http://alembic.readthedocs.org/en/latest/tutorial.html" target="_blank">http://alembic.readthedocs.org/en/latest/tutorial.html</a></p>
+<p><strong>注意</strong>
+不要忘记设定数据的备份计划。备份计划的话题已经超出本书的范围，但你应该总是要有一个安全和健壮的方式备份你的数据库。</p>
+<p><strong>注意</strong>
+Flask在NoSQL上的支持较少，但只要有你选择的数据库引擎有对应的Python库，你就能够用上它。这里有一些Flask插件，可以给Flask提供NoSQL引擎的支持。 
+<a href="http://flask.pocoo.org/extensions/" target="_blank">http://flask.pocoo.org/extensions/</a></p>
 </blockquote>
 <h2 id="-">总结</h2>
 <ul>
-<li>尽量遵循PEP 8中的代码风格规约。</li>
-<li>尽量遵循PEP 257中的文档字符串规约。</li>
-<li>使用相对形式的import来import你的应用中的内部模块。</li>
+<li>使用SQLAchemy来搭配关系型数据库。</li>
+<li>使用Flask-SQLAlchemy来包装SQLAlchemy。</li>
+<li>Alembic会在数据库模式改变时帮助你管理数据迁移。</li>
+<li>你可以用NoSQL搭配Flask，但具体做法取决于具体引擎。</li>
+<li>记得备份你的数据！</li>
 </ul>
 
                     
@@ -379,10 +417,10 @@ Just had to rename our whole package. Took 1 second. Package relative imports FT
         </div>
 
         
-        <a href="./1-introduction.html" class="navigation navigation-prev "><i class="fa fa-angle-left"></i></a>
+        <a href="./9-static_files.html" class="navigation navigation-prev "><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./3-environment.html" class="navigation navigation-next "><i class="fa fa-angle-right"></i></a>
+        <a href="./11-handling_forms.html" class="navigation navigation-next "><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
