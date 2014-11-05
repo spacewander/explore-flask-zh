@@ -27,7 +27,7 @@ Flask-Login使得用户认证系统的实现不再困难。
 下面是从一个用到Flask-Login和`@login_required`装饰器的一个示范应用中获取的例子:
 
 ```
-from Flask import render_template
+from flask import render_template
 from flask.ext.login import login_required, current_user
 
 
