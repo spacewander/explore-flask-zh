@@ -72,7 +72,7 @@ yourapp/
 ### 使用instance文件夹
 
 要想加载定义在instance文件夹中的配置变量，你可以使用`app.config.from_pyfile()`。
-如果在调用`Flask()`创建应用时设置了`instance_relative_config=Trye`，`app.config.from_pyfile()`将查看在*instance*文件夹的特殊文件。
+如果在调用`Flask()`创建应用时设置了`instance_relative_config=True`，`app.config.from_pyfile()`将查看在*instance*文件夹的特殊文件。
 
 ```python
 app = Flask(__name__, instance_relative_config=True)
