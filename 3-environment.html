@@ -32,7 +32,7 @@
 
 
         
-    <div class="book" data-level="3" data-basepath="." data-revision="1417613147992">
+    <div class="book" data-level="3" data-basepath="." data-revision="1417614121512">
     
 
 <div class="book-summary">
@@ -375,12 +375,10 @@
 这使得你可以指定一个特定的Python二进制版本，取决于当前开发的项目。</p>
 <p>virtualenv也可以让你给不同的项目指定同样的依赖包的不同版本。
 当你在一个老旧的包含众多不同项目的平台上开发时，这种灵活性十分重要。</p>
-<p>When using virtualenv, you&#39;ll generally have only a few Python packages installed globally on your system. One of these will be virtualenv itself:</p>
 <p>用了virtualenv，你将只会把少数几个Python模块安装到系统的全局空间中。其中一个会是virtualenv本身：</p>
 <pre><code class="lang-sh"><span class="hljs-comment"># 使用pip安装virtualenv</span>
 $ pip install virtualenv
 </code></pre>
-<p>Then, when you are inside your project directory, you&#39;ll create a new virtual environment with virtualenv:</p>
 <p>安装完virtualenv，就可以开始创建虚拟环境。切换到你的项目文件夹，运行<code>virtualenv</code>命令。这个命令接受一个参数，作为虚拟环境的名字（同样也是它的位置，在当前文件夹<code>ls</code>下你就知道了）。</p>
 <pre><code class="lang-sh">$ virtualenv venv
 New python executable <span class="hljs-keyword">in</span> venv/bin/python
@@ -389,9 +387,7 @@ Installing setuptools, pip...done.
 <p>这将创建一个包含所有依赖的文件夹。</p>
 <p>一旦新的virtual environment已经准备就绪，你需要给对应的virtual environment下的<code>bin/activate</code>脚本执行<code>source</code>，来激活它。</p>
 <pre><code>$ source venv/bin/activate
-</code></pre><p>This script makes some changes to your shell&#39;s environment variables so that everything points to the new virtual environment instead of your global system. You can see the effect by running <code>which python</code>; “python” now refers to the Python binary in the virtual environment. When a virtual environment is active, dependencies installed with Pip will be downloaded to that virtual environment instead of the global system.</p>
-<p>这个脚本对你的shell的环境变量施加了魔法，让它们指向新的virtual environment而不是你的全局系统环境。
-你可以通过运行<code>which python</code>看到：“python”现在指向的是virtual environment中的二进制版本。</p>
+</code></pre><p>你可以通过运行<code>which python</code>看到：“python”现在指向的是virtual environment中的二进制版本。</p>
 <pre><code class="lang-sh">$ which python
 /usr/local/bin/python
 $ <span class="hljs-built_in">source</span> venv/bin/activate
@@ -405,15 +401,11 @@ virtualenv在它前面添加了当前被激活的virtual environment，所以你
 <pre><code>(venv)$ deactivate
 $
 </code></pre><h2 id="virtualenvwrappervirtual-environment">使用virtualenvwrapper管理你的virtual environment</h2>
-<p>I didn&#39;t want to mention <strong>virtualenvwrapper</strong> until you had seen the basics of virtualenv. I wanted to make that you understand what virtualenvwrapper is improving upon, so that you’ll understand why you’d want to use it.</p>
-<p>在你了解了virtualenv的基本知识后，是时候提及<strong>virtualenvwrapper</strong>了。
-我想要让你了解到<a href="http://virtualenvwrapper.readthedocs.org/en/latest/" target="_blank">virtualenvwrapper</a>对于前面的工作做了什么改进，这样你就知道为什么你应该使用它。</p>
+<p>我想要让你了解到<a href="http://virtualenvwrapper.readthedocs.org/en/latest/" target="_blank">virtualenvwrapper</a>对于前面的工作做了什么改进，这样你就知道为什么你应该使用它。</p>
 <p>虚拟环境文件夹现在已经位于你的项目文件夹之下。
 但是你仅仅是在激活了虚拟环境后才会跟它交互。它甚至不应该被放入版本控制中。所以它呆在项目文件夹中也是挺碍眼的。
 解决这个问题的一个方法就是使用virtualenvwrapper。这个包把你所有的virtual environment整理到单独的文件夹下，通常是<code>~/.virtualenvs/</code>。</p>
-<p>To install virtualenvwrapper, follow the instructions in the documentation [<a href="http://virtualenvwrapper.readthedocs.org/en/latest/" target="_blank">http://virtualenvwrapper.readthedocs.org/en/latest/</a>].</p>
 <p>要安装virtualenvwrapper，遵循这个<a href="http://virtualenvwrapper.readthedocs.org/en/latest/" target="_blank">文档</a>中的步骤。</p>
-<p>{ WARNING: Make sure that you&#39;ve deactivated all virtual environments before installing virtualenvwrapper. You want it installed globally, not in a pre-existing environment. }</p>
 <blockquote>
 <p><strong>注意</strong>
 确保你在安装virtualenvwrapper时不在任何一个virtual environment中。你需要把它安装在全局空间，而不是一个已存在的virtual environment中</p>
@@ -448,7 +440,6 @@ pip可以生成一个文本文件，列出所有已经安装的包。它也可�
 你现在可以对过去那种把不要的代码注释掉的行为说拜拜了，因为你可以直接删掉它们，即使将来突然需要，也可以通过<code>git revert</code>来恢复。
 另外，你将会有整个项目的备份，存在Github,Bitbucket或你自己的Git server。</p>
 <h3 id="">什么不应该在版本控制里</h3>
-<p>I usually keep a file out of version control for one of two reasons. Either it’s clutter, or it’s a secret. Compiled files, e.g. <code>.pyc</code> files and virtual environments (if you’re not using virtualenvwrapper for some reason) are examples of clutter. They don’t need to be in version control because they can be generated from <code>.py</code> files and <code>requirements.txt</code> respectively. API keys, application secret keys, and database credentials are examples of secrets. They shouldn’t be in version control because their exposure would be a massive breach of security.</p>
 <p>我通常不把一个文件放在版本控制里，如果它满足以下两个原因中的一个。</p>
 <ol>
 <li>它是不必要的</li>
@@ -458,7 +449,6 @@ pip可以生成一个文本文件，列出所有已经安装的包。它也可�
 它们不需要加入到版本控制中，因为它们可以通过<code>.py</code>或<code>requirements.txt</code>生成出来。</p>
 <p>接口密钥（调用接口时必须传入的参数），应用密钥，以及数据库证书则是后者的例子。
 它们不应该在版本控制中，因为一旦泄密，将造成严重的安全隐患。</p>
-<p>{ NOTE: When making security related decisions, I assume that my repository will become public at some point. This means keeping secrets out, and never assuming that a security hole won’t be found because, “Who’s going to guess that they could do that?” }</p>
 <blockquote>
 <p><strong>注意</strong>
 在做安全相关的决定时，我会假设稳定版本库将会在一定程度上被公开。这意味着要清除所有的隐私，并且永不假设一个安全漏洞不会被发现，

@@ -32,7 +32,7 @@
 
 
         
-    <div class="book" data-level="12" data-basepath="." data-revision="1417613147992">
+    <div class="book" data-level="12" data-basepath="." data-revision="1417614121512">
     
 
 <div class="book-summary">
@@ -661,7 +661,7 @@ login_manager.login_view =  <span class="hljs-string">"signin"</span>
 
         subject = <span class="hljs-string">"Password reset requested"</span>
         <span class="hljs-comment"># Here we use the URLSafeTimedSerializer we created in `util` at the beginning of the chapter</span>
-        token = ts.dumps(self.email, salt=<span class="hljs-string">'recover-key'</span>)
+        token = ts.dumps(user.email, salt=<span class="hljs-string">'recover-key'</span>)
 
         recover_url = url_for(
             <span class="hljs-string">'reset_with_token'</span>,
