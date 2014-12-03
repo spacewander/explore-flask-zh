@@ -365,7 +365,7 @@ def reset():
 
 		subject = "Password reset requested"
         # Here we use the URLSafeTimedSerializer we created in `util` at the beginning of the chapter
-        token = ts.dumps(self.email, salt='recover-key')
+        token = ts.dumps(user.email, salt='recover-key')
 
         recover_url = url_for(
             'reset_with_token',

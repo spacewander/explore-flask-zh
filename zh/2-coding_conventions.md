@@ -50,8 +50,6 @@ def launch_rocket():
 
 ## 相对形式的import
 
-Relative imports make life a little easier when developing Flask apps. The premise is simple. Previously, you might have specified the app's package name when importing internal modules:
-
 开发Flask应用时，使用相对形式的import会让你的生活更加轻松。
 原因很简单。之前，当需要import一个内部模块时，你也许要显式指明应用的包名（the app's package name）。假设你想要从*myapp/models.py*中导入`User`模型：
 

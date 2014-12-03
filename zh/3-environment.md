@@ -17,16 +17,12 @@
 virtualenv也可以让你给不同的项目指定同样的依赖包的不同版本。
 当你在一个老旧的包含众多不同项目的平台上开发时，这种灵活性十分重要。
 
-When using virtualenv, you'll generally have only a few Python packages installed globally on your system. One of these will be virtualenv itself:
-
 用了virtualenv，你将只会把少数几个Python模块安装到系统的全局空间中。其中一个会是virtualenv本身：
 
 ```sh
 # 使用pip安装virtualenv
 $ pip install virtualenv
 ```
-
-Then, when you are inside your project directory, you'll create a new virtual environment with virtualenv:
 
 安装完virtualenv，就可以开始创建虚拟环境。切换到你的项目文件夹，运行`virtualenv`命令。这个命令接受一个参数，作为虚拟环境的名字（同样也是它的位置，在当前文件夹`ls`下你就知道了）。
 
@@ -44,9 +40,6 @@ Installing setuptools, pip...done.
 $ source venv/bin/activate
 ```
 
-This script makes some changes to your shell's environment variables so that everything points to the new virtual environment instead of your global system. You can see the effect by running `which python`; “python” now refers to the Python binary in the virtual environment. When a virtual environment is active, dependencies installed with Pip will be downloaded to that virtual environment instead of the global system.
-
-这个脚本对你的shell的环境变量施加了魔法，让它们指向新的virtual environment而不是你的全局系统环境。
 你可以通过运行`which python`看到：“python”现在指向的是virtual environment中的二进制版本。
 
 ```sh
@@ -71,20 +64,13 @@ $
 
 ## 使用virtualenvwrapper管理你的virtual environment
 
-I didn't want to mention **virtualenvwrapper** until you had seen the basics of virtualenv. I wanted to make that you understand what virtualenvwrapper is improving upon, so that you’ll understand why you’d want to use it.
-
-在你了解了virtualenv的基本知识后，是时候提及**virtualenvwrapper**了。
 我想要让你了解到[virtualenvwrapper](http://virtualenvwrapper.readthedocs.org/en/latest/)对于前面的工作做了什么改进，这样你就知道为什么你应该使用它。
 
 虚拟环境文件夹现在已经位于你的项目文件夹之下。
 但是你仅仅是在激活了虚拟环境后才会跟它交互。它甚至不应该被放入版本控制中。所以它呆在项目文件夹中也是挺碍眼的。
 解决这个问题的一个方法就是使用virtualenvwrapper。这个包把你所有的virtual environment整理到单独的文件夹下，通常是`~/.virtualenvs/`。
 
-To install virtualenvwrapper, follow the instructions in the documentation [http://virtualenvwrapper.readthedocs.org/en/latest/].
-
 要安装virtualenvwrapper，遵循这个[文档](http://virtualenvwrapper.readthedocs.org/en/latest/)中的步骤。
-
-{ WARNING: Make sure that you've deactivated all virtual environments before installing virtualenvwrapper. You want it installed globally, not in a pre-existing environment. }
 
 > **注意**
 > 确保你在安装virtualenvwrapper时不在任何一个virtual environment中。你需要把它安装在全局空间，而不是一个已存在的virtual environment中
@@ -131,8 +117,6 @@ pip可以生成一个文本文件，列出所有已经安装的包。它也可�
 
 ### 什么不应该在版本控制里
 
-I usually keep a file out of version control for one of two reasons. Either it’s clutter, or it’s a secret. Compiled files, e.g. `.pyc` files and virtual environments (if you’re not using virtualenvwrapper for some reason) are examples of clutter. They don’t need to be in version control because they can be generated from `.py` files and `requirements.txt` respectively. API keys, application secret keys, and database credentials are examples of secrets. They shouldn’t be in version control because their exposure would be a massive breach of security.
-
 我通常不把一个文件放在版本控制里，如果它满足以下两个原因中的一个。
 1. 它是不必要的
 2. 它是不公开的。
@@ -142,8 +126,6 @@ I usually keep a file out of version control for one of two reasons. Either it�
 
 接口密钥（调用接口时必须传入的参数），应用密钥，以及数据库证书则是后者的例子。
 它们不应该在版本控制中，因为一旦泄密，将造成严重的安全隐患。
-
-{ NOTE: When making security related decisions, I assume that my repository will become public at some point. This means keeping secrets out, and never assuming that a security hole won’t be found because, “Who’s going to guess that they could do that?” }
 
 > **注意**
 > 在做安全相关的决定时，我会假设稳定版本库将会在一定程度上被公开。这意味着要清除所有的隐私，并且永不假设一个安全漏洞不会被发现，
