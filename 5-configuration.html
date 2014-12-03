@@ -1,0 +1,529 @@
+<!DOCTYPE HTML>
+<html lang="en-US" manifest="./manifest.appcache">
+    <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
+        
+        <meta charset="UTF-8">
+        <title>配置 | Flask之旅</title>
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="spacewander">
+        <meta name="description" content="《explore flask》中文翻译">
+        <meta name="keywords" content="gitbook,github" >
+        <meta name="generator" content="www.gitbook.io">
+
+        
+        <link rel="next" href="./6-advanced_patterns_for_views_and_routing.html" />
+        
+        
+        <link rel="prev" href="./4-organizing_your_project.html" />
+        
+
+        <meta property="og:title" content="配置 | Flask之旅">
+        <meta property="og:site_name" content="Flask之旅">
+        <meta property="og:type" content="book">
+        <meta property="og:locale" content="en_US">
+
+        <meta property="book:author" content="https://github.com/spacewander">
+        <meta property="book:tag" content="GitBook">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    </head>
+    <body>
+        
+
+        <link rel="stylesheet" href="gitbook/style.css">
+        
+
+
+        
+    <div class="book" data-github="spacewander/explore-flask-zh" data-level="5" data-basepath="." data-revision="1412666276503">
+    <div class="book-header">
+    <!-- Actions Left -->
+    
+    <a href="https://github.com/spacewander/explore-flask-zh" target="_blank" class="btn pull-left"><i class="fa fa-bookmark-o"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+	<div class="dropdown-caret">
+  <span class="caret-outer"></span>
+  <span class="caret-inner"></span>
+</div>
+
+	<div class="btn-group btn-block">
+		<button id="reduce-font-size" class="btn btn-default">A</button>
+		<button id="enlarge-font-size" class="btn btn-default">A</button>
+	</div>
+
+	<ul class="list-group font-family-list">
+		<li class="list-group-item" data-font="0">Serif</li>
+		<li class="list-group-item" data-font="1">Sans</li>
+	</ul>
+
+	<div class="btn-group btn-group-xs btn-block color-theme-list">
+	  <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+	</div>
+</div>
+
+    </span>
+
+    <!-- Actions Right -->
+    
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="google-plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="twitter"><i class="fa fa-twitter"></i></a>
+    
+
+    
+    <a href="https://github.com/spacewander/explore-flask-zh/stargazers" target="_blank" class="btn pull-right count-star hidden-xs"><i class="fa fa-star-o"></i> Star (<span>-</span>)</a>
+    <a href="https://github.com/spacewander/explore-flask-zh/watchers" target="_blank" class="btn pull-right count-watch hidden-xs"><i class="fa fa-eye"></i> Watch (<span>-</span>)</a>
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-spinner fa-spin"></i>
+        <a href="./" >Flask之旅</a>
+    </h1>
+</div>
+
+    <div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        <li>
+            <a href="https://github.com/spacewander" target="blank">About the author</a>
+        </li>
+        
+
+        
+        <li>
+            <a href="https://github.com/spacewander/explore-flask-zh/issues" target="blank">Questions and Issues</a>
+        </li>
+        
+
+        
+        <li>
+            <a href="https://github.com/spacewander/explore-flask-zh/edit/master/5-configuration.md" target="blank">Edit and Contribute</a>
+        </li>
+        
+
+        
+        <li class="divider"></li>
+        
+
+        <li data-level="0" data-path="index.html">
+            <a href="./"><i class="fa fa-check"></i> Introduction</a>
+        </li>
+        
+            <li  data-level="1" data-path="1-introduction.html">
+                
+                <a href="./1-introduction.html">
+                    <i class="fa fa-check"></i> <b>1.</b> 前言
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="2" data-path="2-coding_conventions.html">
+                
+                <a href="./2-coding_conventions.html">
+                    <i class="fa fa-check"></i> <b>2.</b> 代码约定
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="3" data-path="3-environment.html">
+                
+                <a href="./3-environment.html">
+                    <i class="fa fa-check"></i> <b>3.</b> 环境
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="4" data-path="4-organizing_your_project.html">
+                
+                <a href="./4-organizing_your_project.html">
+                    <i class="fa fa-check"></i> <b>4.</b> 组织你的项目
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="5" data-path="5-configuration.html">
+                
+                <a href="./5-configuration.html">
+                    <i class="fa fa-check"></i> <b>5.</b> 配置
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="6" data-path="6-advanced_patterns_for_views_and_routing.html">
+                
+                <a href="./6-advanced_patterns_for_views_and_routing.html">
+                    <i class="fa fa-check"></i> <b>6.</b> 关于视图和路由的进阶技巧
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="7" data-path="7-blueprints.html">
+                
+                <a href="./7-blueprints.html">
+                    <i class="fa fa-check"></i> <b>7.</b> 蓝图
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="8" data-path="8-templates.html">
+                
+                <a href="./8-templates.html">
+                    <i class="fa fa-check"></i> <b>8.</b> 模板
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="9" data-path="9-static_files.html">
+                
+                <a href="./9-static_files.html">
+                    <i class="fa fa-check"></i> <b>9.</b> 静态文件
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="10" data-path="10-storing-data.html">
+                
+                <a href="./10-storing-data.html">
+                    <i class="fa fa-check"></i> <b>10.</b> 存储
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="11" data-path="11-handling_forms.html">
+                
+                <a href="./11-handling_forms.html">
+                    <i class="fa fa-check"></i> <b>11.</b> 处理表单
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="12" data-path="12-handling_users.html">
+                
+                <a href="./12-handling_users.html">
+                    <i class="fa fa-check"></i> <b>12.</b> 用户管理的规范
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="13" data-path="14-deployment.html">
+                
+                <a href="./14-deployment.html">
+                    <i class="fa fa-check"></i> <b>13.</b> 部署
+                </a>
+                
+                
+            </li>
+        
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank">Generated using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 69.23076923076923%;min-width: 61.53846153846154%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="./index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="./1-introduction.html" title="前言" class="chapter done new-chapter" data-progress="1" style="left: 7.6923076923076925%;"></a>
+    
+        <a href="./10-storing-data.html" title="存储" class="chapter done " data-progress="10" style="left: 15.384615384615385%;"></a>
+    
+        <a href="./11-handling_forms.html" title="处理表单" class="chapter done " data-progress="11" style="left: 23.076923076923077%;"></a>
+    
+        <a href="./12-handling_users.html" title="用户管理的规范" class="chapter done " data-progress="12" style="left: 30.76923076923077%;"></a>
+    
+        <a href="./14-deployment.html" title="部署" class="chapter done " data-progress="13" style="left: 38.46153846153846%;"></a>
+    
+        <a href="./2-coding_conventions.html" title="代码约定" class="chapter done new-chapter" data-progress="2" style="left: 46.15384615384615%;"></a>
+    
+        <a href="./3-environment.html" title="环境" class="chapter done new-chapter" data-progress="3" style="left: 53.84615384615385%;"></a>
+    
+        <a href="./4-organizing_your_project.html" title="组织你的项目" class="chapter done new-chapter" data-progress="4" style="left: 61.53846153846154%;"></a>
+    
+        <a href="./5-configuration.html" title="配置" class="chapter done new-chapter" data-progress="5" style="left: 69.23076923076923%;"></a>
+    
+        <a href="./6-advanced_patterns_for_views_and_routing.html" title="关于视图和路由的进阶技巧" class="chapter  new-chapter" data-progress="6" style="left: 76.92307692307692%;"></a>
+    
+        <a href="./7-blueprints.html" title="蓝图" class="chapter  new-chapter" data-progress="7" style="left: 84.61538461538461%;"></a>
+    
+        <a href="./8-templates.html" title="模板" class="chapter  new-chapter" data-progress="8" style="left: 92.3076923076923%;"></a>
+    
+        <a href="./9-static_files.html" title="静态文件" class="chapter  new-chapter" data-progress="9" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_1">
+                    
+                        <p><img src="images/configuration.png" alt="配置"></p>
+<h1 id="-">配置</h1>
+<p>当你开始学习Flask时，配置看上去是小菜一碟。你仅仅需要在<em>config.py</em>定义几个变量，然后万事大吉。
+然而当你不得不管理一个生产上的应用的配置时，这一切将变得棘手万分。
+你不得不设法保护API密钥，或者纠结于为了不同的环境（比如开发环境和生产环境）使用不同的配置。
+在本章我们将探讨Flask的一些高级特性，它们能让配置管理更为轻松。</p>
+<h2 id="-">从小处起步</h2>
+<p>一个简单的应用不需要任何复杂的配置。你仅仅需要在你的根目录下放置一个<em>config.py</em>文件，并在<em>app.py</em>或<em>yourapp/<strong>init</strong>.py</em>中加载它。</p>
+<p><em>config.py</em>的每一行中应该是某一个变量的赋值语句。一旦<em>config.py</em>在稍后被加载，这个配置变量可以通过<code>app.config</code>字典来获取，比如<code>app.config[&quot;DEBUG&quot;]</code>。
+以下是一个小项目的<em>config.py</em>文件的范例：</p>
+<pre><code class="lang-python">DEBUG = <span class="hljs-keyword">True</span> <span class="hljs-comment"># 启动Flask的Debug模式</span>
+BCRYPT_LEVEL = <span class="hljs-number">13</span> <span class="hljs-comment"># 配置Flask-Bcrypt拓展</span>
+MAIL_FROM_EMAIL = <span class="hljs-string">"robert@example.com"</span> <span class="hljs-comment"># 设置邮件来源</span>
+</code></pre>
+<p>有一些配置变量是内建的，比如<code>DEBUG</code>。还有些配置变量是关于Flask拓展的，比如<code>BCPYRT_LEVEL</code>就是用于Flask-Bcrypt拓展（一个用于hash映射密码的拓展）。
+你甚至可以定义在这个应用中用到的自己的配置变量。
+在这个例子中，我使用<code>app.config[&quot;MAIL_FROM_EMAIL&quot;]</code>来表示邮件往来时（比如重置密码）默认的发送方。
+这使得在将来要修改的时候不会带来太多麻烦。</p>
+<p>为了加载这些配置变量，我通常使用<code>app.config.from_object()</code>。如果是单一模块应用中，是在<em>app.py</em>；或者在<em>yourapp/<strong>init</strong>.py</em>，如果是基于包的应用。
+无论在哪种情况下，代码看上去像这样：</p>
+<pre><code>from flask import Flask
+
+app = Flask(__name__)
+app.config.from_object(&#39;config&#39;)
+# 现在通过app.config[&quot;VAR_NAME&quot;]，我们可以访问到对应的变量
+</code></pre><h3 id="-">一些重要的配置变量</h3>
+<table>
+<thead>
+<tr>
+<th>变量</th>
+<th style="text-align:center">描述</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DEBUG</td>
+<td style="text-align:center">在调试错误的时候给你一些有用的工具。比如当一个请求导致异常的发生时，会出现的一个web界面的调用堆栈和Python命令行。</td>
+<td>在开发环境下应该设置成True，在生产环境下应设置为False。</td>
+</tr>
+<tr>
+<td>SECRET_KEY</td>
+<td style="text-align:center">Flask使用这个密钥来对cookies和别的东西进行签名。你应该在<em>instance</em>文件夹中设定这个值，并不要把它放入版本控制中。你可以在下一节读到关于<em>instance</em>文件夹的更多信息。</td>
+<td>这应该是一个复杂的任意值。</td>
+</tr>
+<tr>
+<td>BCRYPT_LEVEL</td>
+<td style="text-align:center">如果使用Flask-Bcrypt来hash映射用户密码（如果没有，现在就用它），你需要为hash密码的算法指定“rounds”的值。设置的rounds值越高，计算一次hash花费的时间就越长（同样的效果作用于破解方，这个才是重要的）。rounds的值应该随着你的设备的计算能力的提升而增加</td>
+<td>如果使用Flask-Bcrypt来hash映射用户密码（如果没有，现在就用它），你需要为hash密码的算法指定“rounds”的值。设置的rounds值越高，计算一次hash花费的时间就越长（同样的效果作用于破解方，这个才是重要的）。rounds的值应该随着你的设备的计算能力的提升而增加</td>
+</tr>
+</tbody>
+</table>
+<p><strong> 确保生产环境下已经设置了 <code>DEBUG = False</code>。如果忘记关掉，用户会很乐意对你的服务器执行任意的Python代码。</strong></p>
+<h2 id="instance-">instance文件夹</h2>
+<p>有时你需要定义一些不能为人所知的配置变量。为此，你会想要把它们从<em>config.py</em>中的其他变量分离出来，并保持在版本控制之外。
+你可能要隐藏类似数据库密码和API密钥的秘密，或定义特定于当前机器的参数。
+为了让这更加轻松，Flask提供了一个叫<em>instance文件夹</em>的特性。
+instance文件夹是根目录的一个子文件夹，包括了一个特定于当前应用实例的配置文件。我们不要把它提交到版本控制中。</p>
+<p>这是一个使用了instance文件夹的简单Flask应用的结构:</p>
+<pre><code>config.py
+requirements.txt
+run.py
+instance/
+  config.py
+yourapp/
+  __init__.py
+  models.py
+  views.py
+  templates/
+  static/
+</code></pre><h3 id="-instance-">使用instance文件夹</h3>
+<p>要想加载定义在instance文件夹中的配置变量，你可以使用<code>app.config.from_pyfile()</code>。
+如果在调用<code>Flask()</code>创建应用时设置了<code>instance_relative_config=Trye</code>，<code>app.config.from_pyfile()</code>将查看在<em>instance</em>文件夹的特殊文件。</p>
+<pre><code class="lang-python">app = Flask(__name__, instance_relative_config=<span class="hljs-keyword">True</span>)
+app.config.from_object(<span class="hljs-string">'config'</span>)
+app.config.from_pyfile(<span class="hljs-string">'config.py'</span>)
+</code></pre>
+<p>现在，你可以在<em>instance/config.py</em>中定义变量，一如在<em>config.py</em>。
+你也应该将instance文件夹加入到版本控制系统的忽略名单中。比如假设你用的是git，你需要在<em>gitignore</em>中新开一行，写下<code>instance/</code>。</p>
+<h3 id="-">密钥</h3>
+<p>instance文件夹的隐秘属性使得它成为藏匿密钥的好地方。
+你可以在放入应用的密钥或第三方的API密钥。假如你的应用是开源的，或者将会是开源的，这会很重要。我们希望其他人去使用他们自己申请的密钥。</p>
+<pre><code class="lang-python"><span class="hljs-comment"># instance/config.py</span>
+
+SECRET_KEY = <span class="hljs-string">'Sm9obiBTY2hyb20ga2lja3MgYXNz'</span>
+STRIPE_API_KEY = <span class="hljs-string">'SmFjb2IgS2FwbGFuLU1vc3MgaXMgYSBoZXJv'</span>
+SQLALCHEMY_DATABASE_URI= \
+<span class="hljs-string">"postgresql://user:TWljaGHFgiBCYXJ0b3N6a2lld2ljeiEh@localhost/databasename"</span>
+</code></pre>
+<h3 id="-">最小化依赖于环境的配置</h3>
+<p>如果你的生产环境和开发环境之间的差别非常小，你可以使用你的instance文件夹抹平配置上的差别。
+在<em>instance/config.py</em>中定义的变量可以覆盖在<em>config.py</em>中设定的值。
+你只需要在<code>app.config.from_object()</code>之后才调用<code>app.config.from_pyfile()</code>。
+这样做的其中一个优点是你可以在不同的机器中修改你的应用的配置。你的开发版本库可能看上去像这样:</p>
+<p>config.py</p>
+<pre><code>DEBUG = False
+SQLALCHEMY_ECHO = False
+</code></pre><p>instance/config.py</p>
+<pre><code>DEBUG = True
+SQLALCHEMY_ECHO = True
+</code></pre><p>然后在生产环境中，你将这些代码从<em>instance/config.py</em>中移除，它就会改用回<em>config.py</em>中设定的变量。</p>
+<blockquote>
+<p><strong>参见</strong></p>
+<ul>
+<li>在这里可以读到关于Flask-SQLAlchemy的配置密钥: <a href="http://pythonhosted.org/Flask-SQLAlchemy/config.html#configuration-keys" target="_blank">http://pythonhosted.org/Flask-SQLAlchemy/config.html#configuration-keys</a></li>
+</ul>
+</blockquote>
+<h2 id="-">依照环境变量来配置</h2>
+<p>instance文件夹不应该在版本控制中。这意味这你将不能追踪你的instance配置。
+在只有一两个变量的情况下这不是什么问题，但如果你有关于多个环境（生产，稳定，开发，等等）的一大堆配置，你不会愿意冒失去它们的风险。</p>
+<p>Flask给我们提供了根据环境变量选择一个配置文件的能力。
+这意味着我们可以在我们的版本库中有多个配置文件，并总是能根据具体环境，加载到对的那个。</p>
+<p>当我们到了有多个配置文件共存的境况，是时候把文件都移动到<code>config</code>包之下。
+下面是在这样的一个版本库中大致的样子:</p>
+<pre><code>requirements.txt
+run.py
+config/
+  __init__.py # 空的，只是用来告诉Python它是一个包。
+  default.py
+  production.py
+  development.py
+  staging.py
+instance/
+  config.py
+yourapp/
+  __init__.py
+  models.py
+  views.py
+  static/
+  templates/
+</code></pre><p>在我们有一些不同的配置文件的情况下，可以这样设置:</p>
+<table>
+<thead>
+<tr>
+<th>文件名</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>config/default.py</td>
+<td>默认值，适用于所有的环境或交由具体环境进行覆盖。举个例子，在<em>config/default.py</em>中设置<code>DEBUG = False</code>，在<em>config/development.py</em>中设置<code>DEBUG = True</code>。</td>
+</tr>
+<tr>
+<td>config/development.py</td>
+<td>在开发环境中用到的值。这里你可以设定在localhost中用到的数据库URI链接。</td>
+</tr>
+<tr>
+<td>config/production.py</td>
+<td>在生产环境中用到的值。这里你可以设定数据库服务器的URI链接，而不是开发环境下的本地数据库URI链接。</td>
+</tr>
+<tr>
+<td>config/staging.py</td>
+<td>在你的开发过程中，你可能需要在一个模拟生产环境的服务器上测试你的应用。你也许会使用不一样的数据库，想要为稳定版本的应用替换掉一些配置。</td>
+</tr>
+</tbody>
+</table>
+<p>要在不同的环境中指定所需的变量，你可以调用<code>app.config.from_envvar()</code>:</p>
+<pre><code class="lang-python"><span class="hljs-comment"># yourapp/__init__.py</span>
+
+app = Flask(__name__, instance_relative_config=<span class="hljs-keyword">True</span>)
+app.config.from_object(<span class="hljs-string">'config.default'</span>)
+app.config.from_pyfile(<span class="hljs-string">'config.py'</span>) <span class="hljs-comment"># 从instance文件夹中加载配置</span>
+app.config.from_envvar(<span class="hljs-string">'APP_CONFIG_FILE'</span>)
+</code></pre>
+<p><code>app.config.from_envvar(‘APP_CONFIG_FILE’)</code>将加载由环境变量<code>APP_CONFIG_FILE</code>指定的文件。这个环境变量的值应该是一个配置文件的绝对路径。</p>
+<p>这个环境变量的设定方式取决于你运行你的应用的平台。如果你是在一台标准的Linux服务器上运行，你可以使用一个shell脚本来设置环境变量并运行<code>run.py</code>。</p>
+<p>start.sh</p>
+<pre><code>APP_CONFIG_FILE=/var/www/yourapp/config/production.py
+python run.py
+</code></pre><p><em>start.sh</em>特定于某个环境，所以它也不能放入版本控制当中。如果你把应用托管到Heroku，你可以用Heroku提供的工具设置环境变量参数。对于其他PAAS平台也是同样的处理。</p>
+<h2 id="-">总结</h2>
+<ul>
+<li>一个简单的应用也许仅需一个配置文件:<em>config.py</em></li>
+<li>instance文件夹可以帮助我们隐藏不愿为人所知的配置变量。</li>
+<li>instance文件夹可以用来将应用的配置替换成当前的变量。</li>
+<li>应对复杂的，基于环境的配置，我们可以结合环境变量和<code>app.config.from_envvar()</code>来使用。</li>
+</ul>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="./4-organizing_your_project.html" class="navigation navigation-prev "><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="./6-advanced_patterns_for_views_and_routing.html" class="navigation navigation-next "><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/mode-javascript.js"></script>
+        <script src="gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+        <script src="gitbook/app.js"></script>
+        
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-mixpanel/plugin.js"></script>
+    
+
+    
+    <script src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {};
+    gitbook.start(config);
+});
+</script>
+
+    </body>
+</html>

@@ -1,0 +1,357 @@
+<!DOCTYPE HTML>
+<html lang="en-US" manifest="./manifest.appcache">
+    <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
+        
+        <meta charset="UTF-8">
+        <title>Introduction | Flask之旅</title>
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="robots" content="index, follow">
+        <meta name="author" content="spacewander">
+        <meta name="description" content="《explore flask》中文翻译">
+        <meta name="keywords" content="gitbook,github" >
+        <meta name="generator" content="www.gitbook.io">
+
+        
+        <link rel="next" href="./1-introduction.html" />
+        
+        
+
+        <meta property="og:title" content="Introduction | Flask之旅">
+        <meta property="og:site_name" content="Flask之旅">
+        <meta property="og:type" content="book">
+        <meta property="og:locale" content="en_US">
+
+        <meta property="book:author" content="https://github.com/spacewander">
+        <meta property="book:tag" content="GitBook">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+        <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+        
+    </head>
+    <body>
+        
+
+        <link rel="stylesheet" href="gitbook/style.css">
+        
+
+
+        
+    <div class="book" data-github="spacewander/explore-flask-zh" data-level="0" data-basepath="." data-revision="1412666276503">
+    <div class="book-header">
+    <!-- Actions Left -->
+    
+    <a href="https://github.com/spacewander/explore-flask-zh" target="_blank" class="btn pull-left"><i class="fa fa-bookmark-o"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-summary"><i class="fa fa-align-justify"></i></a>
+    <a href="#" class="btn pull-left toggle-search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+	<div class="dropdown-caret">
+  <span class="caret-outer"></span>
+  <span class="caret-inner"></span>
+</div>
+
+	<div class="btn-group btn-block">
+		<button id="reduce-font-size" class="btn btn-default">A</button>
+		<button id="enlarge-font-size" class="btn btn-default">A</button>
+	</div>
+
+	<ul class="list-group font-family-list">
+		<li class="list-group-item" data-font="0">Serif</li>
+		<li class="list-group-item" data-font="1">Sans</li>
+	</ul>
+
+	<div class="btn-group btn-group-xs btn-block color-theme-list">
+	  <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+	  <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+	</div>
+</div>
+
+    </span>
+
+    <!-- Actions Right -->
+    
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="google-plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right" data-sharing="twitter"><i class="fa fa-twitter"></i></a>
+    
+
+    
+    <a href="https://github.com/spacewander/explore-flask-zh/stargazers" target="_blank" class="btn pull-right count-star hidden-xs"><i class="fa fa-star-o"></i> Star (<span>-</span>)</a>
+    <a href="https://github.com/spacewander/explore-flask-zh/watchers" target="_blank" class="btn pull-right count-watch hidden-xs"><i class="fa fa-eye"></i> Watch (<span>-</span>)</a>
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-spinner fa-spin"></i>
+        <a href="./" >Flask之旅</a>
+    </h1>
+</div>
+
+    <div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control" />
+    </div>
+    <ul class="summary">
+        
+        <li>
+            <a href="https://github.com/spacewander" target="blank">About the author</a>
+        </li>
+        
+
+        
+        <li>
+            <a href="https://github.com/spacewander/explore-flask-zh/issues" target="blank">Questions and Issues</a>
+        </li>
+        
+
+        
+        <li>
+            <a href="https://github.com/spacewander/explore-flask-zh/edit/master/README.md" target="blank">Edit and Contribute</a>
+        </li>
+        
+
+        
+        <li class="divider"></li>
+        
+
+        <li data-level="0" data-path="index.html">
+            <a href="./"><i class="fa fa-check"></i> Introduction</a>
+        </li>
+        
+            <li  data-level="1" data-path="1-introduction.html">
+                
+                <a href="./1-introduction.html">
+                    <i class="fa fa-check"></i> <b>1.</b> 前言
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="2" data-path="2-coding_conventions.html">
+                
+                <a href="./2-coding_conventions.html">
+                    <i class="fa fa-check"></i> <b>2.</b> 代码约定
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="3" data-path="3-environment.html">
+                
+                <a href="./3-environment.html">
+                    <i class="fa fa-check"></i> <b>3.</b> 环境
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="4" data-path="4-organizing_your_project.html">
+                
+                <a href="./4-organizing_your_project.html">
+                    <i class="fa fa-check"></i> <b>4.</b> 组织你的项目
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="5" data-path="5-configuration.html">
+                
+                <a href="./5-configuration.html">
+                    <i class="fa fa-check"></i> <b>5.</b> 配置
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="6" data-path="6-advanced_patterns_for_views_and_routing.html">
+                
+                <a href="./6-advanced_patterns_for_views_and_routing.html">
+                    <i class="fa fa-check"></i> <b>6.</b> 关于视图和路由的进阶技巧
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="7" data-path="7-blueprints.html">
+                
+                <a href="./7-blueprints.html">
+                    <i class="fa fa-check"></i> <b>7.</b> 蓝图
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="8" data-path="8-templates.html">
+                
+                <a href="./8-templates.html">
+                    <i class="fa fa-check"></i> <b>8.</b> 模板
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="9" data-path="9-static_files.html">
+                
+                <a href="./9-static_files.html">
+                    <i class="fa fa-check"></i> <b>9.</b> 静态文件
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="10" data-path="10-storing-data.html">
+                
+                <a href="./10-storing-data.html">
+                    <i class="fa fa-check"></i> <b>10.</b> 存储
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="11" data-path="11-handling_forms.html">
+                
+                <a href="./11-handling_forms.html">
+                    <i class="fa fa-check"></i> <b>11.</b> 处理表单
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="12" data-path="12-handling_users.html">
+                
+                <a href="./12-handling_users.html">
+                    <i class="fa fa-check"></i> <b>12.</b> 用户管理的规范
+                </a>
+                
+                
+            </li>
+        
+            <li  data-level="13" data-path="14-deployment.html">
+                
+                <a href="./14-deployment.html">
+                    <i class="fa fa-check"></i> <b>13.</b> 部署
+                </a>
+                
+                
+            </li>
+        
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank">Generated using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 0%;min-width: 0%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="./index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="./1-introduction.html" title="前言" class="chapter  new-chapter" data-progress="1" style="left: 7.6923076923076925%;"></a>
+    
+        <a href="./10-storing-data.html" title="存储" class="chapter  " data-progress="10" style="left: 15.384615384615385%;"></a>
+    
+        <a href="./11-handling_forms.html" title="处理表单" class="chapter  " data-progress="11" style="left: 23.076923076923077%;"></a>
+    
+        <a href="./12-handling_users.html" title="用户管理的规范" class="chapter  " data-progress="12" style="left: 30.76923076923077%;"></a>
+    
+        <a href="./14-deployment.html" title="部署" class="chapter  " data-progress="13" style="left: 38.46153846153846%;"></a>
+    
+        <a href="./2-coding_conventions.html" title="代码约定" class="chapter  new-chapter" data-progress="2" style="left: 46.15384615384615%;"></a>
+    
+        <a href="./3-environment.html" title="环境" class="chapter  new-chapter" data-progress="3" style="left: 53.84615384615385%;"></a>
+    
+        <a href="./4-organizing_your_project.html" title="组织你的项目" class="chapter  new-chapter" data-progress="4" style="left: 61.53846153846154%;"></a>
+    
+        <a href="./5-configuration.html" title="配置" class="chapter  new-chapter" data-progress="5" style="left: 69.23076923076923%;"></a>
+    
+        <a href="./6-advanced_patterns_for_views_and_routing.html" title="关于视图和路由的进阶技巧" class="chapter  new-chapter" data-progress="6" style="left: 76.92307692307692%;"></a>
+    
+        <a href="./7-blueprints.html" title="蓝图" class="chapter  new-chapter" data-progress="7" style="left: 84.61538461538461%;"></a>
+    
+        <a href="./8-templates.html" title="模板" class="chapter  new-chapter" data-progress="8" style="left: 92.3076923076923%;"></a>
+    
+        <a href="./9-static_files.html" title="静态文件" class="chapter  new-chapter" data-progress="9" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_15">
+                    
+                        <h1 id="flask-">Flask之旅</h1>
+<p>《explore flask》中文翻译</p>
+<p>欢迎来到本译本的生产地点！任何bug report和别的pull request都会受到热烈欢迎！不要犹豫！</p>
+<p>如果你想购买PDF格式的英文原本，前往<a href="http://exploreflask.com" target="_blank">http://exploreflask.com</a>。</p>
+<h2 id="-">想参与？</h2>
+<p>如果你对本书有些建议，你可以在issue面板新开一个issue或提交一个pull request。如果你准备进行较大的改动，最好先在issue中提及，这样我们好能事先讨论这么做有没有必要。</p>
+<p>译者：如果是关于翻译方面的问题，欢迎提issue或pull request。如果是关乎内容的问题，请移步<a href="https://github.com/rpicard/explore-flask" target="_blank">https://github.com/rpicard/explore-flask</a></p>
+<h2 id="-">协议</h2>
+<p>中文译本的协议同英文原本，使用<a href="http://creativecommons.org/licenses/by-nc/3.0/" target="_blank">Create Commons Attribution-NonCommercial 3.0 Unported license</a>。
+你可以自由地分发并修改本书，前提是保证不把它重新销售并保留原作者(我指的是英文原本作者)的作品归属权。</p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        
+        <a href="./1-introduction.html" class="navigation navigation-next navigation-unique"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/mode-javascript.js"></script>
+        <script src="gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+        <script src="gitbook/app.js"></script>
+        
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-mixpanel/plugin.js"></script>
+    
+
+    
+    <script src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+    
+    <script src="gitbook/plugins/gitbook-plugin-mathjax/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {};
+    gitbook.start(config);
+});
+</script>
+
+    </body>
+</html>
