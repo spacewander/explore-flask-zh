@@ -233,7 +233,7 @@ class ListConverter(BaseConverter):
 
 为了使用我们的ListConverter，我们首先得将它的存在告知Flask。
 
-/myapp/__init__.py
+/myapp/\_\_init\_\_.py
 ```
 from flask import Flask
 

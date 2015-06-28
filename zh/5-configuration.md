@@ -9,7 +9,7 @@
 
 ## 从小处起步
 
-一个简单的应用不需要任何复杂的配置。你仅仅需要在你的根目录下放置一个*config.py*文件，并在*app.py*或*yourapp/__init__.py*中加载它。
+一个简单的应用不需要任何复杂的配置。你仅仅需要在你的根目录下放置一个*config.py*文件，并在*app.py*或*yourapp/\_\_init\_\_.py*中加载它。
 
 *config.py*的每一行中应该是某一个变量的赋值语句。一旦*config.py*在稍后被加载，这个配置变量可以通过`app.config`字典来获取，比如`app.config["DEBUG"]`。
 以下是一个小项目的*config.py*文件的范例：
@@ -25,7 +25,7 @@ MAIL_FROM_EMAIL = "robert@example.com" # 设置邮件来源
 在这个例子中，我使用`app.config["MAIL_FROM_EMAIL"]`来表示邮件往来时（比如重置密码）默认的发送方。
 这使得在将来要修改的时候不会带来太多麻烦。
 
-为了加载这些配置变量，我通常使用`app.config.from_object()`。如果是单一模块应用中，是在*app.py*；或者在*yourapp/__init__.py*，如果是基于包的应用。
+为了加载这些配置变量，我通常使用`app.config.from_object()`。如果是单一模块应用中，是在*app.py*；或者在*yourapp/\_\_init\_\_.py*，如果是基于包的应用。
 无论在哪种情况下，代码看上去像这样：
 
 ```

@@ -117,12 +117,12 @@ def confirm_email(token):
 用户管理的第一条军规是在存储它们之前使用Bcrypt算法（或者scrypt，不过这里我们将使用Bcrypt）hash密码。你绝不可明文存储密码。这会是严重的安全问题并且它损害了你的用户。所有的繁重工作都已经有第三方的包来完成，所以没有任何不遵循这个最佳实践的理由。
 
 > **参见**
-> OWASP是业界最值得信赖的关于Web应用安全的信息来源之一。看一下他们推荐的一些安全编程规范： 
+> OWASP是业界最值得信赖的关于Web应用安全的信息来源之一。看一下他们推荐的一些安全编程规范：
 > <https://www.owasp.org/index.php/Secure_Coding_Cheat_Sheet#Password_Storage>
 
 我们将继续前进，使用Flask-Bcrypt插件来实现应用中的bcrypt包。这个插件只是基于`py-bcypt`包的包装，但是它帮我们处理了一些琐碎的事（比如在比较hash结果之前检查字符串编码）。
 
-myapp/__init__.py
+myapp/\_\_init\_\_.py
 ```python
 from flask.ext.bcrypt import Bcrypt
 
@@ -140,13 +140,13 @@ _benchmark.py_
 from flask.ext.bcrypt import generate_password_hash
 
 # 改变round的次数（第二个参数），直到运行时间在0.25到0.5之间。
-generate_password_hash('password1', 12) 
+generate_password_hash('password1', 12)
 ```
 
 现在我们可以用`time`命令测几次看看。
 
 ```
-$ time python test.py 
+$ time python test.py
 
 real    0m0.496s
 user    0m0.464s
@@ -244,9 +244,9 @@ class User(db.Model):
 
 我们只需做少量的配置就能让Flask-Login用起来了。
 
-我们先在*__init__.py*定义Flask-Login的`login_manager`。
+我们先在*\_\_init\_\_.py*定义Flask-Login的`login_manager`。
 
-*myapp/__init__.py*
+*myapp/\_\_init\_\_.py*
 ```python
 from flask.ext.login import LoginManager
 
@@ -267,7 +267,7 @@ def load_user(userid):
 我们在这里创建一个叫`LoginManager`的实例，用我们的`app`对象初始化它，定义登录视图并告诉它如何通过`id`获取用户类。这是使用Flask-Login的基本配置。
 
 > **参见**
-> 你可以在这里找到自定义Flask-Login的更多信息： 
+> 你可以在这里找到自定义Flask-Login的更多信息：
 > https://flask-login.readthedocs.org/en/latest/#customizing-the-login-process
 
 现在我们来定义处理验证的`signin`视图。
@@ -375,7 +375,7 @@ def reset():
         html = render_template(
             'email/recover.html',
             recover_url=recover_url)
-            
+
         # Let's assume that send_email was defined in myapp/util.py
         send_email(user.email, subject, html)
 
