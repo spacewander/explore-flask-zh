@@ -76,7 +76,7 @@ yourapp/
 | config.py          | 这个文件包含了你的应用需要的大多数配置变量      |
 | instance/config.py | 这个文件包含不应该出现在版本控制的配置变量。其中有类似调用密钥和数据库URI连接密码。同样也包括了你的应用中特有的不能放到阳光下的东西。比如，你可能在*config.py*中设定`DEBUG = False`，但在你自己的开发机上的*instance/config.py*设置`DEBUG = True`。因为这个文件可以在*config.py*之后被载入，它将覆盖掉`DEBUG = False`，并设置`DEBUG = True`。|
 | yourapp/           | 这个包里包括了你的应用。|
-| yourapp/__init__.py| 这个文件初始化了你的应用并所有其它的组件组合在一起。|
+| yourapp/\_\_init\_\_.py| 这个文件初始化了你的应用并所有其它的组件组合在一起。|
 | yourapp/views.py   | 这里定义了路由。它也许需要作为一个包（*yourapp/views/*），由一些包含了紧密相联的路由的模块组成。|
 | yourapp/models.py  | 在这里定义了应用的模型。你可能需要像对待*views.py*一样把它分割成许多模块。|
 | yourapp/static/    | 这个文件包括了公共CSS， Javascript, images和其他你想通过你的应用展示出去的静态文件。默认情况下人们可以从*yourapp.com/static/*获取这些文件。|

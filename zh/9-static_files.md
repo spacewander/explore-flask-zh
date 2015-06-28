@@ -120,9 +120,9 @@ Flask-Assets按照被列出来的顺序合并你的文件。如果*admin.js*依�
 > webassets在这里注册了分组：
 > <https://github.com/miracle2k/webassets/blob/0.8/src/webassets/env.py#L380>
 
-既然我们已经在`util.assets`中注册了我们的分组，剩下的就是在__init__.py中，在app对象初始化之后，来导入这个模块。
+既然我们已经在`util.assets`中注册了我们的分组，剩下的就是在\_\_init\_\_.py中，在app对象初始化之后，来导入这个模块。
 
-myapp/__init__.py
+myapp/\_\_init\_\_.py
 ```
 # [...] Initialize the app
 

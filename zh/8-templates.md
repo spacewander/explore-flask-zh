@@ -127,7 +127,7 @@ myapp/templates/layout.html
 
 > **参见**
 > * 所有的全局变量都是由Flask传递给Jinja上下文的: http://flask.pocoo.org/docs/templating/#standard-context
-> * 通过上下文处理器（context processors），我们可以增加传递给Jinja上下文的变量和函数: http://flask.pocoo.org/docs/templating/#context-processors 
+> * 通过上下文处理器（context processors），我们可以增加传递给Jinja上下文的变量和函数: http://flask.pocoo.org/docs/templating/#context-processors
 
 是时候定义模板中用的`nav_link`宏了。
 
@@ -188,9 +188,9 @@ def caps(text):
 
 现在我们可以在模板中调用`make_caps`而不是`caps`：`{{ "hello world!"|make_caps }}`。
 
-为了让我们的过滤器在模板中可用，我们仅需要在顶级*__init__.py*中import它。
+为了让我们的过滤器在模板中可用，我们仅需要在顶级*\_\_init\_\_.py*中import它。
 
-myapp/__init__.py
+myapp/\_\_init\_\_.py
 ```
 # 确保app已经被初始化以免导致循环import
 from .util import filters

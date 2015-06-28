@@ -14,9 +14,9 @@ SQLAlchemy是一个ORM（[对象关系映射](http://zh.wikipedia.org/wiki/%E5%A
 
 存在一个很棒的Flask插件使得在Flask中使用SQLAlchemy更为轻松。它就是Flask-SQLAlchemy。Flask-SQLAlchemy为SQLAlchemy设置了许多合理的配置。它也内置了一些session管理，这样你就不用在应用代码里处理这种基础事务了。
 
-让我们深入看看一些代码。我们将先定义一些模型，接着配置下SQLAchemy。这些模型将位于*myapp/models.py*，不过首先我们要在*myapp/__init__.py*定义我们的数据库。
+让我们深入看看一些代码。我们将先定义一些模型，接着配置下SQLAchemy。这些模型将位于*myapp/models.py*，不过首先我们要在*myapp/\_\_init\_\_.py*定义我们的数据库。
 
-_myapp/__init__.py_
+<em>myapp/\_\_init\_\_.py_</em>
 ```
 from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -56,7 +56,7 @@ SQLALCHEMY_DATABASE_URI = "postgresql://user:password@localhost/spaceshipDB"
 ```
 
 > **注意**
-> 你的数据库URI将取决于你选择的数据库和它部署的位置。看一下这个相关的SQLAlchemy文档： 
+> 你的数据库URI将取决于你选择的数据库和它部署的位置。看一下这个相关的SQLAlchemy文档：
 > <http://docs.sqlalchemy.org/en/latest/core/engines.html?highlight=database#database-urls>
 
 ## 初始化数据库
@@ -133,7 +133,7 @@ myapp/
 > 不要忘记设定数据的备份计划。备份计划的话题已经超出本书的范围，但你应该总是要有一个安全和健壮的方式备份你的数据库。
 
 > **注意**
-> Flask在NoSQL上的支持较少，但只要有你选择的数据库引擎有对应的Python库，你就能够用上它。这里有一些Flask插件，可以给Flask提供NoSQL引擎的支持。 
+> Flask在NoSQL上的支持较少，但只要有你选择的数据库引擎有对应的Python库，你就能够用上它。这里有一些Flask插件，可以给Flask提供NoSQL引擎的支持。
 > <http://flask.pocoo.org/extensions/>
 
 ## 总结

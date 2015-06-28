@@ -38,7 +38,7 @@ yourapp/
     models.py
 ```
 
-除了*yourapp/views/__init__.py*，在*yourapp/views/*文件夹中的每一个*.py*文件都是一个蓝图。在*yourapp/__init__.py*中，我们将加载这些蓝图并在我们的`Flask()`对象中**注册**它们。等会我们将在本章了解到这是怎么实现的。
+除了*yourapp/views/\_\_init\_\_.py*，在*yourapp/views/*文件夹中的每一个*.py*文件都是一个蓝图。在*yourapp/\_\_init\_\_.py*中，我们将加载这些蓝图并在我们的`Flask()`对象中**注册**它们。等会我们将在本章了解到这是怎么实现的。
 
 > **参见**
 > 当我下笔之时， flask.pocoo.org（Flask官网）就是使用这样的结构的。 https://github.com/mitsuhiko/flask/tree/website/flask_website
@@ -68,7 +68,7 @@ yourapp/
     models.py
 ```
 
-在像上面列举的分区式结构，每一个*yourapp/*之下的文件夹都是一个独立的蓝图。所有的蓝图通过顶级的*__init__.py*注册到`Flask()`中。
+在像上面列举的分区式结构，每一个*yourapp/*之下的文件夹都是一个独立的蓝图。所有的蓝图通过顶级的*\_\_init\_\_.py*注册到`Flask()`中。
 
 ### 哪种更胜一筹？
 
@@ -76,7 +76,7 @@ yourapp/
 
 如果你的应用是由独立的，仅仅共享模型和配置的各组件组成，分区式将是个好选择。一个例子是允许用户建立网站的SaaS应用。你将会有独立的蓝图用于主页，控制面板，用户网站，和高亮面板。这些组件有着完全不同的静态文件和布局。如果你想要将你的蓝图提取成插件，或用之于别的项目，一个分区式架构将是正确的选择。
 
-另一方面，如果你的应用的组件之间的联系较为紧密，使用功能式架构会更好。如果Facebook是用Flask开发的，它将有一系列蓝图，用于静态页面(比如登出主页，注册页面，关于，等等)，面板(比如最新消息)，用户内容(/robert/about和/robert/photos)，还有设置页面(/settings/security和/settingd/privacy)以及别的。这些组件都共享一个通用的布局和风格，但每一个都有它自己的布局。下面是一个非常精简的可能的Facebook结构，假定它用的是Flask。
+另一方面，如果你的应用的组件之间的联系较为紧密，使用功能式架构会更好。如果Facebook是用Flask开发的，它将有一系列蓝图，用于静态页面(比如登出主页，注册页面，关于，等等)，面板(比如最新消息)，用户内容(/robert/about和/robert/photos)，还有设置页面(/settings/security和/settings/privacy)以及别的。这些组件都共享一个通用的布局和风格，但每一个都有它自己的布局。下面是一个非常精简的可能的Facebook结构，假定它用的是Flask。
 
 ```
 facebook/
@@ -160,7 +160,7 @@ profile = Blueprint('profile', __name__,
 
 现在我们已经定义好了蓝图。是时候向Flask app注册它了。
 
-facebook/__init__.py
+facebook/\_\_init\_\_.py
 ```python
 from flask import Flask
 from .views.profile import profile
@@ -192,7 +192,7 @@ profile = Blueprint('profile', __name__, url_prefix='/<user_url_slug>')
 
 下面我们在注册的时候设置URL前缀：
 
-facebook/__init__.py
+facebook/\_\_init\_\_.py
 ```python
 from flask import Flask
 from .views.profile import profile
@@ -285,9 +285,9 @@ sitemaker/
 | bigdaddy.sitemaker.com       | sitemaker/site | 这个蓝图使用了动态子域名，并包括了用户网站的一些元素。等下我们来看看用于实现这个蓝图的一些代码。
 | bigdaddy.sitemaker.com/admin | sitemaker/dash | 这个蓝图将使用一个动态子域名和一个URL前缀，把这一节的技术和上一节的结合起来。
 
-定义动态子域名的方式和定义URL前缀一样。同样的，我们可以选择在蓝图文件夹中，或在顶级目录的__init__.py中定义它。这一次，我们还是在*sitemaker/__init__.py*中放置所有的定义。
+定义动态子域名的方式和定义URL前缀一样。同样的，我们可以选择在蓝图文件夹中，或在顶级目录的\_\_init\_\_.py中定义它。这一次，我们还是在*sitemaker/\_\_init\_\_.py*中放置所有的定义。
 
-sitemaker/__init__.py
+sitemaker/\_\_init\_\_.py
 ```python
 from flask import Flask
 from .site import site
@@ -296,9 +296,9 @@ app = Flask(__name__)
 app.register_blueprint(site, subdomain='<site_subdomain>')
 ```
 
-既然我们用的是分区式架构，蓝图将在*sitemaker/site/__init__.py*定义。
+既然我们用的是分区式架构，蓝图将在*sitemaker/site/\_\_init\_\_.py*定义。
 
-sitemaker/site/__init__py
+sitemaker/site/\_\_init\_\_py
 ```python
 from flask import Blueprint
 
@@ -404,9 +404,9 @@ tests/
 
 ### Step 4：蓝图
 
-在这一部分我们把文件夹转换成蓝图。关键在于*__init__.py*文件。作为开始，让我们看一下API蓝图的定义。
+在这一部分我们把文件夹转换成蓝图。关键在于*\_\_init\_\_.py*文件。作为开始，让我们看一下API蓝图的定义。
 
-_gnizama/api/__init__.py_
+<em>gnizama/api/\_\_init\_\_.py</em>
 ```python
 from flask import Blueprint
 
@@ -420,9 +420,9 @@ api = Blueprint(
 import .views
 ```
 
-接着我们可以在gnizama的顶级目录下的*__init__.py*中注册这个蓝图。
+接着我们可以在gnizama的顶级目录下的*\_\_init\_\_.py*中注册这个蓝图。
 
-_gnizama/__init__.py_
+<em>gnizama/\_\_init\_\_.py</em>
 ```python
 from flask import Flask
 from .api import api
