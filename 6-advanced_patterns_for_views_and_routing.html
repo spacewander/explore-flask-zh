@@ -32,7 +32,7 @@
 
 
         
-    <div class="book" data-level="6" data-basepath="." data-revision="1417614121512">
+    <div class="book" data-level="6" data-basepath="." data-revision="1435572609822">
     
 
 <div class="book-summary">
@@ -560,7 +560,7 @@ Reddit有一个有趣的特性是，通过在URL中用一个<code>+</code>隔开
 <p>我们需要定义两个方法:<code>to_python()</code>和<code>to_url()</code>。
 一如其名，<code>to_python()</code>用于转换路径成一个Python对象，并传递给视图函数。而<code>to_url()</code>被<code>url_for()</code>调用，来转换参数成为符合URL的形式。</p>
 <p>为了使用我们的ListConverter，我们首先得将它的存在告知Flask。</p>
-<p>/myapp/<strong>init</strong>.py</p>
+<p>/myapp/__init__.py</p>
 <pre><code>from flask import Flask
 
 app = Flask(__name__)

@@ -32,7 +32,7 @@
 
 
         
-    <div class="book" data-level="7" data-basepath="." data-revision="1417614121512">
+    <div class="book" data-level="7" data-basepath="." data-revision="1435572609822">
     
 
 <div class="book-summary">
@@ -390,7 +390,7 @@
         control_panel.py
         admin.py
     models.py
-</code></pre><p>除了<em>yourapp/views/<strong>init</strong>.py</em>，在<em>yourapp/views/</em>文件夹中的每一个<em>.py</em>文件都是一个蓝图。在<em>yourapp/<strong>init</strong>.py</em>中，我们将加载这些蓝图并在我们的<code>Flask()</code>对象中<strong>注册</strong>它们。等会我们将在本章了解到这是怎么实现的。</p>
+</code></pre><p>除了<em>yourapp/views/__init__.py</em>，在<em>yourapp/views/</em>文件夹中的每一个<em>.py</em>文件都是一个蓝图。在<em>yourapp/__init__.py</em>中，我们将加载这些蓝图并在我们的<code>Flask()</code>对象中<strong>注册</strong>它们。等会我们将在本章了解到这是怎么实现的。</p>
 <blockquote>
 <p><strong>参见</strong>
 当我下笔之时， flask.pocoo.org（Flask官网）就是使用这样的结构的。 <a href="https://github.com/mitsuhiko/flask/tree/website/flask_website" target="_blank">https://github.com/mitsuhiko/flask/tree/website/flask_website</a></p>
@@ -415,11 +415,11 @@
         static/
         templates/
     models.py
-</code></pre><p>在像上面列举的分区式结构，每一个<em>yourapp/</em>之下的文件夹都是一个独立的蓝图。所有的蓝图通过顶级的<em><strong>init</strong>.py</em>注册到<code>Flask()</code>中。</p>
+</code></pre><p>在像上面列举的分区式结构，每一个<em>yourapp/</em>之下的文件夹都是一个独立的蓝图。所有的蓝图通过顶级的<em>__init__.py</em>注册到<code>Flask()</code>中。</p>
 <h3 id="">哪种更胜一筹？</h3>
 <p>选择使用哪种架构实际上是一个个人问题。两者间的唯一区别是表达层次性的方式不同 -- 你可以使用任意一种方式架构Flask应用 -- 所以你所需的就是选择贴近你的需求的那个。</p>
 <p>如果你的应用是由独立的，仅仅共享模型和配置的各组件组成，分区式将是个好选择。一个例子是允许用户建立网站的SaaS应用。你将会有独立的蓝图用于主页，控制面板，用户网站，和高亮面板。这些组件有着完全不同的静态文件和布局。如果你想要将你的蓝图提取成插件，或用之于别的项目，一个分区式架构将是正确的选择。</p>
-<p>另一方面，如果你的应用的组件之间的联系较为紧密，使用功能式架构会更好。如果Facebook是用Flask开发的，它将有一系列蓝图，用于静态页面(比如登出主页，注册页面，关于，等等)，面板(比如最新消息)，用户内容(/robert/about和/robert/photos)，还有设置页面(/settings/security和/settingd/privacy)以及别的。这些组件都共享一个通用的布局和风格，但每一个都有它自己的布局。下面是一个非常精简的可能的Facebook结构，假定它用的是Flask。</p>
+<p>另一方面，如果你的应用的组件之间的联系较为紧密，使用功能式架构会更好。如果Facebook是用Flask开发的，它将有一系列蓝图，用于静态页面(比如登出主页，注册页面，关于，等等)，面板(比如最新消息)，用户内容(/robert/about和/robert/photos)，还有设置页面(/settings/security和/settings/privacy)以及别的。这些组件都共享一个通用的布局和风格，但每一个都有它自己的布局。下面是一个非常精简的可能的Facebook结构，假定它用的是Flask。</p>
 <pre><code>facebook/
     __init__.py
     templates/
@@ -487,7 +487,7 @@ profile = Blueprint(<span class="hljs-string">'profile'</span>, __name__)
                     template_folder=&#39;templates&#39;,
                     static_folder=&#39;static&#39;)
 </code></pre><p>现在我们已经定义好了蓝图。是时候向Flask app注册它了。</p>
-<p>facebook/<strong>init</strong>.py</p>
+<p>facebook/__init__.py</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask
 <span class="hljs-keyword">from</span> .views.profile <span class="hljs-keyword">import</span> profile
 
@@ -508,7 +508,7 @@ profile = Blueprint(<span class="hljs-string">'profile'</span>, __name__, url_pr
 <span class="hljs-comment"># [...]</span>
 </code></pre>
 <p>下面我们在注册的时候设置URL前缀：</p>
-<p>facebook/<strong>init</strong>.py</p>
+<p>facebook/__init__.py</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask
 <span class="hljs-keyword">from</span> .views.profile <span class="hljs-keyword">import</span> profile
 
@@ -606,16 +606,16 @@ Flask文档中有一个关于如何将你的URL国际化的好教程： <a href=
 </tr>
 </tbody>
 </table>
-<p>定义动态子域名的方式和定义URL前缀一样。同样的，我们可以选择在蓝图文件夹中，或在顶级目录的<strong>init</strong>.py中定义它。这一次，我们还是在<em>sitemaker/<strong>init</strong>.py</em>中放置所有的定义。</p>
-<p>sitemaker/<strong>init</strong>.py</p>
+<p>定义动态子域名的方式和定义URL前缀一样。同样的，我们可以选择在蓝图文件夹中，或在顶级目录的__init__.py中定义它。这一次，我们还是在<em>sitemaker/__init__.py</em>中放置所有的定义。</p>
+<p>sitemaker/__init__.py</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask
 <span class="hljs-keyword">from</span> .site <span class="hljs-keyword">import</span> site
 
 app = Flask(__name__)
 app.register_blueprint(site, subdomain=<span class="hljs-string">'&lt;site_subdomain&gt;'</span>)
 </code></pre>
-<p>既然我们用的是分区式架构，蓝图将在<em>sitemaker/site/<strong>init</strong>.py</em>定义。</p>
-<p>sitemaker/site/<strong>init</strong>py</p>
+<p>既然我们用的是分区式架构，蓝图将在<em>sitemaker/site/__init__.py</em>定义。</p>
+<p>sitemaker/site/__init__py</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Blueprint
 
 <span class="hljs-keyword">from</span> ..models <span class="hljs-keyword">import</span> Site
@@ -700,8 +700,8 @@ tests/
 趁此机会消除所有不必要的import。很容易忽略掉他们的存在，但他们会拥塞你的代码，甚至拖慢你的应用。</p>
 </blockquote>
 <h3 id="step-4">Step 4：蓝图</h3>
-<p>在这一部分我们把文件夹转换成蓝图。关键在于<em><strong>init</strong>.py</em>文件。作为开始，让我们看一下API蓝图的定义。</p>
-<p><em>gnizama/api/<strong>init</strong>.py</em></p>
+<p>在这一部分我们把文件夹转换成蓝图。关键在于<em>__init__.py</em>文件。作为开始，让我们看一下API蓝图的定义。</p>
+<p><em>gnizama/api/__init__.py</em></p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Blueprint
 
 api = Blueprint(
@@ -713,8 +713,8 @@ api = Blueprint(
 
 <span class="hljs-keyword">import</span> .views
 </code></pre>
-<p>接着我们可以在gnizama的顶级目录下的<em><strong>init</strong>.py</em>中注册这个蓝图。</p>
-<p><em>gnizama/<strong>init</strong>.py</em></p>
+<p>接着我们可以在gnizama的顶级目录下的<em>__init__.py</em>中注册这个蓝图。</p>
+<p><em>gnizama/__init__.py</em></p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> flask <span class="hljs-keyword">import</span> Flask
 <span class="hljs-keyword">from</span> .api <span class="hljs-keyword">import</span> api
 

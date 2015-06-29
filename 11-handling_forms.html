@@ -32,7 +32,7 @@
 
 
         
-    <div class="book" data-level="11" data-basepath="." data-revision="1417614121512">
+    <div class="book" data-level="11" data-basepath="." data-revision="1435572609822">
     
 
 <div class="book-summary">
@@ -390,7 +390,7 @@
 <blockquote>
 <p><strong>参见</strong></p>
 <ul>
-<li><p>这里是关于WTForms是怎么生成token的文档: <a href="http://wtforms.simplecodes.com/docs/1.0.1/ext.html#module-wtforms.ext.csrf.session" target="_blank">http://wtforms.simplecodes.com/docs/1.0.1/ext.html#module-wtforms.ext.csrf.session</a> </p>
+<li><p>这里是关于WTForms是怎么生成token的文档: <a href="http://wtforms.simplecodes.com/docs/1.0.1/ext.html#module-wtforms.ext.csrf.session" target="_blank">http://wtforms.simplecodes.com/docs/1.0.1/ext.html#module-wtforms.ext.csrf.session</a></p>
 </li>
 <li><p>这里有关于CSRF更多的信息: <a href="https://www.owasp.org/index.php/CSRF" target="_blank">https://www.owasp.org/index.php/CSRF</a></p>
 </li>
@@ -466,7 +466,7 @@ class Unique(object):
         if check:
             raise ValidationError(self.message)
 </code></pre><p>这个验证函数假定你是用SQLAlchemy来定义你的模型。WTForms要求验证函数返回可调用的(callable)类型（比如一个可调用的类）。</p>
-<p>在<em><strong>init</strong>.py</em>中，我们可以指定哪些参数应该传递给验证函数。在这个例子中我们需要检查相关的模型（比如<code>User</code>模型）和域。当验证函数被调用时，如果表单提交的值跟定义的模型的某个实例重复了，它会抛出一个<code>ValidationError</code>。我们也提供一个带默认值的信息参数，作为<code>ValidationError</code>的一部分。</p>
+<p>在<em>__init__.py</em>中，我们可以指定哪些参数应该传递给验证函数。在这个例子中我们需要检查相关的模型（比如<code>User</code>模型）和域。当验证函数被调用时，如果表单提交的值跟定义的模型的某个实例重复了，它会抛出一个<code>ValidationError</code>。我们也提供一个带默认值的信息参数，作为<code>ValidationError</code>的一部分。</p>
 <p>现在我们给<code>EmailPasswordForm</code>添加<code>Unique</code>验证器。</p>
 <p><em>myapp/forms.py</em></p>
 <pre><code>from flask_wtf import Form
@@ -481,7 +481,7 @@ class EmailPasswordForm(Form):
     password = PasswordField(&#39;Password&#39;, validators=[DataRequired()])
 </code></pre><blockquote>
 <p><strong>注意</strong>
-你的验证函数不一定需要是可调用的类。它也可以是一个返回可调用对象的工厂类或者可调用对象。看这里的一些例子： 
+你的验证函数不一定需要是可调用的类。它也可以是一个返回可调用对象的工厂类或者可调用对象。看这里的一些例子：
 <a href="http://wtforms.simplecodes.com/docs/0.6.2/validators.html#custom-validators" target="_blank">http://wtforms.simplecodes.com/docs/0.6.2/validators.html#custom-validators</a></p>
 </blockquote>
 <h3 id="">渲染表单</h3>
@@ -510,10 +510,10 @@ class EmailPasswordForm(Form):
 <p><strong>注意</strong>
 如果我们想要传递HTML属性“class”， 我们得使用<code>class_=&#39;&#39;</code>，因为“class”是Python的保留关键字。</p>
 <p><strong>参见</strong>
-这个文档列出了所有可用的域性质： 
+这个文档列出了所有可用的域性质：
 <a href="http://wtforms.simplecodes.com/docs/1.0.4/fields.html#wtforms.fields.Field.name" target="_blank">http://wtforms.simplecodes.com/docs/1.0.4/fields.html#wtforms.fields.Field.name</a></p>
 <p><strong>注意</strong>
-你大概注意到了我们不需要使用Jinja的<code>|safe</code>过滤器。这是因为WTForms自己会处理掉HTML转义的问题。在这里了解更多信息： 
+你大概注意到了我们不需要使用Jinja的<code>|safe</code>过滤器。这是因为WTForms自己会处理掉HTML转义的问题。在这里了解更多信息：
 <a href="http://pythonhosted.org/Flask-WTF/#using-the-safe-filter" target="_blank">http://pythonhosted.org/Flask-WTF/#using-the-safe-filter</a></p>
 </blockquote>
 <h2 id="">总结</h2>

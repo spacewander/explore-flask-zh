@@ -32,7 +32,7 @@
 
 
         
-    <div class="book" data-level="5" data-basepath="." data-revision="1417614121512">
+    <div class="book" data-level="5" data-basepath="." data-revision="1435572609822">
     
 
 <div class="book-summary">
@@ -360,7 +360,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_3">
+                    <section class="normal" id="section-gitbook_1">
                     
                         <p><img src="images/configuration.png" alt="配置"></p>
 <h1 id="">配置</h1>
@@ -369,7 +369,7 @@
 你不得不设法保护API密钥，或者纠结于为了不同的环境（比如开发环境和生产环境）使用不同的配置。
 在本章我们将探讨Flask的一些高级特性，它们能让配置管理更为轻松。</p>
 <h2 id="">从小处起步</h2>
-<p>一个简单的应用不需要任何复杂的配置。你仅仅需要在你的根目录下放置一个<em>config.py</em>文件，并在<em>app.py</em>或<em>yourapp/<strong>init</strong>.py</em>中加载它。</p>
+<p>一个简单的应用不需要任何复杂的配置。你仅仅需要在你的根目录下放置一个<em>config.py</em>文件，并在<em>app.py</em>或<em>yourapp/__init__.py</em>中加载它。</p>
 <p><em>config.py</em>的每一行中应该是某一个变量的赋值语句。一旦<em>config.py</em>在稍后被加载，这个配置变量可以通过<code>app.config</code>字典来获取，比如<code>app.config[&quot;DEBUG&quot;]</code>。
 以下是一个小项目的<em>config.py</em>文件的范例：</p>
 <pre><code class="lang-python">DEBUG = <span class="hljs-keyword">True</span> <span class="hljs-comment"># 启动Flask的Debug模式</span>
@@ -380,7 +380,7 @@ MAIL_FROM_EMAIL = <span class="hljs-string">"robert@example.com"</span> <span cl
 你甚至可以定义在这个应用中用到的自己的配置变量。
 在这个例子中，我使用<code>app.config[&quot;MAIL_FROM_EMAIL&quot;]</code>来表示邮件往来时（比如重置密码）默认的发送方。
 这使得在将来要修改的时候不会带来太多麻烦。</p>
-<p>为了加载这些配置变量，我通常使用<code>app.config.from_object()</code>。如果是单一模块应用中，是在<em>app.py</em>；或者在<em>yourapp/<strong>init</strong>.py</em>，如果是基于包的应用。
+<p>为了加载这些配置变量，我通常使用<code>app.config.from_object()</code>。如果是单一模块应用中，是在<em>app.py</em>；或者在<em>yourapp/__init__.py</em>，如果是基于包的应用。
 无论在哪种情况下，代码看上去像这样：</p>
 <pre><code>from flask import Flask
 

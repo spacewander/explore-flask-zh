@@ -32,7 +32,7 @@
 
 
         
-    <div class="book" data-level="8" data-basepath="." data-revision="1417614121512">
+    <div class="book" data-level="8" data-basepath="." data-revision="1435572609822">
     
 
 <div class="book-summary">
@@ -459,7 +459,7 @@ requirements.txt
 <p><strong>参见</strong></p>
 <ul>
 <li>所有的全局变量都是由Flask传递给Jinja上下文的: <a href="http://flask.pocoo.org/docs/templating/#standard-context" target="_blank">http://flask.pocoo.org/docs/templating/#standard-context</a></li>
-<li>通过上下文处理器（context processors），我们可以增加传递给Jinja上下文的变量和函数: <a href="http://flask.pocoo.org/docs/templating/#context-processors" target="_blank">http://flask.pocoo.org/docs/templating/#context-processors</a> </li>
+<li>通过上下文处理器（context processors），我们可以增加传递给Jinja上下文的变量和函数: <a href="http://flask.pocoo.org/docs/templating/#context-processors" target="_blank">http://flask.pocoo.org/docs/templating/#context-processors</a></li>
 </ul>
 </blockquote>
 <p>是时候定义模板中用的<code>nav_link</code>宏了。</p>
@@ -503,8 +503,8 @@ def caps(text):
     &quot;&quot;&quot;Convert a string to all caps.&quot;&quot;&quot;
     return text.uppercase()
 </code></pre><p>现在我们可以在模板中调用<code>make_caps</code>而不是<code>caps</code>：<code>{{ &quot;hello world!&quot;|make_caps }}</code>。</p>
-<p>为了让我们的过滤器在模板中可用，我们仅需要在顶级<em><strong>init</strong>.py</em>中import它。</p>
-<p>myapp/<strong>init</strong>.py</p>
+<p>为了让我们的过滤器在模板中可用，我们仅需要在顶级<em>__init__.py</em>中import它。</p>
+<p>myapp/__init__.py</p>
 <pre><code># 确保app已经被初始化以免导致循环import
 from .util import filters
 </code></pre><h2 id="">总结</h2>

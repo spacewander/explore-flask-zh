@@ -32,7 +32,7 @@
 
 
         
-    <div class="book" data-level="10" data-basepath="." data-revision="1417614121512">
+    <div class="book" data-level="10" data-basepath="." data-revision="1435572609822">
     
 
 <div class="book-summary">
@@ -370,8 +370,8 @@
 <h2 id="sqlalchemy">SQLAlchemy</h2>
 <p>SQLAlchemy是一个ORM（<a href="http://zh.wikipedia.org/wiki/%E5%AF%B9%E8%B1%A1%E5%85%B3%E7%B3%BB%E6%98%A0%E5%B0%84" target="_blank">对象关系映射</a>）。基于对目标数据库的原生SQL的抽象，它提供了与一长串数据库引擎的一致的API。这一列表中包括MySQL，PostgreSQL，和SQLite。这使得在你的模型和数据库间交换数据变得轻松愉快，同时也使得诸如换掉数据库引擎和迁移数据库模式等其他事情变得没那么繁琐。</p>
 <p>存在一个很棒的Flask插件使得在Flask中使用SQLAlchemy更为轻松。它就是Flask-SQLAlchemy。Flask-SQLAlchemy为SQLAlchemy设置了许多合理的配置。它也内置了一些session管理，这样你就不用在应用代码里处理这种基础事务了。</p>
-<p>让我们深入看看一些代码。我们将先定义一些模型，接着配置下SQLAchemy。这些模型将位于<em>myapp/models.py</em>，不过首先我们要在<em>myapp/<strong>init</strong>.py</em>定义我们的数据库。</p>
-<p><em>myapp/<strong>init</strong>.py</em></p>
+<p>让我们深入看看一些代码。我们将先定义一些模型，接着配置下SQLAchemy。这些模型将位于<em>myapp/models.py</em>，不过首先我们要在<em>myapp/__init__.py</em>定义我们的数据库。</p>
+<p><em>myapp/__init__.py_</em></p>
 <pre><code>from flask import Flask
 from flask.ext.sqlalchemy import SQLAlchemy
 
@@ -400,7 +400,7 @@ class Engine(db.Model):
 <pre><code>SQLALCHEMY_DATABASE_URI = &quot;postgresql://user:password@localhost/spaceshipDB&quot;
 </code></pre><blockquote>
 <p><strong>注意</strong>
-你的数据库URI将取决于你选择的数据库和它部署的位置。看一下这个相关的SQLAlchemy文档： 
+你的数据库URI将取决于你选择的数据库和它部署的位置。看一下这个相关的SQLAlchemy文档：
 <a href="http://docs.sqlalchemy.org/en/latest/core/engines.html?highlight=database#database-urls" target="_blank">http://docs.sqlalchemy.org/en/latest/core/engines.html?highlight=database#database-urls</a></p>
 </blockquote>
 <h2 id="">初始化数据库</h2>
@@ -456,7 +456,7 @@ Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;licen
 <p><strong>注意</strong>
 不要忘记设定数据的备份计划。备份计划的话题已经超出本书的范围，但你应该总是要有一个安全和健壮的方式备份你的数据库。</p>
 <p><strong>注意</strong>
-Flask在NoSQL上的支持较少，但只要有你选择的数据库引擎有对应的Python库，你就能够用上它。这里有一些Flask插件，可以给Flask提供NoSQL引擎的支持。 
+Flask在NoSQL上的支持较少，但只要有你选择的数据库引擎有对应的Python库，你就能够用上它。这里有一些Flask插件，可以给Flask提供NoSQL引擎的支持。
 <a href="http://flask.pocoo.org/extensions/" target="_blank">http://flask.pocoo.org/extensions/</a></p>
 </blockquote>
 <h2 id="">总结</h2>

@@ -32,7 +32,7 @@
 
 
         
-    <div class="book" data-level="12" data-basepath="." data-revision="1417614121512">
+    <div class="book" data-level="12" data-basepath="." data-revision="1435572609822">
     
 
 <div class="book-summary">
@@ -461,11 +461,11 @@ ts = URLSafeTimedSerializer(app.config[<span class="hljs-string">"SECRET_KEY"</s
 <p>用户管理的第一条军规是在存储它们之前使用Bcrypt算法（或者scrypt，不过这里我们将使用Bcrypt）hash密码。你绝不可明文存储密码。这会是严重的安全问题并且它损害了你的用户。所有的繁重工作都已经有第三方的包来完成，所以没有任何不遵循这个最佳实践的理由。</p>
 <blockquote>
 <p><strong>参见</strong>
-OWASP是业界最值得信赖的关于Web应用安全的信息来源之一。看一下他们推荐的一些安全编程规范： 
+OWASP是业界最值得信赖的关于Web应用安全的信息来源之一。看一下他们推荐的一些安全编程规范：
 <a href="https://www.owasp.org/index.php/Secure_Coding_Cheat_Sheet#Password_Storage" target="_blank">https://www.owasp.org/index.php/Secure_Coding_Cheat_Sheet#Password_Storage</a></p>
 </blockquote>
 <p>我们将继续前进，使用Flask-Bcrypt插件来实现应用中的bcrypt包。这个插件只是基于<code>py-bcypt</code>包的包装，但是它帮我们处理了一些琐碎的事（比如在比较hash结果之前检查字符串编码）。</p>
-<p>myapp/<strong>init</strong>.py</p>
+<p>myapp/__init__.py</p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> flask.ext.bcrypt <span class="hljs-keyword">import</span> Bcrypt
 
 bcrypt = Bcrypt(app)
@@ -480,7 +480,7 @@ bcrypt = Bcrypt(app)
 generate_password_hash(<span class="hljs-string">'password1'</span>, <span class="hljs-number">12</span>)
 </code></pre>
 <p>现在我们可以用<code>time</code>命令测几次看看。</p>
-<pre><code>$ time python test.py 
+<pre><code>$ time python test.py
 
 real    0m0.496s
 user    0m0.464s
@@ -554,8 +554,8 @@ class User(db.Model):
 <h3 id="flask-login">Flask-Login</h3>
 <p>我们下一个目标是定义一个使用我们的表单类的登录视图。如果用户输入正确的账号，我们将使用Flask-Login插件来验证它们。这个插件简化了处理用户会话和验证的操作。</p>
 <p>我们只需做少量的配置就能让Flask-Login用起来了。</p>
-<p>我们先在<em><strong>init</strong>.py</em>定义Flask-Login的<code>login_manager</code>。</p>
-<p><em>myapp/<strong>init</strong>.py</em></p>
+<p>我们先在<em>__init__.py</em>定义Flask-Login的<code>login_manager</code>。</p>
+<p><em>myapp/__init__.py</em></p>
 <pre><code class="lang-python"><span class="hljs-keyword">from</span> flask.ext.login <span class="hljs-keyword">import</span> LoginManager
 
 <span class="hljs-comment"># 创建并配置应用</span>
@@ -574,7 +574,7 @@ login_manager.login_view =  <span class="hljs-string">"signin"</span>
 <p>我们在这里创建一个叫<code>LoginManager</code>的实例，用我们的<code>app</code>对象初始化它，定义登录视图并告诉它如何通过<code>id</code>获取用户类。这是使用Flask-Login的基本配置。</p>
 <blockquote>
 <p><strong>参见</strong>
-你可以在这里找到自定义Flask-Login的更多信息： 
+你可以在这里找到自定义Flask-Login的更多信息：
 <a href="https://flask-login.readthedocs.org/en/latest/#customizing-the-login-process" target="_blank">https://flask-login.readthedocs.org/en/latest/#customizing-the-login-process</a></p>
 </blockquote>
 <p>现在我们来定义处理验证的<code>signin</code>视图。</p>
