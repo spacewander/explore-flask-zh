@@ -28,7 +28,7 @@ PEP 8是对Python代码风格的官方规约。
 
 ### PEP 257: 文档字符串规约
 
-PEP 257 [LINK TO PEP] 覆盖了Python的另一项标准:**docstrings**。
+PEP 257 覆盖了Python的另一项标准:**docstrings**。
 你可以阅读PEP中的定义和相关建议，不过这里会给一个例子来展示一个文档字符串应该是怎样的：
 
 ```python
