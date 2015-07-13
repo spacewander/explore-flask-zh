@@ -2,7 +2,7 @@
 
 《explore flask》中文翻译
 
-欢迎来到本译本的生产地点！任何bug report和别的pull request都会受到热烈欢迎！不要犹豫！
+欢迎来到该译本的生产地点！任何bug report和别的pull request都会受到热烈欢迎！不要犹豫！
 
 如果你想购买PDF格式的英文原本，前往<http://exploreflask.com>。
 
@@ -17,4 +17,6 @@
 中文译本的协议同英文原本，使用[Create Commons Attribution-NonCommercial 3.0 Unported license](http://creativecommons.org/licenses/by-nc/3.0/)。
 你可以自由地分发并修改本书，前提是保证不把它重新销售并保留原作者(我指的是英文原本作者)的作品归属权。
 
+## 感谢
 
+由于本人水平有限，翻译过程中难免有错漏之处。感谢帮忙校正的各位网友：https://github.com/spacewander/explore-flask-zh/graphs/contributors

@@ -69,7 +69,7 @@ from .models import User
 现在你可以重命名你的package并在别的项目中重用模块，而无需忍受更新被硬编码的包名之苦。
 
 > 参见
-> * 你可以在PEP 328的这一节里读到更多关于相对形式的import的语法： http://www.python.org/dev/peps/pep-0328/#guido-s-decision
+> * 你可以在PEP 328的[这一节](http://www.python.org/dev/peps/pep-0328/#guido-s-decision)里读到更多关于相对形式的import的语法
 > * 在写作本书的过程中，我碰巧在这个Tweet上面看到了一个使用相对形式的import的好处： 
 > <https://twitter.com/dabeaz/status/372059407711887360>
 > Just had to rename our whole package. Took 1 second. Package relative imports FTW!  
