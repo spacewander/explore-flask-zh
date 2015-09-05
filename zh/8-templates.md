@@ -11,7 +11,9 @@
 
 **Jinja**文档在解释这门语言的语法和特性这方面做得很棒。在这里我不会啰嗦一遍，但还是会再一次向你强调下面一点：
 
+{% raw %}
 > Jinja有两种定界符。`{% ... %}`和`{{ ... }}`。前者用于执行像for循环或赋值等语句，后者向模板输出一个表达式的结果。
+{% endraw %}
 
 > **参见**： http://jinja.pocoo.org/docs/templates/#synopsis
 
@@ -55,7 +57,9 @@ templates/
 
 通常，你会有一个顶级的*layout.html*定义你的应用的主体布局，外加站点的每一个节点也有自己的一个*layout.html*。如果再看一眼上面的文件夹结构，你会看到一个顶级的*myapp/templates/layout.html*，以及*myapp/templates/profile/layout.html*和*myapp/templates/admin/layout.html*。后两个文件继承并修改第一个文件。
 
+{% raw %}
 继承是通过`{% extends %}`和`{% block %}`标签实现的。在双亲模板中，你可以定义要给子模板处理的block。
+{% endraw %}
 
 _myapp/templates/layout.html_
 ```
@@ -123,7 +127,9 @@ myapp/templates/layout.html
 > **注意**
 > 你可能注意到了我们在import语句中加入了**with context**。Jinja的**上下文(context)**包括了通过`render_template()`函数传递的参数以及在我们的Python代码的Jinja环境上下文。这些变量能够被用于模板的渲染。
 >
+{% raw %}
 > 一些变量是我们显式传递过去的，比如`render_template("index.html", color="red")`，但还有些变量和函数是Flask自动加入到上下文的，比如`request`，`g`和`session`。使用了`{% from ... import ... with context %}`，我们告诉Jinja让所有的变量也在宏里可用。
+{% endraw %}
 
 > **参见**
 > * 所有的全局变量都是由Flask传递给Jinja上下文的: http://flask.pocoo.org/docs/templating/#standard-context
@@ -199,7 +205,9 @@ from .util import filters
 ## 总结
 
 * 使用Jinja作为模板语言。
+{% raw %}
 * Jinja有两种定界符：`{% ... %}`和`{{ ... }}`。前者用于执行类似循环或赋值的语句，后者向模板输出表达式求值的结果。
+{% endraw %}
 * 模板应该放在*myapp/templates/* - 一个在应用文件夹里面的目录。
 * 我建议*template/*文件夹的结构应该与应用URL结构一一对应。
 * 你应该在*myapp/templates*以及站点的每一部分放置一个*layout.html*作为布局模板。后者是前者的拓展。

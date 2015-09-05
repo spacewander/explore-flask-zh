@@ -1,28 +1,15 @@
 {
-    // Folders to use for output
-    // Caution: it overrides the value from the command line
-    // It's not advised this option in the book.json
     "output": null,
-
-    // Generator to use for building
-    // Caution: it overrides the value from the command line
-    // It's not advised this option in the book.json
+    "gitbook": ">=2.2.0",
     "generator": "site",
 
-    // Book title and description (defaults are extracted from the README)
     "title": "Flask之旅",
     "description": "关于Flask的最佳实践",
 
-    // For ebook format, the extension to use for generation (default is detected from output extension)
-    // "epub", "pdf", "mobi"
-    // Caution: it overrides the value from the command line
-    // It's not advised this option in the book.json
     "extension": null,
 
-    // Plugins list, can contain "-name" for removing default plugins
     "plugins": [],
 
-    // Global configuration for plugins
     "pluginsConfig": {
         "fontSettings": {
             "theme": "sepia",
@@ -31,9 +18,7 @@
         }
     },
 
-    // Links in template (null: default, false: remove, string: new value)
     "links": {
-        // Sharing links
         "sharing": {
             "google": null,
             "facebook": null,
