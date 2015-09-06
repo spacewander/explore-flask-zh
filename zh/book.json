@@ -17,6 +17,9 @@
             "size": 2
         }
     },
+    "pdf": {
+      "fontSize": 22
+    },
 
     "links": {
         "sharing": {
