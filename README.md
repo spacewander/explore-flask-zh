@@ -20,3 +20,8 @@
 ## 感谢
 
 由于本人水平有限，翻译过程中难免有错漏之处。感谢帮忙校正的各位网友：https://github.com/spacewander/explore-flask-zh/graphs/contributors
+
+## 附件
+
+基于 gitbook 生成的[PDF](http://pan.baidu.com/s/1dDpXTzN)
+还有 [epub](http://pan.baidu.com/s/1c0pZU9a) 和 [mobi](http://pan.baidu.com/s/1i36KHql) 版本。
