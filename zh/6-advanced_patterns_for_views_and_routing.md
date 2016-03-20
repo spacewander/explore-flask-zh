@@ -28,7 +28,7 @@ Flask-Login使得用户认证系统的实现不再困难。
 
 ```
 from flask import render_template
-from flask.ext.login import login_required, current_user
+from flask_login import login_required, current_user
 
 
 @app.route('/')
@@ -62,7 +62,7 @@ def account():
 假设Flask-Cache已经配置好了，下面是我们的被装饰的视图的例子:
 
 ```
-from flask.ext.cache import Cache
+from flask_cache import Cache
 from flask import Flask
 
 app = Flask()
@@ -99,7 +99,7 @@ from datetime import datetime
 
 from flask import flash, redirect, url_for
 
-from flask.ext.login import current_user
+from flask_login import current_user
 
 def check_expired(func):
     @wraps(func)
@@ -144,7 +144,7 @@ myapp/views.py
 ```
 from flask import render_template
 
-from flask.ext.login import login_required
+from flask_login import login_required
 
 from . import app
 from .util import check_expired

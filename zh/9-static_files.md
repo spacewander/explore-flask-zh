@@ -78,7 +78,7 @@ static/
 
 _myapp/util/assets.py_
 ```
-from flask.ext.assets import Bundle, Environment
+from flask_assets import Bundle, Environment
 from .. import app
 
 bundles = {

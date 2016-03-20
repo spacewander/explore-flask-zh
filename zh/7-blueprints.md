@@ -315,7 +315,7 @@ def get_site(endpoint, values):
     g.site = query.first_or_404()
 
 # 在定义site后才import views。视图模块需要import 'site'，所以我们需要确保在import views之前定义site。
-import .views
+from . import views
 ```
 
 现在我们已经从数据库中获取可以向请求子域名的用户展示的站点信息了。
@@ -417,7 +417,7 @@ api = Blueprint(
     static_folder='static'
 )
 
-import .views
+from . import views
 ```
 
 接着我们可以在gnizama的顶级目录下的*\_\_init\_\_.py*中注册这个蓝图。

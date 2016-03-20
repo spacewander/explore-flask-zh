@@ -124,7 +124,7 @@ def confirm_email(token):
 
 myapp/\_\_init\_\_.py
 ```python
-from flask.ext.bcrypt import Bcrypt
+from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
 ```
@@ -137,7 +137,7 @@ Bcrypt算法之所以深受欢迎，其中一个原因是它的“未来拓展�
 
 _benchmark.py_
 ```python
-from flask.ext.bcrypt import generate_password_hash
+from flask_bcrypt import generate_password_hash
 
 # 改变round的次数（第二个参数），直到运行时间在0.25到0.5之间。
 generate_password_hash('password1', 12)
@@ -248,7 +248,7 @@ class User(db.Model):
 
 *myapp/\_\_init\_\_.py*
 ```python
-from flask.ext.login import LoginManager
+from flask_login import LoginManager
 
 # 创建并配置应用
 # [...]
@@ -276,7 +276,7 @@ _myapp/views.py_
 ```python
 from flask import redirect, url_for
 
-from flask.ext.login import login_user
+from flask_login import login_user
 
 from . import app
 from .forms import UsernamePasswordForm()
@@ -301,7 +301,7 @@ def signin():
 _myapp/views.py_
 ```python
 from flask import redirect, url_for
-from flask.ext.login import logout_user
+from flask_login import logout_user
 
 from . import app
 

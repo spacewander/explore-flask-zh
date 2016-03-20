@@ -19,7 +19,7 @@ SQLAlchemy是一个ORM（[对象关系映射](http://zh.wikipedia.org/wiki/%E5%A
 <em>myapp/\_\_init\_\_.py_</em>
 ```
 from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__, instance_relative_config=True)
 

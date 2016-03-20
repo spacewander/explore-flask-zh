@@ -20,7 +20,7 @@ class EmailPasswordForm(Form):
 ```
 
 > **注意**
-> 直到0.9版，Flask-WTF为WTForms的fields和validators提供自己的包装。你可能见过许多代码直接从`flask.ext.wtforms`而不是`wtforms`中直接导入`TextField`，`PasswordField`等等。
+> 直到0.9版，Flask-WTF为WTForms的fields和validators提供自己的包装。你可能见过许多代码直接从`flask_wtforms`而不是`wtforms`中直接导入`TextField`，`PasswordField`等等。
 > 而从0.9版之后，我们得直接从`wtforms`中导入它们。
 
 这个表单将用于用户注册表单。我们可以称之为`SignInForm()`，但是通过保持抽象，我们可以在别的地方重用它，比如作为登录表单。如果我们针对特定功能定义表单，最终就会得到许多相似却无法重用的表单。基于表单中包含的域 - 那些使得表单与众不同的元素 - 进行命名，显然会清晰很多。当然，有时候你会有复杂的，只在一个地方用到的表单，你再给它起个独一无二的名字也不迟。
@@ -65,7 +65,7 @@ def login():
 
 > **参见**
 > `validate_on_submit()`的文档和源码在此：
-> * http://pythonhosted.org/Flask-WTF/#flask.ext.wtf.Form.validate_on_submit
+> * http://flask-wtf.readthedocs.org/en/latest/api.html#flask_wtf.Form.validate_on_submit
 > * https://github.com/ajford/flask-wtf/blob/v0.8.4/flask_wtf/form.py#L120
 
 如果一个表单已经提交并且通过验证，我们可以开始处理登录逻辑的部分了。如果它还没有提交（比如，它只是一个GET请求），我们需要传递这个表单对象给模板来进行渲染。下面展示如何在模板中使用CSRF防护。
