@@ -125,6 +125,8 @@ def check_expired(func):
 @bar
 def one():
     pass
+
+r1 = one()
 ```
 
 
