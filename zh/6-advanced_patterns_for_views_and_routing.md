@@ -140,7 +140,7 @@ r2 = two()
 r1 == r2 # True
 ```
 
-下面这个例子用到了我们自定义的装饰器和来自Flask-Cache拓展的`@login_required`装饰器。我们可以将多个装饰器堆成栈来一起使用。
+下面这个例子用到了我们自定义的装饰器和来自Flask-login拓展的`@login_required`装饰器。我们可以将多个装饰器堆成栈来一起使用。
 
 myapp/views.py
 ```
