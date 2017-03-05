@@ -46,7 +46,7 @@ Digital Ocean是最近出现的EC2的竞争对手。一如EC2，Digital Ocean允
 
 要想使用Gunicorn，需要通过pip安装`gunicorn`到你的虚拟环境中。运行你的应用只需简单的命令。为了简明起见，让我们假设这就是我们的Flask应用：
 
-_app.py_
+_rocket.py_
 ```python
 from flask import Flask
 
