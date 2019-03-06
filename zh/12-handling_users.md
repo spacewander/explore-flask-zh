@@ -178,8 +178,8 @@ class User(db.Model):
         return self._password
 
     @password.setter
-    def _set_password(self, plaintext):
-        self._password = bcrypt.generate_password_hash(plaintext)
+    def password(self, plaintext):
+        self._password = bcrypt.generate_password_hash(plaintext).decode("utf-8")
 ```
 
 我们使用SQLAlchemy的hybird（混合）拓展来定义一个同时供众多函数调用的接口属性。当赋值给`user.password`属性时，我们的setter会被自动调用。而在setter内，我们会hash纯文本密码并存储在用户表里的`_password`列里。既然我们定义`user.password`为混合属性，那么就可以通过这个属性来获取`_password`的值。
@@ -231,7 +231,7 @@ class User(db.Model):
 
     # [...] columns and properties
 
-    def is_correct_password(self, plaintext)
+    def is_correct_password(self, plaintext):
         if bcrypt.check_password_hash(self._password, plaintext):
             return True
 
