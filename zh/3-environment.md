@@ -99,7 +99,7 @@ pip可以生成一个文本文件，列出所有已经安装的包。它也可�
 使用`pip install -r requirements.txt`，你就能安装所有的包。
 
 > **注意**
-> 在freeze或install依赖包时，确保你正为于正确的virtual environment之中。
+> 在freeze或install依赖包时，确保你正位于正确的virtual environment之中。
 
 ### 手动记录依赖变动
 
