@@ -6,22 +6,22 @@
 
 ## 托管主机
 
-首先，你需要一个服务器。世上服务器提供商成千，但我只取三家。我不会谈论如何开始使用它们的服务的细节，因为这超出本书的范围。相反，我只会谈论它们作为Flask应用托管商上的优点。
+首先，你需要一个服务器。世上服务器提供商成千，但我只取三家。我不会谈论如何开始使用它们的服务的细节，因为这超出本书的范围。相反，我只会谈论它们作为 Flask 应用托管商上的优点。
 
 ### Amazon Web Services EC2（因为国情问题，让我们直接看下一个吧）
 
-Amazon Web Services指的是一套相关的服务，提供商是……~~卓越~~亚马逊！今日，许多著名的初创公司选择使用它，所以你或许已经听过它的大名。AWS服务中我们最关心的是EC2，全称是Elastic Compute Cloud。EC2的最大的卖点是你能够获得虚拟主机，或者说实例（这是AWS官方称呼），在仅仅几秒之内。如果你需要快速拓展你的应用，就只需启动多一点EC2实例给你的应用，并且用一个负载平衡器(load balancer)管理它们。（这时还可以试试AWS Elastic Load Balancer）
+Amazon Web Services 指的是一套相关的服务，提供商是……~~卓越~~ 亚马逊！今日，许多著名的初创公司选择使用它，所以你或许已经听过它的大名。AWS 服务中我们最关心的是 EC2，全称是 Elastic Compute Cloud。EC2 的最大的卖点是你能够获得虚拟主机，或者说实例（这是 AWS 官方称呼），在仅仅几秒之内。如果你需要快速拓展你的应用，就只需启动多一点 EC2 实例给你的应用，并且用一个负载平衡器(load balancer)管理它们。（这时还可以试试 AWS Elastic Load Balancer）
 
-对于Flask而言，AWS就是一个常规的虚拟主机。付上一些费用，你可以用你喜欢的Linux发行版启动它，并安上你的Flask应用。之后你的服务器就起来了。不过它意味着你需要一些系统管理知识。
+对于 Flask 而言，AWS 就是一个常规的虚拟主机。付上一些费用，你可以用你喜欢的 Linux 发行版启动它，并安上你的 Flask 应用。之后你的服务器就起来了。不过它意味着你需要一些系统管理知识。
 
 ### Heroku
 
-Heroku是一个应用托管网站，基于诸如EC2的AWS的服务。他们允许你获得EC2的便利，而无需系统管理经验。
+Heroku 是一个应用托管网站，基于诸如 EC2 的 AWS 的服务。他们允许你获得 EC2 的便利，而无需系统管理经验。
 
-对于Heroku，你通过`git push`来在它们的服务器上部署代码。这是非常便利的，如果你不想浪费时间ssh到服务器上，安装并配置软件，继续整个常规的部署流程。这种便利是需要花钱购买的，尽管AWS和Heroku都提供了一定量的免费服务。
+对于 Heroku，你通过 `git push` 来在它们的服务器上部署代码。这是非常便利的，如果你不想浪费时间 ssh 到服务器上，安装并配置软件，继续整个常规的部署流程。这种便利是需要花钱购买的，尽管 AWS 和 Heroku 都提供了一定量的免费服务。
 
 > **参见**
-> Heroku有一个如何在它们的服务器上部署Flask应用的教程： 
+> Heroku有一个如何在它们的服务器上部署Flask应用的教程：
 > <https://devcenter.heroku.com/articles/getting-started-with-python>
 
 > **注意**
@@ -32,19 +32,19 @@ Heroku是一个应用托管网站，基于诸如EC2的AWS的服务。他们允�
 
 ### Digital Ocean
 
-Digital Ocean是最近出现的EC2的竞争对手。一如EC2，Digital Ocean允许你快速地启动虚拟主机（在这里叫droplet）。所有的droplet都运行在SSD上，而在EC2，如果你用的是普通服务，你是享受不到这种待遇的。对我而言，最大的卖点是它提供的控制接口比AWS控制面板简单和容易多了。Digital Ocean是我个人的最爱，我建议你考虑下它。
+Digital Ocean 是最近出现的 EC2 的竞争对手。一如 EC2，Digital Ocean 允许你快速地启动虚拟主机（在这里叫 droplet）。所有的 droplet 都运行在 SSD 上，而在 EC2，如果你用的是普通服务，你是享受不到这种待遇的。对我而言，最大的卖点是它提供的控制接口比 AWS 控制面板简单和容易多了。Digital Ocean 是我个人的最爱，我建议你考虑下它。
 
-在Digital Ocean，Flask应用部署方式就跟在EC2一样。你会得到一个全新的Linux发行版，然后需要安装你的全套软件。
+在 Digital Ocean，Flask 应用部署方式就跟在 EC2 一样。你会得到一个全新的 Linux 发行版，然后需要安装你的全套软件。
 
 ## 部署工具
 
-这一节将包括一些为了向别人提供服务，你需要安装在服务器上的软件。最基本的是一个前置服务器，用来反向代理请求给一个运行你的Flask应用的应用容器。你通常也需要一个数据库，所以我们也会略微谈论下这方面的内容。
+这一节将包括一些为了向别人提供服务，你需要安装在服务器上的软件。最基本的是一个前置服务器，用来反向代理请求给一个运行你的 Flask 应用的应用容器。你通常也需要一个数据库，所以我们也会略微谈论下这方面的内容。
 
 ### 应用容器
 
-在开发应用时，本地运行的那个服务器并不能处理真实的请求。当你真的需要向公众发布你的应用，你需要在应用容器，例如Gunicorn，上运行它。Gunicorn接待请求，并处理诸如线程的复杂事务。
+在开发应用时，本地运行的那个服务器并不能处理真实的请求。当你真的需要向公众发布你的应用，你需要在应用容器，例如 Gunicorn，上运行它。Gunicorn 接待请求，并处理诸如线程的复杂事务。
 
-要想使用Gunicorn，需要通过pip安装`gunicorn`到你的虚拟环境中。运行你的应用只需简单的命令。为了简明起见，让我们假设这就是我们的Flask应用：
+要想使用 Gunicorn，需要通过 pip 安装 `gunicorn` 到你的虚拟环境中。运行你的应用只需简单的命令。为了简明起见，让我们假设这就是我们的 Flask 应用：
 
 _rocket.py_
 ```python
@@ -57,7 +57,7 @@ def index():
 	return "Hello World!"
 ```
 
-哦，这真简明扼要。现在，使用Gunicorn来运行它吧，我们只需执行这个命令：
+哦，这真简明扼要。现在，使用 Gunicorn 来运行它吧，我们只需执行这个命令：
 
 ```
 (ourapp)$ gunicorn rocket:app
@@ -69,9 +69,9 @@ def index():
 
 你应该能在 http://127.0.0.1:8000 看到“Hello World!”。
 
-为了在后台运行这个服务器（也即使它变成守护进程），我们可以传递`-D`选项给Gunicorn。这下它会持续运行，即使你关闭了当前的终端会话。
+为了在后台运行这个服务器（也即使它变成守护进程），我们可以传递 `-D` 选项给 Gunicorn。这下它会持续运行，即使你关闭了当前的终端会话。
 
-如果我们这么做了，当我们想要关闭服务器时就会困惑于到底应该关闭哪个进程。我们可以让Gunicorn把进程ID储存到文件中，这样如果想要停止或者重启服务器时，我们可以不用在一大串运行中的进程中搜索它。我们使用`-p <file>`选项来这么做。现在，我们的Gunicorn部署命令是这样：
+如果我们这么做了，当我们想要关闭服务器时就会困惑于到底应该关闭哪个进程。我们可以让 Gunicorn 把进程 ID 储存到文件中，这样如果想要停止或者重启服务器时，我们可以不用在一大串运行中的进程中搜索它。我们使用 `-p <file>` 选项来这么做。现在，我们的 Gunicorn 部署命令是这样：
 
 ```
 (ourapp)$ gunicorn rocket:app -p rocket.pid -D
@@ -86,32 +86,32 @@ def index():
 (ourapp)$ kill `cat rocket.pid`
 ```
 
-默认下Gunicorn会运行在8000端口。如果这已经被另外的应用占用了，你可以通过添加`-b`选项来指定端口。
+默认下 Gunicorn 会运行在 8000 端口。如果这已经被另外的应用占用了，你可以通过添加 `-b` 选项来指定端口。
 
 ```
 (ourapp)$ gunicorn rocket:app -p rocket.pid -b 127.0.0.1:7999 -D
 ```
 
-#### 将Gunicorn摆上前台
+#### 将 Gunicorn 摆上前台
 
 > **注意**
 > Gunicorn应该隐藏于反向代理之后。如果你直接让它监听来自外网的请求，它很容易成为拒绝服务攻击的目标。它不应该接受这样的考验。只有在debug的情况下你才能把Gunicorn摆上前台，而且完工之后，切记把它重新隐藏到幕后。 }
 
-如果你像前面说的那样在服务器上运行Gunicorn，将不能从本地系统中访问到它。这是因为默认情况下Gunicorn绑定在127.0.0.1。这意味着它仅仅监听来自服务器自身的连接。所以通常使用一个反向代理来作为外网和Gunicorn服务器的中介。不过，假如为了debug，你需要直接从外网发送请求给Gunicorn，可以告诉Gunicorn绑定0.0.0.0。这样它就会监听所有请求。
+如果你像前面说的那样在服务器上运行 Gunicorn，将不能从本地系统中访问到它。这是因为默认情况下 Gunicorn 绑定在 127.0.0.1。这意味着它仅仅监听来自服务器自身的连接。所以通常使用一个反向代理来作为外网和 Gunicorn 服务器的中介。不过，假如为了 debug，你需要直接从外网发送请求给 Gunicorn，可以告诉 Gunicorn 绑定 0.0.0.0。这样它就会监听所有请求。
 
 ```
 (ourapp)$ gunicorn rocket:app -p rocket.pid -b 0.0.0.0:8000 -D
 ```
 
 > **注意**
-> - 从文档中可以读到更多关于运行和部署Gunicorn的信息 : http://docs.gunicorn.org/en/latest/ 
+> - 从文档中可以读到更多关于运行和部署Gunicorn的信息 : http://docs.gunicorn.org/en/latest/
 > - Fabric是一个可以允许你不通过SSH连接到每个服务器上就可以执行部署和管理命令的工具 : http://docs.fabfile.org/en/latest
 
-### Nginx反向代理
+### Nginx 反向代理
 
-反向代理处理公共的HTTP请求，发送给Gunicorn并将响应带回给发送请求的客户端。Nginx是一个优秀的客户端，更何况Gunicorn强烈建议我们使用它。
+反向代理处理公共的 HTTP 请求，发送给 Gunicorn 并将响应带回给发送请求的客户端。Nginx 是一个优秀的客户端，更何况 Gunicorn 强烈建议我们使用它。
 
-要想配置Nginx作为运行在127.0.0.1:8000的Gunicorn的反向代理，我们可以在*/etc/nginx/sites-available*下给应用创建一个文件。不如称之为*exploreflask.com*吧。
+要想配置 Nginx 作为运行在 127.0.0.1:8000 的 Gunicorn 的反向代理，我们可以在 */etc/nginx/sites-available* 下给应用创建一个文件。不如称之为 *exploreflask.com* 吧。
 
 _/etc/nginx/sites-available/exploreflask.com_
 ```
@@ -130,7 +130,7 @@ server {
         location / {
         		# Pass the request to Gunicorn
                 proxy_pass http://127.0.0.1:8000;
-                
+
                 # Set some HTTP headers so that our app knows where the request really came from
                 proxy_set_header Host $host;
                 proxy_set_header X-Real-IP $remote_addr;
@@ -139,7 +139,7 @@ server {
 }
 ```
 
-现在在*/etc/nginx/sites-enabled*下创建该文件的符号链接，接着重启Nginx。
+现在在 */etc/nginx/sites-enabled* 下创建该文件的符号链接，接着重启 Nginx。
 
 ```
 $ sudo ln -s \
@@ -147,15 +147,15 @@ $ sudo ln -s \
 /etc/nginx/sites-enabled/exploreflask.com
 ```
 
-你现在应该可以发送请求给Nginx然后收到来自应用的响应。
+你现在应该可以发送请求给 Nginx 然后收到来自应用的响应。
 
 > **参见**
-> Gunicorn文档中关于配置Nginx的部分会给你更多启动Nginx的信息: 
+> Gunicorn文档中关于配置Nginx的部分会给你更多启动Nginx的信息:
 > <http://docs.gunicorn.org/en/latest/deploy.html#nginx-configuration>
 
 #### ProxyFix
 
-有时，你会遇到Flask不能恰当处理转发的请求的情况。这也许是因为在Nginx中设置的某些HTTP报文头部造成的。我们可以使用Werkzeug的ProxyFix来fix转发请求。
+有时，你会遇到 Flask 不能恰当处理转发的请求的情况。这也许是因为在 Nginx 中设置的某些 HTTP 报文头部造成的。我们可以使用 Werkzeug 的 ProxyFix 来 fix 转发请求。
 
 _app.py_
 ```python
@@ -175,12 +175,12 @@ def index():
 ```
 
 > **参见**
-> 在Werkzeug文档中可以读到更多关于ProxyFix的信息: 
+> 在Werkzeug文档中可以读到更多关于ProxyFix的信息:
 > <http://werkzeug.pocoo.org/docs/contrib/fixers/#werkzeug.contrib.fixers.ProxyFix>
 
 ## 总结
 
-* 你可以把Flask应用托管到AWS EC2， Heroku和Digital Ocean。（译者注：建议托管到国内的云平台上）
-* Flask应用的基本部署依赖包括一个应用容器（比如Gunicorn）和一个反向代理（比如Nginx）。
-* Gunicorn应该退居Nginx幕后并监听127.0.0.1（内部请求）而非0.0.0.0（外部请求）
-* 使用Werkzeug的ProxyFix来处理Flask应用遇到的特定的转发报文头部。
+* 你可以把 Flask 应用托管到 AWS EC2，Heroku 和 Digital Ocean。（译者注：建议托管到国内的云平台上）
+* Flask 应用的基本部署依赖包括一个应用容器（比如 Gunicorn）和一个反向代理（比如 Nginx）。
+* Gunicorn 应该退居 Nginx 幕后并监听 127.0.0.1（内部请求）而非 0.0.0.0（外部请求）
+* 使用 Werkzeug 的 ProxyFix 来处理 Flask 应用遇到的特定的转发报文头部。

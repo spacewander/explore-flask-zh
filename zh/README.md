@@ -1,16 +1,16 @@
-# Flask之旅
+# Flask 之旅
 
 《explore flask》中文翻译
 
-欢迎来到该译本的生产地点！任何bug report和别的pull request都会受到热烈欢迎！不要犹豫！
+欢迎来到该译本的生产地点！任何 bug report 和别的 pull request 都会受到热烈欢迎！不要犹豫！
 
-如果你想购买PDF格式的英文原本，前往<http://exploreflask.com>。
+如果你想购买 PDF 格式的英文原本，前往<http://exploreflask.com>。
 
 ## 想参与？
 
-如果你对本书有些建议，你可以在issue面板新开一个issue或提交一个pull request。如果你准备进行较大的改动，最好先在issue中提及，这样我们好能事先讨论这么做有没有必要。
+如果你对本书有些建议，你可以在 issue 面板新开一个 issue 或提交一个 pull request。如果你准备进行较大的改动，最好先在 issue 中提及，这样我们好能事先讨论这么做有没有必要。
 
-译者：如果是关于翻译方面的问题，欢迎提issue或pull request。如果是关乎内容的问题，请移步<https://github.com/rpicard/explore-flask>
+译者：如果是关于翻译方面的问题，欢迎提 issue 或 pull request。如果是关乎内容的问题，请移步<https://github.com/rpicard/explore-flask>
 
 ## 协议
 

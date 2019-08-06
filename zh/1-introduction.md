@@ -1,7 +1,7 @@
 # 前言
 
-本书旨在展示使用Flask的最佳实践。
-开发一个普通的Flask应用需要跟形形色色的领域打交道。比如，你经常需要操作数据库，验证用户。
+本书旨在展示使用 Flask 的最佳实践。
+开发一个普通的 Flask 应用需要跟形形色色的领域打交道。比如，你经常需要操作数据库，验证用户。
 在接下来的几页里我将尽我所能来介绍处理这些事情时的“正确之道”。
 我的建议并不总能有用，但我希望它们在大多数情况下都是一个好选择。
 
@@ -11,7 +11,7 @@
 
 ### 受众
 
-本书的内容基于官方文档之上。我强烈建议你深入阅读[官方用户指南](http://flask.pocoo.org/docs/#user-s-guide)和[新手教程](http://flask.pocoo.org/docs/tutorial/)。这将给你一个更熟悉Flask的机会。你至少需要知道什么是view，Jinja模板的基础知识以及新手应有的其他基本概念。我会尽量避免重提用户指南中存在的信息，所以如果直接阅读本书，你就会有对阅读官方文档的急迫需求（这不错吧？）。
+本书的内容基于官方文档之上。我强烈建议你深入阅读[官方用户指南](http://flask.pocoo.org/docs/#user-s-guide)和[新手教程](http://flask.pocoo.org/docs/tutorial/)。这将给你一个更熟悉 Flask 的机会。你至少需要知道什么是 view，Jinja 模板的基础知识以及新手应有的其他基本概念。我会尽量避免重提用户指南中存在的信息，所以如果直接阅读本书，你就会有对阅读官方文档的急迫需求（这不错吧？）。
 
 虽然这么说，本书涉及的主题并不高深。本书仅仅是强调减轻开发者负担的最佳实践和模式。尽量避免啰嗦官方文档中提到的内容的同时，我也会再次强调一些概念来加深印象。
 在阅读这部分内容时，你不需要重读新手教程。
@@ -20,35 +20,35 @@
 
 #### Python 2 还是 Python 3
 
-当我写下此文， Python社区正处于从Python 2迁移到Python 3的动荡之中。Python Software Foundation的官方态度如下：
+当我写下此文，Python 社区正处于从 Python 2 迁移到 Python 3 的动荡之中。Python Software Foundation 的官方态度如下：
 
 > Python 2.x is the status quo, Python 3.x is the present and future of the language.[Python wiki: python2还是python3](http://wiki.python.org/moin/Python2orPython3)
 
-到了版本0.10，Flask现在可以在Python 3.3上运行。就新的Flask应用是否需要使用Python 3的问题，我问过Armin Ronacher，他回答说，这不是必须的：
+到了版本 0.10，Flask 现在可以在 Python 3.3 上运行。就新的 Flask 应用是否需要使用 Python 3 的问题，我问过 Armin Ronacher，他回答说，这不是必须的：
 
 > 我自己现在并不用它，我也不会向别人推荐自己都不相信的东西，所以我不会推荐Python 3.
 > -- Armin Ronacher, Flask作者[我和Armin Ronacher的对话](https://www.youtube.com/watch?feature=player_detailpage&v=fs20qdvm0K4#t=190)
 
-主要的理由在于许多常用的包没有Python 3的版本。
-你总不会愿意接受用python 3开发了几个月后发现自己不能使用包X,Y,Z……
-也许总有一天Flask官方将推荐用Python 3开始新的项目，但是现在依然是Python 2的天下。
+主要的理由在于许多常用的包没有 Python 3 的版本。
+你总不会愿意接受用 Python 3 开发了几个月后发现自己不能使用包 X, Y, Z……
+也许总有一天 Flask 官方将推荐用 Python 3 开始新的项目，但是现在依然是 Python 2 的天下。
 
 **另注**
 
-[Python 3 Wall of Superpowers](https://python3wos.appspot.com/)记录了一些已经移植到Python 3的包。
+[Python 3 Wall of Superpowers](https://python3wos.appspot.com/)记录了一些已经移植到 Python 3 的包。
 
-既然本书需要提供实践上的建议，我将假定你正使用Python 2。
-更准确地说，我将基于Python 2.7撰写本书。随着Flask社区的变迁，将来的更新会改变这一点，但是在当下，我们依然活在Python 2.7的世界里。
+既然本书需要提供实践上的建议，我将假定你正使用 Python 2。
+更准确地说，我将基于 Python 2.7 撰写本书。随着 Flask 社区的变迁，将来的更新会改变这一点，但是在当下，我们依然活在 Python 2.7 的世界里。
 
 #### Flask 版本 0.10
 
-正当本书撰写之时，0.10是Flask的最新版本（准确说，是0.10.1版）。本书中大多数内容不会受到Flask的较小的变动的影响，但是你需要了解这一点。
+正当本书撰写之时，0.10 是 Flask 的最新版本（准确说，是 0.10.1 版）。本书中大多数内容不会受到 Flask 的较小的变动的影响，但是你需要了解这一点。
 
 ## 持续集成
 
 本书的内容将持续更新，而不是周期性发布。
 这样做有一个好处，内容可以得到及时地更新，而不会待字闺中。
-所以这个网站内容将会比印刷版甚至PDF更加前沿。
+所以这个网站内容将会比印刷版甚至 PDF 更加前沿。
 
 ## 本书用到的约定
 
@@ -77,9 +77,9 @@ static/
 
 脚注会用于引用中，这样就不会跟正文混乱起来了。
 
-*斜体*将用来表示文件名。
+*斜体* 将用来表示文件名。
 
-**粗体**将用来表示新的或重要的内容。
+**粗体** 将用来表示新的或重要的内容。
 
 > **注意**
 > 这里会有容易掉进去（而且会造成大问题）的坑。
@@ -91,10 +91,10 @@ static/
 
 ## 总结
 
-* 本书包含了使用Flask的最佳实践。
-* 我假定你通读了Flask教程
-* 本书基于Python 2.7
-* 本书基于Flask 0.10
+* 本书包含了使用 Flask 的最佳实践。
+* 我假定你通读了 Flask 教程
+* 本书基于 Python 2.7
+* 本书基于 Flask 0.10
 * 通过年度审查，我尽量让本书的内容保持更新。
 * 本书中每一章独立成文。
 * 我通过一些约定来表达跟内容相关的附加信息。

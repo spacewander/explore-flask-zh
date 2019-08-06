@@ -4,8 +4,8 @@
 
 ## 视图装饰器
 
-Python装饰器让我们可以用其他函数包装特定函数。
-当一个函数被一个装饰器"装饰"时，那个装饰器会被调用，接着会做额外的工作，修改变量，调用原来的那个函数。我们可以把我们想要重用的代码作为装饰器来包装一系列视图。
+Python 装饰器让我们可以用其他函数包装特定函数。
+当一个函数被一个装饰器“装饰”时，那个装饰器会被调用，接着会做额外的工作，修改变量，调用原来的那个函数。我们可以把我们想要重用的代码作为装饰器来包装一系列视图。
 
 装饰器的语法看上去像这样:
 
@@ -15,16 +15,16 @@ def decorated():
     pass
 ```
 
-如果你看过Flask入门指南，那么对这个语法应该不感到陌生。`@app.route`正是用于在Flask应用中给视图函数设定路由URL的装饰器。
+如果你看过 Flask 入门指南，那么对这个语法应该不感到陌生。`@app.route` 正是用于在 Flask 应用中给视图函数设定路由 URL 的装饰器。
 
-让我们看一下在你的Flask应用中用得上的一些别的装饰器。
+让我们看一下在你的 Flask 应用中用得上的一些别的装饰器。
 
 ### 认证
 
-Flask-Login使得用户认证系统的实现不再困难。
-除了处理用户认证的细节之外，Flask-Login允许我们使用`@login_required`这个装饰器来验证用户对某些资源的访问权限。
+Flask-Login 使得用户认证系统的实现不再困难。
+除了处理用户认证的细节之外，Flask-Login 允许我们使用 `@login_required` 这个装饰器来验证用户对某些资源的访问权限。
 
-下面是从一个用到Flask-Login和`@login_required`装饰器的一个示范应用中获取的例子:
+下面是从一个用到 Flask-Login 和 `@login_required` 装饰器的一个示范应用中获取的例子:
 
 ```
 from flask import render_template
@@ -44,7 +44,7 @@ def account():
 > **注意**
 > `@app.route`必须是最外面的视图装饰器。
 
-只有已经验证的用户能够接触到*/dashboard*路由。你可以配置Flask-Login来重定向未验证用户到登录页面，返回HTTP 401状态码或别的你乐意的事。
+只有已经验证的用户能够接触到 */dashboard* 路由。你可以配置 Flask-Login 来重定向未验证用户到登录页面，返回 HTTP 401 状态码或别的你乐意的事。
 
 > **参见**
 > 通过[官方文档](http://flask-login.readthedocs.org/en/latest/)可以读到更多关于Flask-Login的内容
@@ -58,8 +58,8 @@ def account():
 答案不止一个，不过就本章主旨而言，标准答案是实现缓存。
 特别的，我们将要用到[Flask-Cache](http://pythonhosted.org/Flask-Cache/)拓展。这个拓展给我们提供一个可以用来缓存某个响应一段时间的装饰器。
 
-你可以将Flask-Cache配置成跟你想用的后台缓存一起使用。一个普遍的选择是[Redis](http://redis.io/)，一个容易配置和使用的软件。
-假设Flask-Cache已经配置好了，下面是我们的被装饰的视图的例子:
+你可以将 Flask-Cache 配置成跟你想用的后台缓存一起使用。一个普遍的选择是[Redis](http://redis.io/)，一个容易配置和使用的软件。
+假设 Flask-Cache 已经配置好了，下面是我们的被装饰的视图的例子:
 
 ```
 from flask_cache import Cache
@@ -83,7 +83,7 @@ def index():
 
 ```
 
-现在这个函数将会在每60秒最多运行一次。响应的结果会被保存在缓存中，并可以让期间的每一个请求获取。
+现在这个函数将会在每 60 秒最多运行一次。响应的结果会被保存在缓存中，并可以让期间的每一个请求获取。
 
 > **注意**
 > Flask-Cache同时允许我们**记住**函数 - 或缓存通过给定的参数调用的某个函数。你甚至可以缓存过于复杂的Jinja2模板片段!
@@ -112,10 +112,10 @@ def check_expired(func):
     return decorated_function
 ```
 
-1. 当用`@check_expired`装饰一个函数时，`check_expired()`被调用，被装饰的函数作为一个参数被传递进来。
-2. `@wraps`是一个装饰器，告知Python函数`decorated_function()`包装了视图函数`func()`。严格来说这不是必须的，但是这么做会使得装饰函数更加自然一些，更有利于文档和调试。
-3. `decorated_function`将截取原本传递给视图函数`func()`的args和kwargs。在这里我们检查用户的账户是否过期。如果是，我们将闪烁一则信息，并重定向到账单页面。
-4. 既然已经处理好自己的事情，我们把原来的参数交由视图函数`func()`去继续执行。
+1. 当用 `@check_expired` 装饰一个函数时，`check_expired()` 被调用，被装饰的函数作为一个参数被传递进来。
+2. `@wraps` 是一个装饰器，告知 Python 函数 `decorated_function()` 包装了视图函数 `func()`。严格来说这不是必须的，但是这么做会使得装饰函数更加自然一些，更有利于文档和调试。
+3. `decorated_function` 将截取原本传递给视图函数 `func()` 的 args 和 kwargs。在这里我们检查用户的账户是否过期。如果是，我们将闪烁一则信息，并重定向到账单页面。
+4. 既然已经处理好自己的事情，我们把原来的参数交由视图函数 `func()` 去继续执行。
 
 位于最顶部的装饰器将最先运行，然后调用下一个函数：一个视图函数或下一个装饰器。装饰器语法只是一个语法糖而已。
 
@@ -140,7 +140,7 @@ r2 = two()
 r1 == r2 # True
 ```
 
-下面这个例子用到了我们自定义的装饰器和来自Flask-login拓展的`@login_required`装饰器。我们可以将多个装饰器堆成栈来一起使用。
+下面这个例子用到了我们自定义的装饰器和来自 Flask-login 拓展的 `@login_required` 装饰器。我们可以将多个装饰器堆成栈来一起使用。
 
 myapp/views.py
 ```
@@ -167,16 +167,16 @@ def account_billing():
     return render_template('account/billing.html')
 ```
 
-当一个用户试图访问*/use\_app*时，`check_expired()`将在执行视图函数之前确保相关的账户资料不会泄漏。
+当一个用户试图访问 */use\_app* 时，`check_expired()` 将在执行视图函数之前确保相关的账户资料不会泄漏。
 
 > 参见
 > 在Python文档中可以读到更多关于`wraps()`的内容：<http://docs.python.org/2/library/functools.html#functools.wraps>
 
-## URL转换器
+## URL 转换器
 
 ### 内建转换器
 
-当你在Flask中定义一个路由时，你可以将指定的一部分转换成Python变量并传递给视图函数。
+当你在 Flask 中定义一个路由时，你可以将指定的一部分转换成 Python 变量并传递给视图函数。
 
 ```
 @app.route('/user/<username>')
@@ -184,7 +184,7 @@ def profile(username):
     pass
 ```
 
-在URL中作为<username>的那一部分内容将作为`username`参数传递给视图函数。你也可以指定一个转换器过滤出特定的类型。
+在 URL 中作为<username>的那一部分内容将作为 `username` 参数传递给视图函数。你也可以指定一个转换器过滤出特定的类型。
 
 ```
 @app.route('/user/id/<int:user_id>')
@@ -192,12 +192,12 @@ def profile(user_id):
     pass
 ```
 
-在这个代码块中，<http://myapp.com/user/id/tomato> 这个URL会返回一个404状态码 -- 此物无处觅。
-这是因为URL中预期是整数的部分却遇到了一串字符串。
+在这个代码块中，<http://myapp.com/user/id/tomato> 这个 URL 会返回一个 404 状态码 -- 此物无处觅。
+这是因为 URL 中预期是整数的部分却遇到了一串字符串。
 
-我们可以有另外一个接受一个字符串的视图函数。*/usr/id/tomato/*将调用它，而前一个函数只会被*/user/id/124*所调用。
+我们可以有另外一个接受一个字符串的视图函数。*/usr/id/tomato/* 将调用它，而前一个函数只会被 */user/id/124* 所调用。
 
-下面是来自Flask文档的关于默认转换器的表格:
+下面是来自 Flask 文档的关于默认转换器的表格:
 
 | 类型   | 作用                             |
 | -------|-------------------------------   |
@@ -210,11 +210,11 @@ def profile(user_id):
 
 我们也可以按照自己的需求打造自定义的转换器。
 Reddit - 一个知名的链接分享网站 - 用户在此可以创建和管理基于主题和链接分享的社区。
-比如`/r/python`和`/r/flask`，分别由URL`reddit.com/r/python`和`reddit.com/r/flask`表示。
-Reddit有一个有趣的特性是，通过在URL中用一个`+`隔开各个社区名，你可以同时看到来自多个社区的帖子。比如`reddit.com/r/python+flask`。
+比如 `/r/python` 和 `/r/flask`，分别由 URL `reddit.com/r/python` 和 `reddit.com/r/flask` 表示。
+Reddit 有一个有趣的特性是，通过在 URL 中用一个 `+` 隔开各个社区名，你可以同时看到来自多个社区的帖子。比如 `reddit.com/r/python+flask`。
 
 我们可以使用一个自定义转换器来实现这种特性。
-我们可以接受由加号隔离开来的任意数目参数，通过我们的ListConverter转换成一个列表，并传递给视图函数。
+我们可以接受由加号隔离开来的任意数目参数，通过我们的 ListConverter 转换成一个列表，并传递给视图函数。
 
 util.py
 ```python
@@ -230,10 +230,10 @@ class ListConverter(BaseConverter):
                         for value in values)
 ```
 
-我们需要定义两个方法:`to_python()`和`to_url()`。
-一如其名，`to_python()`用于转换路径成一个Python对象，并传递给视图函数。而`to_url()`被`url_for()`调用，来转换参数成为符合URL的形式。
+我们需要定义两个方法:`to_python()` 和 `to_url()`。
+一如其名，`to_python()` 用于转换路径成一个 Python 对象，并传递给视图函数。而 `to_url()` 被 `url_for()` 调用，来转换参数成为符合 URL 的形式。
 
-为了使用我们的ListConverter，我们首先得将它的存在告知Flask。
+为了使用我们的 ListConverter，我们首先得将它的存在告知 Flask。
 
 /myapp/\_\_init\_\_.py
 ```
@@ -249,7 +249,7 @@ app.url_map.converters['list'] = ListConverter
 > **注意**
 > 假如你的util模块有一行`from . import app`，那么有可能陷入循环import的问题。这就是为什么我等到app初始化之后才import ListConverter。
 
-现在我们可以一如使用内建转换器一样使用我们的转换器。我们在字典中指定它的键为"list"，所以我们可以在`@app.route()`中这样使用:
+现在我们可以一如使用内建转换器一样使用我们的转换器。我们在字典中指定它的键为 "list"，所以我们可以在 `@app.route()` 中这样使用:
 
 views.py
 ```python
@@ -265,12 +265,12 @@ def subreddit_home(subreddits):
     return render_template('/r/index.html', posts=posts)
 ```
 
-这应该会像Reddit的子社区系统一样工作。这样的方法可以用来实现你能想到的URL转换器。
+这应该会像 Reddit 的子社区系统一样工作。这样的方法可以用来实现你能想到的 URL 转换器。
 
 ## 总结
 
 * Custom URL converters can be a great way to implement creative features involving URL’s.
-* 来自Flask-Login的`@login_required`装饰器可以帮助你限制验证用户对视图的访问。
-* Flask-Cache插件为你提供一组装饰器来实现多种方式的缓存。
-* 我们可以开发自定义视图装饰器来帮助我们组织自己的代码，并坚守DRY(Don't Repeat Yourself 不重复你自己)原则。
-* 自定义的URL转换器将会让你很嗨地玩转URL。
+* 来自 Flask-Login 的 `@login_required` 装饰器可以帮助你限制验证用户对视图的访问。
+* Flask-Cache 插件为你提供一组装饰器来实现多种方式的缓存。
+* 我们可以开发自定义视图装饰器来帮助我们组织自己的代码，并坚守 DRY(Don't Repeat Yourself 不重复你自己)原则。
+* 自定义的 URL 转换器将会让你很嗨地玩转 URL。
